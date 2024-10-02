@@ -1,5 +1,3 @@
-# Let's create the markdown file with the requested content.
-content = """
 # Simple Expense Tracking System
 
 ## Project Overview
@@ -13,7 +11,6 @@ This project is a **Simple Expense Tracking System** developed as a requirement 
 - [Usage Instructions](#usage-instructions)
 - [Development Tools](#development-tools)
 - [Contributors](#contributors)
-- [License](#license)
 
 ## Features
 
@@ -65,10 +62,11 @@ This project is a **Simple Expense Tracking System** developed as a requirement 
 
 ## Contributors
 
-- **Elise Jane Lacubtan** - Developer
-- **John Paul Cadavez** - Developer
-- **Lester Lacerna** - Developer
-- **Steffanie Relos** - Developer
-- **Instructor**: Mr./Ms. [Mark ]
-- **Instructor**: Mr./Ms. [Charles ]
+- **Elise Jane Lacubtan** - Student
+- **John Paul Cadavez** - Student
+- **Lester Lacerna** - Student
+- **Steffanie Relos** - Student
+
+- **Instructor**: Mr. Mark RJ S. Marte (Fundamentals of Database Systems)
+- **Instructor**: Mr. Charles Fonzy Cahapay Varquez (Data Structures and Algorithms)
 
