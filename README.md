@@ -67,6 +67,7 @@ This project is a **Simple Expense Tracking System** developed as a requirement 
 - **Lester Lacerna** - Student
 - **Steffanie Relos** - Student
 
-- **Instructor**: Mr. Mark RJ S. Marte (Fundamentals of Database Systems)
-- **Instructor**: Mr. Charles Fonzy Cahapay Varquez (Data Structures and Algorithms)
+## Instructor
+- **Mr. Mark RJ S. Marte**: (Fundamentals of Database Systems)
+- **Mr. Charles Fonzy Cahapay Varquez**:  (Data Structures and Algorithms)
 
