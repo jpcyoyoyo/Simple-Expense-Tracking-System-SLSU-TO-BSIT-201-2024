@@ -1,0 +1,152 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0.5in 1in;
+    padding: 0;
+    background: url('backim.png') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: calc(100vh - 1in);
+    color: white;
+}
+
+.welcome-section {
+    max-width: 50%;
+    margin-right: 10px;
+    align-self: flex-start;
+    text-align: center;
+}
+
+.welcome-section h1 {
+    font-size: 3em;
+    margin-bottom: 50px;
+}
+
+.welcome-section p {
+    font-size: 1.2em;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+.container {
+    width: 40%;
+    max-width: 450px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 50px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 550px;
+}
+
+.login-section h2 {
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    color: #ffffff;
+}
+
+.login-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form input {
+    padding: 12px;
+    margin: 20px 0;
+    border-radius: 5px;
+    border: none;
+    font-size: 1em;
+}
+
+input[type="button"] {
+    background-color: #6b47ef;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.signup-link {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.signup-link a {
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+.securityq-section h2 {
+    margin-bottom: 10px;
+    font-size: 1.8em;
+    color: #ffffff;
+}
+
+.securityq-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.securityq-form input {
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
+    font-size: 1em;
+}
+
+.signup-section h2 {
+    margin-bottom: 2px;
+    font-size: 1.8em;
+    color: #ffffff;
+}
+
+.signup-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-form input {
+    padding: 12px;
+    margin: 15px 0;
+    border-radius: 5px;
+    border: none;
+    font-size: 1em;
+}
+
+.forgotpassword-section h2 {
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    color: #ffffff;
+}
+
+.forgotpassword-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.forgotpassword-form input {
+    padding: 12px;
+    margin: 20px 0;
+    border-radius: 5px;
+    border: none;
+    font-size: 1em;
+}
+

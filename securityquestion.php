@@ -10,7 +10,7 @@
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Balsamiq Sans:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" type="text/css" rel="stylesheet">
-    <title>SignIn</title>
+    <title>Dashboard</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/main_app.css">
@@ -36,24 +36,21 @@
         <p>We empower you to take control of your finances. Whether you’re managing personal expenses, tracking business costs, or planning for future savings, our intuitive platform is designed to make expense tracking simple and effective.</p>
     </div>
 
-    <div class="container signup-section">
-        <h2>SIGN UP</h2>
-        <form class="signup-form" action="SecurityQ.html" method="get">
-            <input type="text" placeholder="Full Name" required>
-            <input type="text" placeholder="Username" required>
-            <input type="text" placeholder="Email" required>
-            <input type="password" placeholder="Create Password" required>
-            <input type="password" placeholder="Confirm Password" required>
-            <input type="button" value="Next" onclick="submitForm()">
-            <div class="login-link">
-                Already have an account? <a href="LogIn.html">Log In</a>
-            </div>
+    <div class="container login-section">
+        <h2>SECURITY QUESTIONS</h2>
+        <form class="securityq-form" action="Dashboard.html" method="get">
+            <input type="text" placeholder="Question 1" required>
+            <input type="text" placeholder="Answer 1" required>
+            <input type="text" placeholder="Question 2" required>
+            <input type="text" placeholder="Answer 2" required>
+            <input type="text" placeholder="Question 3" required>
+            <input type="text" placeholder="Answer 3" required>
+            <input type="button" value="Sign Up" onclick="submitForm()">
         </form>
     </div>
-
     <script>
         function submitForm() {
-            document.querySelector('.signup-form').submit();
+            document.querySelector('.securityq-form').submit();
         }
     </script>
 </body>

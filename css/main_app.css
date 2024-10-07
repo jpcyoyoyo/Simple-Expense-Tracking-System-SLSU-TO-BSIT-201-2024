@@ -1,0 +1,107 @@
+.line { 
+    margin-top: 0.5em; /* Margin above the line */
+    margin-bottom: 0.5em; /* Margin below the line */
+    margin-left: auto; /* Center horizontally */
+    margin-right: auto; /* Center horizontally */
+    border-width: 2px; /* Thickness of the line */
+    border-color: #43B6D6FF; /* Color of the line */
+    border-style: solid; /* Style of the line */
+} 
+
+.profile {
+    position: relative; /* Relative positioning for the profile image */
+    width: 120px; /* Fixed width */
+    height: 120px; /* Fixed height */
+    fill: #636AE8FF; /* Fill color for SVG if applicable */
+}
+
+.icon line,
+.icon polygon {
+    width: 28px; /* Icon width */
+    height: 28px; /* Icon height */
+    vertical-align: middle; /* Align vertically */
+    margin-right: 10px; /* Space to the right */
+    stroke: #171A1FFF; /* Stroke color for lines in icons */
+    fill: #171A1FFF; /* Fill color for polygons in icons */
+}
+
+.nav-elements {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Center align items vertically */
+    justify-content: center; /* Center align items horizontally */
+}
+
+.sidebar {
+    height: 100vh; /* Full viewport height */
+    position: fixed; /* Fixed position to remain visible during scrolling */
+    top: 0; /* Start from the top of the viewport */
+    left: 0; /* Start from the left of the viewport */
+    width: 300px; /* Fixed width for sidebar */
+    background-color: #DEE1E699; /* Background color with some transparency */
+    padding-top: 20px; /* Space from the top */
+}
+
+.sidebar .nav-item {
+    display: flex; /* Flex container for nav items */
+    align-items: center; /* Vertically center align items */
+    padding-left: 20px; /* Space on the left */
+    padding-right: 20px; /* Space on the right */
+    margin-top: 2px; /* Margin above the item */
+    margin-bottom: 2px; /* Margin below the item */
+    margin-left: 12px; /* Margin on the left side */
+    margin-right: 12px; /* Margin on the right side */
+}
+
+.sidebar .nav-link {
+    color: #000; /* Dark link color */
+    font-weight: bold; /* Bold text */
+    font-size: large; /* Larger font size */
+    padding-left: 20px; /* Space on the left for text */
+    border-radius: 12px; /* Rounded corners */
+}
+
+.nav-item:hover {
+    background-color: #ddd; /* Light background on hover */
+    border-radius: 12px; /* Rounded corners on hover */
+}
+
+.nav-item:active {
+    background-color: #43B6D6FF; /* Active state background */
+    border-radius: 12px; /* Rounded corners */
+}
+
+.nav-item.active {
+    background-color: #43B6D6FF; /* Active state background */
+    border-radius: 12px; /* Rounded corners */
+}
+
+.nav-item.active .nav-link {
+    color: white; /* Ensure the link text is visible on active state */
+}
+
+.btn {
+    color: #fff; /* Button text color */
+    background: #43B6D6FF; /* Button background color */
+    border-radius: 12px; /* Rounded corners */
+    margin-top: 4px; /* Space above button */
+    margin-bottom: 4px; /* Space below button */
+}
+
+.btn:hover {
+    color: #fff; /* Maintain text color on hover */
+    background-color: #ddd; /* Light background on hover */
+    border-radius: 12px; /* Rounded corners */
+}
+
+.space {
+    height: 60px; /* Fixed height for spacing */
+    width: auto; /* Auto width */
+}
+
+.main-app-content {
+    padding: 40px;
+    margin-left: 300px; /* Adjust for sidebar width */
+    width: calc(100% - 300px); /* Ensure content doesn't overlap sidebar */
+}
+
+
