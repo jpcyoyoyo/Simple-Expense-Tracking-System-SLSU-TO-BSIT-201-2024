@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Expense Tracking System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMMLO5LUiwceQm28D5pZpJTx0Os6Kr29ssOb+v7" crossorigin="anonymous" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background: url('imageback.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #ffffff;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: rgba(240, 240, 240, 0.35);
+            padding: 20px;
+            height: 100vh;
+            box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .profile-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-section img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .profile-section input[type="file"] {
+            display: none;
+        }
+
+        .profile-section h3 {
+            margin: 10px 0 5px;
+            font-size: 1.2em;
+        }
+
+        .profile-section p {
+            font-size: 0.9em;
+            color: #ffffff;
+        }
+
+        .edit-profile {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #6b47ef;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar-menu li {
+            margin: 20px 0;
+        }
+
+        .sidebar-menu a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s, color 0.3s;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .sidebar-menu a:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .sidebar-menu a.active {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .sidebar-menu a i {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .reports-title {
+            font-size: 1em;
+            color: #ffffff;
+            margin: 20px 0 10px;
+        }
+
+        .dashboard-content {
+            padding: 40px;
+            width: calc(100% - 250px);
+        }
+
+        .dashboard-title {
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+
+        .card-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .card {
+            flex: 1;
+            background-color: rgba(162, 217, 249, 0.35);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
+            color: #ffffff;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card h3 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .card .amount {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .card .record {
+            font-size: 1em;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        function editProfilePicture() {
+            document.getElementById('profile-picture-input').click();
+        }
+
+        function loadProfilePicture(event) {
+            const profileImg = document.getElementById('profile-picture');
+            profileImg.src = URL.createObjectURL(event.target.files[0]);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
+
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    sidebarLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <div class="profile-section">
+            <img src="https://via.placeholder.com/80" alt="Profile Picture" id="profile-picture" onclick="editProfilePicture()">
+            <input type="file" id="profile-picture-input" accept="image/*" onchange="loadProfilePicture(event)">
+            <h3 id="profile-name">Your Name</h3>
+            <p id="profile-email">your.email@example.com</p>
+            <a href="#" class="edit-profile">Edit Profile</a>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li><a href="Dashboard.html" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="Deposit.html"><i class="fas fa-money-check-alt"></i> Deposits</a></li>
+            <li><a href="#"><i class="fas fa-file-invoice-dollar"></i> Expenses</a></li>
+            <p class="reports-title">Reports</p>
+            <li><a href="#"><i class="fas fa-chart-bar"></i> Budget Report</a></li>
+            <li><a href="#"><i class="fas fa-chart-pie"></i> Expense Report</a></li>
+            <li><a href="#"><i class="fas fa-cogs"></i> Settings</a></li>
+            <li><a href="LogIn.html"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+        </ul>
+    </div>
+
+    <div class="dashboard-content">
+        <h2 class="dashboard-title">Dashboard</h2>
+
+        <div class="card-container">
+            <div class="card" onclick="window.location.href='#'">
+                <h3>Current Balance</h3>
+                <p class="amount">₱0.00</p>
+            </div>
+            <div class="card" onclick="window.location.href='#'">
+                <h3>Total Expenses</h3>
+                <p class="amount">₱0.00</p>
+                <p class="record">Record: <span>0</span></p>
+            </div>
+            <div class="card" onclick="window.location.href='#'">
+                <h3>Deposits</h3>
+                <p class="amount">₱0.00</p>
+                <p class="record">Record: <span>0</span></p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

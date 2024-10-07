@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposits - Expense Tracking System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMMLO5LUiwceQm28D5pZpJTx0Os6Kr29ssOb+v7" crossorigin="anonymous" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background: url('imageback.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #ffffff;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: rgba(240, 240, 240, 0.35);
+            padding: 20px;
+            height: 100vh;
+            box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .profile-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-section img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar-menu li {
+            margin: 20px 0;
+        }
+
+        .sidebar-menu a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s, color 0.3s;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .sidebar-menu a.active {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .dashboard-content {
+            padding: 40px;
+            width: calc(100% - 250px);
+        }
+
+        .dashboard-title {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #000000;
+        }
+
+        .search-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            width: 300px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .search-bar button {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .filters {
+            margin-bottom: 20px;
+        }
+
+        .filters button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #6b47ef;
+            color: #ffffff;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .table-container {
+            background-color: rgba(240, 240, 240, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+            color: #000000;
+        }
+
+        th {
+            background-color: #6b47ef;
+            color: #ffffff;
+        }
+
+        td.action-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .edit-btn, .delete-btn {
+            border: none;
+            cursor: pointer;
+            background: transparent;
+            font-size: 1.2em;
+        }
+
+        .edit-btn {
+            color: #007bff;
+        }
+
+        .delete-btn {
+            color: #ff4d4d;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <div class="profile-section">
+            <img src="https://via.placeholder.com/80" alt="Profile Picture" id="profile-picture">
+            <h3>Computer Society Org.</h3>
+            <p>comsocsociety@gmail.com</p>
+            <a href="#" class="edit-profile">Edit Profile</a>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li><a href="Dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="#" class="active"><i class="fas fa-money-check-alt"></i> Deposits</a></li>
+            <li><a href="#"><i class="fas fa-file-invoice-dollar"></i> Expenses</a></li>
+            <p class="reports-title">Reports</p>
+            <li><a href="#"><i class="fas fa-chart-bar"></i> Budget Report</a></li>
+            <li><a href="#"><i class="fas fa-chart-pie"></i> Expense Report</a></li>
+            <li><a href="#"><i class="fas fa-cogs"></i> Settings</a></li>
+            <li><a href="#"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+        </ul>
+    </div>
+
+    <div class="dashboard-content">
+        <h2 class="dashboard-title">Deposits</h2>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Search Transaction / Date">
+            <button onclick="window.location.href='#'"><i class="fas fa-plus"></i> Create Deposit Record</button>
+        </div>
+
+        <div class="filters">
+            <button>All <span>20</span></button>
+            <button>Month</button>
+        </div>
+
+        <div class="table-container">
+            <p><strong>Month:</strong> January 2024</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Date</th>
+                        <th>Name of Transaction</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1.</td>
+                        <td>1-01-2024</td>
+                        <td>Buko Juice (profit)</td>
+                        <td>$$$.$$</td>
+                        <td class="action-buttons">
+                            <button class="edit-btn"><i class="fas fa-pen"></i></button>
+                            <button class="delete-btn"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td>1-20-2024</td>
+                        <td>Water Vendo</td>
+                        <td>$$$.$$</td>
+                        <td class="action-buttons">
+                            <button class="edit-btn"><i class="fas fa-pen"></i></button>
+                            <button class="delete-btn"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td>1-25-2024</td>
+                        <td>Printing</td>
+                        <td>$$$.$$</td>
+                        <td class="action-buttons">
+                            <button class="edit-btn"><i class="fas fa-pen"></i></button>
+                            <button class="delete-btn"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="text-align: right;"><strong>Total:</strong></td>
+                        <td>$$$.$$</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>
