@@ -1,8 +1,4 @@
-.dashboard-content {
-    padding: 40px;
-    margin-left: 300px; /* Adjust for sidebar width */
-    width: calc(100% - 300px); /* Ensure content doesn't overlap sidebar */
-}
+
 
 .dashboard-title {
     font-size: 2em;

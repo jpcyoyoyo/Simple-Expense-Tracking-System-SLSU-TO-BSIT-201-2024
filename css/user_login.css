@@ -62,7 +62,7 @@ body {
     font-size: 1em;
 }
 
-input[type="button"] {
+.btn-submit {
     background-color: #6b47ef;
     color: white;
     padding: 10px;
@@ -72,6 +72,7 @@ input[type="button"] {
     border-radius: 5px;
     text-align: center;
     font-size: 16px;
+    margin: 20px 0;
 }
 
 .signup-link {
@@ -114,6 +115,10 @@ input[type="button"] {
     margin-bottom: 2px;
     font-size: 1.8em;
     color: #ffffff;
+}
+
+.signup-section {
+    height: 650px;
 }
 
 .signup-form {

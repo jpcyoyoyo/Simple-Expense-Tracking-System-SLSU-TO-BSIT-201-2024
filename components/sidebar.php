@@ -31,9 +31,9 @@
                 <a class="nav-link" href="expenses.php">Expenses</a>
             </li>
 
-            <li class="nav-item <?php if($currentPage == 'records.php'){ echo 'active'; } ?>">
+            <li class="nav-item <?php if($currentPage == 'reports.php'){ echo 'active'; } ?>">
                 <img class="icon" src="assets/expense_tracker_reports.svg" alt="Records Icon">
-                <a class="nav-link" href="records.php">Records</a>
+                <a class="nav-link" href="reports.php">Records</a>
             </li>        
 
             <li class="nav-item <?php if($currentPage == 'settings.php'){ echo 'active'; } ?>">
@@ -45,9 +45,9 @@
                 <div class="line container"></div>
             </div>
             
-            <li class="nav-item <?php if($currentPage == '#'){ echo 'active'; } ?>">
+            <li class="nav-item <?php if($currentPage == 'logout.php'){ echo 'active'; } ?>">
                 <img class="icon" src="assets/expense_tracker_logout.svg" alt="Log Out Icon">
-                <a class="nav-link" href="#">Log Out</a>
+                <a class="nav-link" href="logout.php">Log Out</a>
             </li>
         </ul>
     </div>

@@ -1,3 +1,8 @@
+<?php 
+    include "components/user_auth.php";
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,3 +1,7 @@
+<?php 
+    include "components/user_auth.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +14,7 @@
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Balsamiq Sans:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" type="text/css" rel="stylesheet">
-    <title>Dashboard</title>
+    <title>Settings</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/main_app.css">

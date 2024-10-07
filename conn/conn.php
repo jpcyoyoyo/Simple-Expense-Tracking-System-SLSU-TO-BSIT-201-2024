@@ -1,5 +1,5 @@
 <?php
-    $host = "locahost";
+    $host = "localhost";
     $username = "root";
     $password = "";
     $dbname = "expense_tracker";
