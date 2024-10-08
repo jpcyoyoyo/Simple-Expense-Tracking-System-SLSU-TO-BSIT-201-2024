@@ -90,12 +90,14 @@
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit" class="btn-submit">Log In</button>
+
             <!-- Display error message if login fails -->
             <?php
             if (!empty($error_message)) {
                 echo '<div class="error-message">' . $error_message . '</div>';
             }
             ?>
+            
             <div class="signup-link">
                 <a href="forgotpassword.php">Forgot Password?</a>
             </div>
@@ -104,7 +106,6 @@
             </div>
         </form>
     </div>
-
 </body>
 
 </html>

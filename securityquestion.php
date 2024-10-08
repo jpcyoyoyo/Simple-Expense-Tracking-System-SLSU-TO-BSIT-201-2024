@@ -1,55 +1,74 @@
 <?php
-    session_start(); // Start a session to store the username or user ID from the previous page
-    
-    // Ensure the user is coming from the signup page
-    if (!isset($_SESSION['username'])) {
-        header("Location: signup.php"); // Redirect if no session
-        exit();
-    }
+session_start(); // Start a session to store the username or user ID from the previous page
 
-    include "conn/conn.php"; // Include the database connection file
+// Ensure the user is coming from the signup page
+if (!isset($_SESSION['username'])) {
+    header("Location: signup.php"); // Redirect if no session
+    exit();
+}
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        // Sanitize inputs
-        $q1 = mysqli_real_escape_string($conn, trim($_POST['q1']));
-        $q1_answer = mysqli_real_escape_string($conn, trim($_POST['q1_answer']));
-        $q2 = mysqli_real_escape_string($conn, trim($_POST['q2']));
-        $q2_answer = mysqli_real_escape_string($conn, trim($_POST['q2_answer']));
-        $q3 = mysqli_real_escape_string($conn, trim($_POST['q3']));
-        $q3_answer = mysqli_real_escape_string($conn, trim($_POST['q3_answer']));
+include "conn/conn.php"; // Include the database connection file
 
-        // Get the username from session
-        $username = $_SESSION['username'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Sanitize inputs
+    $q1 = mysqli_real_escape_string($conn, trim($_POST['q1']));
+    $q1_answer = mysqli_real_escape_string($conn, trim($_POST['q1_answer']));
+    $q2 = mysqli_real_escape_string($conn, trim($_POST['q2']));
+    $q2_answer = mysqli_real_escape_string($conn, trim($_POST['q2_answer']));
+    $q3 = mysqli_real_escape_string($conn, trim($_POST['q3']));
+    $q3_answer = mysqli_real_escape_string($conn, trim($_POST['q3_answer']));
 
-        // Update the database with security questions and answers
-        $sql = "UPDATE user_accounts SET 
-                    q1 = ?, q1_answer = ?, 
-                    q2 = ?, q2_answer = ?, 
-                    q3 = ?, q3_answer = ?
-                WHERE username = ?";
+    // Get the username from session
+    $username = $_SESSION['username'];
 
-        // Prepare statement
-        if ($stmt = $conn->prepare($sql)) {
-            // Bind parameters (s = string)
-            $stmt->bind_param("sssssss", $q1, $q1_answer, $q2, $q2_answer, $q3, $q3_answer, $username);
+    // Update the database with security questions and answers
+    $sql = "UPDATE user_accounts SET 
+                q1 = ?, q1_answer = ?, 
+                q2 = ?, q2_answer = ?, 
+                q3 = ?, q3_answer = ?
+            WHERE username = ?";
 
-            // Execute the statement
-            if ($stmt->execute()) {
-                // Redirect to dashboard or success page
-                header("Location: dashboard.php");
-                exit();
-            } else {
-                echo "Error: " . $stmt->error;
+    // Prepare statement
+    if ($stmt = $conn->prepare($sql)) {
+        // Bind parameters (s = string)
+        $stmt->bind_param("sssssss", $q1, $q1_answer, $q2, $q2_answer, $q3, $q3_answer, $username);
+
+        // Execute the statement
+        if ($stmt->execute()) {
+            // After successfully updating the security questions, fetch the user's full name
+            $fetch_name_sql = "SELECT fullname FROM user_accounts WHERE username = ?";
+
+            if ($fetch_stmt = $conn->prepare($fetch_name_sql)) {
+                // Bind the username to the SQL query
+                $fetch_stmt->bind_param("s", $username);
+                $fetch_stmt->execute();
+                $fetch_stmt->bind_result($fullname);
+                
+                // Fetch the full name and store it in the session
+                if ($fetch_stmt->fetch()) {
+                    $_SESSION['fullname'] = $fullname; // Store the full name in session
+                }
+
+                // Close the fetch statement
+                $fetch_stmt->close();
             }
 
-            // Close the statement
-            $stmt->close();
+            // Redirect to dashboard or success page
+            header("Location: dashboard.php");
+            exit();
+        } else {
+            echo "Error: $stmt->error";
         }
 
-        // Close connection
-        $conn->close();
+        // Close the statement
+        $stmt->close();
     }
+
+    // Close connection
+    $conn->close();
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

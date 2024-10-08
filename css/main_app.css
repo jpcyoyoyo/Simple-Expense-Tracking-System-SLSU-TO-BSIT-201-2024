@@ -1,107 +1,177 @@
-.line { 
-    margin-top: 0.5em; /* Margin above the line */
-    margin-bottom: 0.5em; /* Margin below the line */
-    margin-left: auto; /* Center horizontally */
-    margin-right: auto; /* Center horizontally */
-    border-width: 2px; /* Thickness of the line */
-    border-color: #43B6D6FF; /* Color of the line */
-    border-style: solid; /* Style of the line */
-} 
-
-.profile {
-    position: relative; /* Relative positioning for the profile image */
-    width: 120px; /* Fixed width */
-    height: 120px; /* Fixed height */
-    fill: #636AE8FF; /* Fill color for SVG if applicable */
+/* General line styling for horizontal rules or separators */
+.line {
+    margin: 0.5em auto; /* Top and bottom margin, centering horizontally */
+    border-width: 2px; /* Line thickness */
+    border-color: #43B6D6FF; /* Line color */
+    border-style: solid; /* Solid line style */
 }
 
+/* Profile image container */
+.profile {
+    position: relative; /* Positioned relative for further customization */
+    width: 120px; /* Fixed width */
+    height: 120px; /* Fixed height */
+    fill: #636AE8FF; /* Default fill color for SVG elements */
+}
+
+/* Icon styling */
 .icon line,
 .icon polygon {
     width: 28px; /* Icon width */
     height: 28px; /* Icon height */
-    vertical-align: middle; /* Align vertically */
-    margin-right: 10px; /* Space to the right */
-    stroke: #171A1FFF; /* Stroke color for lines in icons */
-    fill: #171A1FFF; /* Fill color for polygons in icons */
+    vertical-align: middle; /* Vertically align with text */
+    margin-right: 10px; /* Right margin for spacing */
+    stroke: #171A1FFF; /* Line stroke color */
+    fill: #171A1FFF; /* Polygon fill color */
 }
 
+/* Flexbox layout for navigation elements */
 .nav-elements {
-    display: flex; /* Use flexbox for layout */
-    align-items: center; /* Center align items vertically */
-    justify-content: center; /* Center align items horizontally */
+    display: flex; /* Flexbox for horizontal layout */
+    align-items: center; /* Vertically center items */
+    justify-content: center; /* Horizontally center items */
 }
 
+/* Sidebar styling for navigation */
 .sidebar {
     height: 100vh; /* Full viewport height */
-    position: fixed; /* Fixed position to remain visible during scrolling */
-    top: 0; /* Start from the top of the viewport */
-    left: 0; /* Start from the left of the viewport */
-    width: 300px; /* Fixed width for sidebar */
-    background-color: #DEE1E699; /* Background color with some transparency */
-    padding-top: 20px; /* Space from the top */
+    position: fixed; /* Fixed sidebar */
+    top: 0; /* Align to the top of the viewport */
+    left: 0; /* Align to the left of the viewport */
+    width: 300px; /* Sidebar width */
+    background-color: rgba(222, 225, 230, 0.6); /* Semi-transparent background */
+    padding-top: 20px; /* Top padding */
+    transition: transform 0.3s ease; /* Smooth transitions for responsive view */
+    backdrop-filter: blur(10px); /* Blur background for a frosted effect */
 }
 
+/* Sidebar styling for small screens */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%; /* Full width on mobile */
+        height: auto; /* Adjust height based on content */
+        position: relative; /* Positioning for mobile view */
+        padding: 10px; /* Adjust padding */
+        transform: translateY(0); /* No slide in mobile */
+    }
+}
+
+/* Sidebar styling for medium screens */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 250px; /* Adjusted sidebar width */
+    }
+}
+
+/* Adjusting the navigation items */
 .sidebar .nav-item {
-    display: flex; /* Flex container for nav items */
-    align-items: center; /* Vertically center align items */
-    padding-left: 20px; /* Space on the left */
-    padding-right: 20px; /* Space on the right */
-    margin-top: 2px; /* Margin above the item */
-    margin-bottom: 2px; /* Margin below the item */
-    margin-left: 12px; /* Margin on the left side */
-    margin-right: 12px; /* Margin on the right side */
+    display: flex; /* Flex layout for alignment */
+    align-items: center; /* Center align the contents */
+    padding: 0 20px; /* Padding left and right */
+    margin: 2px 12px; /* Vertical margin with horizontal spacing */
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+    border-radius: 12px; /* Rounded corners */
 }
 
+/* Adjusting the navigation links */
 .sidebar .nav-link {
-    color: #000; /* Dark link color */
+    color: #000; /* Dark link text */
     font-weight: bold; /* Bold text */
     font-size: large; /* Larger font size */
-    padding-left: 20px; /* Space on the left for text */
+    padding-left: 20px; /* Left padding for spacing */
     border-radius: 12px; /* Rounded corners */
 }
 
+/* Hover effect for navigation items */
 .nav-item:hover {
     background-color: #ddd; /* Light background on hover */
-    border-radius: 12px; /* Rounded corners on hover */
+    border-radius: 12px; /* Maintain rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.nav-item:active {
-    background-color: #43B6D6FF; /* Active state background */
-    border-radius: 12px; /* Rounded corners */
-}
-
+/* Active state styling for navigation items */
+.nav-item:active,
 .nav-item.active {
-    background-color: #43B6D6FF; /* Active state background */
+    background-color: #43B6D6FF; /* Highlight background */
     border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+/* Change link text color when active */
 .nav-item.active .nav-link {
-    color: white; /* Ensure the link text is visible on active state */
+    color: white; /* Ensure contrast with active background */
 }
 
+/* Button styling */
 .btn {
     color: #fff; /* Button text color */
     background: #43B6D6FF; /* Button background color */
     border-radius: 12px; /* Rounded corners */
-    margin-top: 4px; /* Space above button */
-    margin-bottom: 4px; /* Space below button */
+    margin: 4px 0; /* Vertical margin */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+/* Button hover effect */
 .btn:hover {
-    color: #fff; /* Maintain text color on hover */
-    background-color: #ddd; /* Light background on hover */
-    border-radius: 12px; /* Rounded corners */
+    color: #fff; /* Keep text color white */
+    background-color: #ddd; /* Change background on hover */
+    border-radius: 12px; /* Keep rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+/* Spacer for layout adjustments */
 .space {
-    height: 60px; /* Fixed height for spacing */
-    width: auto; /* Auto width */
+    height: 60px; /* Spacer height */
+    width: auto; /* Adjust width automatically */
 }
 
+/* Main content styling to adjust for the sidebar */
 .main-app-content {
-    padding: 40px;
-    margin-left: 300px; /* Adjust for sidebar width */
-    width: calc(100% - 300px); /* Ensure content doesn't overlap sidebar */
+    padding: 40px; /* Content padding */
+    margin-left: 300px; /* Offset for sidebar */
+    width: calc(100% - 300px); /* Full width minus sidebar width */
 }
 
+/* Small screen adjustments for the main content */
+@media (max-width: 768px) {
+    .main-app-content {
+        padding: 20px; /* Reduce padding on smaller screens */
+        margin-left: 0; /* Remove sidebar offset */
+        width: 100%; /* Full width content */
+    }
+}
 
+/* Medium screen adjustments for the main content */
+@media (max-width: 1024px) {
+    .main-app-content {
+        margin-left: 250px; /* Adjust for smaller sidebar */
+        width: calc(100% - 250px); /* Full width minus smaller sidebar */
+    }
+}
+
+/* Responsive typography adjustments */
+h1 {
+    font-size: 3rem; /* Large heading */
+}
+
+h2 {
+    font-size: 2rem; /* Secondary heading */
+}
+
+p {
+    font-size: 1.2rem; /* Paragraph text */
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem; /* Adjust heading size on smaller screens */
+    }
+
+    h2 {
+        font-size: 1.5rem; /* Adjust subheading size */
+    }
+
+    p {
+        font-size: 1rem; /* Smaller paragraph text */
+    }
+}

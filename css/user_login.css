@@ -1,3 +1,4 @@
+/*
 body {
     font-family: Arial, sans-serif;
     margin: 0.5in 1in;
@@ -153,5 +154,179 @@ body {
     border-radius: 5px;
     border: none;
     font-size: 1em;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+.container .verifyuser-section{
+    width: 50%;
+    max-width: 550px;
+}
+
+.verifyuser-section h2 {
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    color: #ffffff;
+}
+*/
+
+/* Base Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0.5in 1in;
+    padding: 0;
+    background: url('backim.png') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: calc(100vh - 1in);
+    color: #ffffff;
+}
+
+h1, h2, p {
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Welcome Section */
+.welcome-section {
+    max-width: 50%;
+    margin-right: 10px;
+    text-align: center;
+    align-self: flex-start;
+}
+
+.welcome-section h1 {
+    font-size: 3em;
+    margin-bottom: 50px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.welcome-section p {
+    font-size: 1.2em;
+    line-height: 1.5;
+    text-align: justify;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Container Styles */
+.container {
+    width: 40%;
+    max-width: 450px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    backdrop-filter: blur(10px);
+}
+
+/* Section Headings */
+h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Forms */
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1em;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+input:focus {
+    outline: none;
+    border: 2px solid #6b47ef;
+    box-shadow: 0 0 10px rgba(107, 71, 239, 0.5);
+}
+
+/* Buttons */
+.btn-submit {
+    background-color: #6b47ef;
+    color: white;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #5436c7;
+}
+
+.signup-link {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.signup-link a {
+    color: #002ef9;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+/* Error Message */
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .welcome-section {
+        display: none; /* Hide welcome section on smaller screens */
+    }
+    
+    .container {
+        width: 100%;
+        margin: 0;
+        padding: 30px;
+    }
+    
+    h2 {
+        font-size: 1.6em;
+    }
+    
+    input[type="text"], input[type="password"] {
+        font-size: 1em;
+    }
+    
+    .btn-submit {
+        font-size: 1em;
+        padding: 10px;
+    }
 }
 
