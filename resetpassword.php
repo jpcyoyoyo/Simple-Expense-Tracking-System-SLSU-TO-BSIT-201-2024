@@ -31,37 +31,33 @@
         // Check if passwords match
         if ($change_password !== $confirm_password) {
             $error_message = "Passwords do not match!";
-            return; // Exit if passwords don't match
-        }
+        } else {
+            // Hash the new password
+            $hashed_password = password_hash($change_password, PASSWORD_DEFAULT);
 
-        // Hash the new password
-        $hashed_password = password_hash($change_password, PASSWORD_DEFAULT);
+            // Check if the new password is the same as the old password
+            if (password_verify($change_password, $old_password)) {
+                $error_message = "You have entered the old password. Please choose a new password.";
+            } else {
+                // Update the password in the database
+                $update_query = "UPDATE user_accounts SET password = ? WHERE username = ?";
+                if ($stmt = $conn->prepare($update_query)) {
+                    $stmt->bind_param("ss", $hashed_password, $username);
 
-        // Check if the new password is the same as the old password
-        if (password_verify($change_password, $old_password)) {
-            $error_message = "You have entered the old password. Please choose a new password.";
-            return; // Exit if the new password matches the old password
-        }
+                    // Execute the statement and check if the update was successful
+                    if ($stmt->execute()) {
+                        // If everything is successful, redirect to the sign-in page
+                        header("Location: signin.php");
+                        session_destroy();
+                        exit();
+                    } else {
+                        $error_message = "Error: " . $stmt->error;
+                    }
 
-        // Update the password in the database
-        $update_query = "UPDATE user_accounts SET password = ? WHERE username = ?";
-        if ($stmt = $conn->prepare($update_query)) {
-            $stmt->bind_param("ss", $hashed_password, $username);
-
-            // Execute the statement and check if the update was successful
-            if (!$stmt->execute()) {
-                $error_message = "Error: " . $stmt->error;
-                return; // Exit if there's a SQL error
+                    $stmt->close();
+                }
             }
-
-            // If everything is successful, redirect to the sign-in page
-            header("Location: signin.php");
-            session_destroy();
-            exit();
         }
-
-        // Close the prepared statement
-        $stmt->close();
     }
 
     // Close the connection at the end
