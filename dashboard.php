@@ -68,5 +68,7 @@
         </div>
     </div>
 
+    <script src="javascript/page_transition.js"></script>
+
 </body>
 </html>

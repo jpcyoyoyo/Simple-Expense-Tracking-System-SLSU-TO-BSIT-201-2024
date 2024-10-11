@@ -33,7 +33,7 @@ This project is a **Simple Expense Tracking System** developed as a requirement 
 
 1. Clone this repository to your local machine.
     ```bash
-    git clone https://github.com/your-username/simple-expense-tracker.git
+    git clone https://github.com/jpcyoyoyo/Simple-Expense-Tracking-System-SLSU-TO-BSIT-201-2024.git
     ```
 
 2. Set up the database by running the SQL file (if necessary).

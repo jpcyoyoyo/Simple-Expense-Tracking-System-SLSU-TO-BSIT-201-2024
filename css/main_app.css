@@ -43,6 +43,7 @@
     padding-top: 20px; /* Top padding */
     transition: transform 0.3s ease; /* Smooth transitions for responsive view */
     backdrop-filter: blur(10px); /* Blur background for a frosted effect */
+    transition: width 0.3s ease; /* Add transition here for smooth width changes */
 }
 
 /* Sidebar styling for small screens */
@@ -53,6 +54,7 @@
         position: relative; /* Positioning for mobile view */
         padding: 10px; /* Adjust padding */
         transform: translateY(0); /* No slide in mobile */
+        transition: width 0.3s ease;
     }
 }
 
@@ -60,47 +62,50 @@
 @media (max-width: 1024px) {
     .sidebar {
         width: 250px; /* Adjusted sidebar width */
+        transition: width 0.3s ease;
     }
-}
-
-/* Adjusting the navigation items */
-.sidebar .nav-item {
-    display: flex; /* Flex layout for alignment */
-    align-items: center; /* Center align the contents */
-    padding: 0 20px; /* Padding left and right */
-    margin: 2px 12px; /* Vertical margin with horizontal spacing */
-    transition: background-color 0.3s ease; /* Smooth transition on hover */
-    border-radius: 12px; /* Rounded corners */
 }
 
 /* Adjusting the navigation links */
 .sidebar .nav-link {
-    color: #000; /* Dark link text */
+    display: flex; /* Flexbox to align icon and text */
+    align-items: center; /* Center align the contents */
+    color: #000; /* Default text color */
+    text-decoration: none; /* Remove underline */
     font-weight: bold; /* Bold text */
-    font-size: large; /* Larger font size */
-    padding-left: 20px; /* Left padding for spacing */
+    font-size: large; /* Font size */
     border-radius: 12px; /* Rounded corners */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth hover transition */
+    background-color: transparent; /* Default background */
 }
 
-/* Hover effect for navigation items */
-.nav-item:hover {
+/* Icon styling inside nav-link */
+.sidebar .nav-link .icon {
+    fill: #171A1F; /* Icon color */
+    margin-right: 10px; /* Space between icon and text */
+}
+
+/* Hover effect for navigation links */
+.nav-link:hover {
     background-color: #ddd; /* Light background on hover */
     border-radius: 12px; /* Maintain rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional shadow */
 }
 
-/* Active state styling for navigation items */
-.nav-item:active,
-.nav-item.active {
-    background-color: #43B6D6FF; /* Highlight background */
-    border-radius: 12px; /* Rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* Change link text color when active */
+/* Active state styling for navigation links */
+.nav-link:active,
 .nav-item.active .nav-link {
+    background-color: #43B6D6FF; /* Highlight background */
     color: white; /* Ensure contrast with active background */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional shadow */
 }
+
+/* Ensure icons inside active links change color (if required) */
+.nav-item.active .nav-link .icon {
+    fill: white; /* Change icon color to white on active state */
+}
+
 
 /* Button styling */
 .btn {

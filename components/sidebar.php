@@ -16,38 +16,50 @@
         <div class="space"></div>
         
         <ul class="navbar-nav flex-column">
-            <li class="nav-item <?php if($currentPage == 'dashboard.php'){ echo 'active'; } ?>">
-                <img class="icon" src="assets/expense_tracker_dashboard.svg" alt="Dashboard Icon">
-                <a class="nav-link" href="dashboard.php">Dashboard</a>
+            <li class="nav-item <?php if($currentPage == 'dashboard.php'){ echo 'active'; } ?>" style="padding: 0;">
+                <a class="nav-link container-fluid" href="dashboard.php">
+                    <img class="icon" src="assets/expense_tracker_dashboard.svg" alt="Dashboard Icon">
+                    Dashboard
+                </a>
             </li>
 
-            <li class="nav-item <?php if($currentPage == 'deposits.php'){ echo 'active'; } ?>">
-                <img class="icon" src="assets/expense_tracker_deposit.svg" alt="Deposits Icon">
-                <a class="nav-link" href="deposits.php">Deposits</a>
+            <li class="nav-item <?php if($currentPage == 'deposits.php'){ echo 'active'; } ?>" style="padding: 0;">
+                <a class="nav-link container-fluid" href="deposits.php">
+                    <img class="icon" src="assets/expense_tracker_deposit.svg" alt="Deposits Icon">
+                    Deposits
+                </a>
             </li>
 
-            <li class="nav-item <?php if($currentPage == 'expenses.php'){ echo 'active'; } ?>">
-                <img class="icon" src="assets/expense_tracker_expenses.svg" alt="Expenses Icon">
-                <a class="nav-link" href="expenses.php">Expenses</a>
+            <li class="nav-item <?php if($currentPage == 'expenses.php'){ echo 'active'; } ?>" style="padding: 0;">
+                <a class="nav-link container-fluid" href="expenses.php">
+                    <img class="icon" src="assets/expense_tracker_expenses.svg" alt="Expenses Icon">
+                    Expenses
+                </a>
             </li>
 
-            <li class="nav-item <?php if($currentPage == 'reports.php'){ echo 'active'; } ?>">
-                <img class="icon" src="assets/expense_tracker_reports.svg" alt="Reports Icon">
-                <a class="nav-link" href="reports.php">Records</a>
+            <li class="nav-item <?php if($currentPage == 'reports.php'){ echo 'active'; } ?>" style="padding: 0;">
+                <a class="nav-link container-fluid" href="reports.php">
+                    <img class="icon" src="assets/expense_tracker_reports.svg" alt="Reports Icon">
+                    Records
+                </a>
             </li>
 
-            <li class="nav-item <?php if($currentPage == 'settings.php'){ echo 'active'; } ?>">
-                <img class="icon" src="assets/expense_tracker_settings.svg" alt="Settings Icon">
-                <a class="nav-link" href="settings.php">Settings</a>
+            <li class="nav-item <?php if($currentPage == 'settings.php'){ echo 'active'; } ?>" style="padding: 0;">
+                <a class="nav-link container-fluid" href="settings.php">
+                    <img class="icon" src="assets/expense_tracker_settings.svg" alt="Settings Icon">
+                    Settings
+                </a>
             </li>
 
             <div class="nav-elements container">
                 <div class="line container"></div>
             </div>
 
-            <li class="nav-item <?php if($currentPage == 'logout.php'){ echo 'active'; } ?>">
-                <img class="icon" src="assets/expense_tracker_logout.svg" alt="Log Out Icon">
-                <a class="nav-link" href="logout.php">Log Out</a>
+            <li class="nav-item <?php if($currentPage == 'logout.php'){ echo 'active'; } ?>" style="padding: 0;">
+                <a class="nav-link container-fluid" href="logout.php">
+                    <img class="icon" src="assets/expense_tracker_logout.svg" alt="Log Out Icon">
+                    Log Out
+                </a>
             </li>
         </ul>
     </div>

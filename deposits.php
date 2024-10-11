@@ -20,13 +20,14 @@
     <link rel="stylesheet" href="css/main_app.css">
 
     <style>
-        body{
-            background-image: url("assets/bg1.jpg");
+        body {
+            background-image: url("assets/imageback.png");
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
             background-position: center;
             font-family: Balsamiq Sans;
+            transition: opacity 0.5s ease-in;
         }
     </style>
 
@@ -35,6 +36,6 @@
 <body>
     <?php include "components/sidebar.php"?>
 
-    <script src="javascript/sidebar_button_active.js"></script>
+    <script src="javascript/page_transition.js"></script>
 </body>
 </html>
