@@ -42,6 +42,14 @@
             color: #fff;
         }
 
+        .month-year-input {
+            width: auto;
+            display: inline-block;
+            padding: 5px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
     </style>
 </head>
 
@@ -50,7 +58,11 @@
 <div class="container">
     <div class="table-container">
         <h2>Deposits</h2>
-        <p><strong>Month:</strong> January 2024</p>
+
+        <!-- Month and Year input fields -->
+        <p><strong>Month:</strong> 
+            <input type="month" class="month-year-input" id="month-input" value="2024-01" />
+        </p>
 
         <div class="mb-3">
             <button class="btn btn-primary btn-add" onclick="addRow()">Add Row</button>
@@ -62,7 +74,7 @@
                     <th>No.</th>
                     <th>Date</th>
                     <th>Name of Transaction</th>
-                    <th>Amount</th>
+                    <th>Amount (₱)</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -72,7 +84,7 @@
         </table>
 
         <div class="total-section">
-            <strong>Total:</strong> $<span id="total-amount">0.00</span>
+            <strong>Total:</strong> ₱<span id="total-amount">0.00</span>
         </div>
     </div>
 </div>
@@ -90,10 +102,10 @@
             <td>${rowCount}.</td>
             <td><input type="date" class="form-control" /></td>
             <td><input type="text" class="form-control" placeholder="Transaction Name" /></td>
-            <td><input type="number" class="form-control amount-input" placeholder="Amount" step="0.01" onchange="calculateTotal()" /></td>
+            <td><input type="number" class="form-control amount-input" placeholder="Amount (₱)" step="0.01" onchange="calculateTotal()" /></td>
             <td class="action-buttons">
-                <button class="btn btn-warning btn-sm" onclick="editRow(this)"><i class="fas fa-pen"></i></button>
-                <button class="btn btn-danger btn-sm" onclick="deleteRow(this)"><i class="fas fa-trash"></i></button>
+                <button class="btn btn-success btn-sm" onclick="saveRow(this)"><i class="fas fa-save"></i> Save</button>
+                <button class="btn btn-danger btn-sm" onclick="deleteRow(this)"><i class="fas fa-trash"></i> Delete</button>
             </td>
         `;
 
@@ -108,8 +120,9 @@
         calculateTotal();
     }
 
-    function editRow(button) {
-        // Logic to handle row editing if needed
+    function saveRow(button) {
+        // Logic to handle saving the row (e.g., saving data to database)
+        alert('Row saved successfully!');
     }
 
     function recalculateRowNumbers() {
