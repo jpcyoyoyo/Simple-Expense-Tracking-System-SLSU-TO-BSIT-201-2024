@@ -13,7 +13,6 @@
     flex: 1 1 calc(33.333% - 20px); /* Makes sure cards are 3 per row with spacing */
     background-color: rgba(162, 217, 249, 0.35);
     border-radius: 10px;
-    padding: 20px;
     height: 250px;
     width: 250px;
     text-align: center;
@@ -21,6 +20,11 @@
     cursor: pointer;
     transition: transform 0.3s;
     color: #ffffff;
+}
+
+.card-header { 
+    background-color: aqua;
+    padding: 20px;
 }
 
 .card:hover {

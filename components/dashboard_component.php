@@ -3,7 +3,9 @@
 
     <div class="card-container row">
         <div class="card col-lg-4 mb-3" onclick="window.location.href='#'">
-            <h3>Current Balance</h3>
+            <div class="card-header container-fluid" style="margin: 0;">
+                <h3>Current Balance</h3>
+            </div>
             <p class="amount">₱0.00</p>
         </div>
         <div class="card col-lg-4 mb-3" onclick="window.location.href='#'">

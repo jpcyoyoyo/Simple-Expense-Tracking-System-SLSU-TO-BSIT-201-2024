@@ -1,0 +1,37 @@
+body {
+    background-color: #f4f6f9;
+    font-family: 'Arial', sans-serif;
+}
+
+.table-container {
+    background-color: rgba(255, 255, 255, 0.5); /* More transparent white (50%) */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-top: 30px;
+    width: 700px;
+}
+
+.table {
+    background-color: rgba(255, 255, 255, 0.4); /* More transparent table background (40%) */
+}
+
+.btn-add {
+    margin-bottom: 10px;
+}
+
+.action-buttons button {
+    margin-right: 5px;
+    height: 30px;
+    width: 100px;
+}
+
+.total-section {
+    text-align: right;
+    font-weight: bold;
+}
+
+thead.table-dark {
+    background-color: rgba(33, 37, 41, 0.8); /* Darker header background with 80% opacity */
+    color: #fff;
+}

@@ -45,7 +45,7 @@
             <?php include "components/sidebar.php"?>
 
             <!-- Dashboard Content -->
-            <?php include "components/dashboard_content.php"?>
+            <?php include "components/dashboard_component.php"?>
         </div>
     </div>
 

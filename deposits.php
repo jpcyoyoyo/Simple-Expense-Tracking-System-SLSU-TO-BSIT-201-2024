@@ -18,6 +18,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/main_app.css">
+    <link rel="stylesheet" href="css/deposit.css">
 
     <style>
         body {
@@ -39,8 +40,8 @@
             <!-- Include Sidebar from PHP -->
             <?php include "components/sidebar.php"?>
 
-            <!-- Dashboard Content -->
-            <?php include "components/deposit_content.php"?>
+            <!-- Deposit Content -->
+            <?php include "components/deposit_component.php"?>
         </div>
     </div>
 

@@ -1,62 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Deposit Table</title>
 
-    <style>
-        body {
-            background-color: #f4f6f9;
-            font-family: 'Arial', sans-serif;
-        }
 
-        .table-container {
-            background-color: rgba(255, 255, 255, 0.5); /* More transparent white (50%) */
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            margin-top: 30px;
-        }
-
-        .table {
-            background-color: rgba(255, 255, 255, 0.4); /* More transparent table background (40%) */
-        }
-
-        .btn-add {
-            margin-bottom: 10px;
-        }
-
-        .action-buttons button {
-            margin-right: 5px;
-        }
-
-        .total-section {
-            text-align: right;
-            font-weight: bold;
-        }
-
-        thead.table-dark {
-            background-color: rgba(33, 37, 41, 0.8); /* Darker header background with 80% opacity */
-            color: #fff;
-        }
-
-        .month-year-input {
-            width: auto;
-            display: inline-block;
-            padding: 5px;
-            font-size: 16px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
-    </style>
-</head>
-
-<body>
-
-<div class="container">
-    <div class="table-container">
+<div class="col-md-9 offset-md-3 col-12 main-app-content">
+<div class="table-container">
         <h2>Deposits</h2>
 
         <!-- Month and Year input fields -->
@@ -102,10 +47,10 @@
             <td>${rowCount}.</td>
             <td><input type="date" class="form-control" /></td>
             <td><input type="text" class="form-control" placeholder="Transaction Name" /></td>
-            <td><input type="number" class="form-control amount-input" placeholder="Amount (₱)" step="0.01" onchange="calculateTotal()" /></td>
+            <td><input type="number" class="form-control amount-input" placeholder="Amount" step="0.01" onchange="calculateTotal()" /></td>
             <td class="action-buttons">
-                <button class="btn btn-success btn-sm" onclick="saveRow(this)"><i class="fas fa-save"></i> Save</button>
-                <button class="btn btn-danger btn-sm" onclick="deleteRow(this)"><i class="fas fa-trash"></i> Delete</button>
+                <button class="btn btn-warning btn-sm" onclick="editRow(this)"><i class="fas fa-pen"></i></button>
+                <button class="btn btn-danger btn-sm" onclick="deleteRow(this)"><i class="fas fa-trash"></i></button>
             </td>
         `;
 
@@ -120,9 +65,8 @@
         calculateTotal();
     }
 
-    function saveRow(button) {
-        // Logic to handle saving the row (e.g., saving data to database)
-        alert('Row saved successfully!');
+    function editRow(button) {
+        // Logic to handle row editing if needed
     }
 
     function recalculateRowNumbers() {
@@ -142,5 +86,4 @@
     }
 </script>
 
-</body>
-</html>
+
