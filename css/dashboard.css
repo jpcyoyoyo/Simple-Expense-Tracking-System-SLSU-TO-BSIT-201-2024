@@ -1,5 +1,3 @@
-
-
 .dashboard-title {
     font-size: 2em;
     margin-bottom: 30px;
@@ -7,14 +5,17 @@
 
 .card-container {
     display: flex;
+    flex-wrap: wrap; /* Allows cards to wrap on smaller screens */
     gap: 20px;
 }
 
 .card {
-    flex: 1;
+    flex: 1 1 calc(33.333% - 20px); /* Makes sure cards are 3 per row with spacing */
     background-color: rgba(162, 217, 249, 0.35);
     border-radius: 10px;
     padding: 20px;
+    height: 250px;
+    width: 250px;
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
@@ -39,4 +40,36 @@
 .card .record {
     font-size: 1em;
     font-weight: bold;
+}
+
+/* Responsive adjustments */
+
+@media (max-width: 1200px) {
+    .card {
+        flex: 1 1 60%;  
+        margin: 0 180px;
+        transition: flex 0.3s ease;
+    }
+}
+
+
+@media (max-width: 1024px) {
+    .card {
+        flex: 1 1 calc(60% - 30px);  
+        margin: 0 210px;
+    }
+}
+
+@media (max-width: 992px) {
+    .card {
+        flex: 1 1 100%; 
+        margin: 0 90px;
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        flex: 1 1 100%; /* Cards will stack vertically on mobile */
+        margin: 0;
+    }
 }

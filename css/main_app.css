@@ -1,3 +1,23 @@
+/* Fade transition styles */
+.fade-enter {
+    opacity: 0;
+}
+
+.fade-enter-active {
+    opacity: 1;
+    transition: opacity 0.5s ease-in;
+}
+
+.fade-leave {
+    opacity: 1;
+}
+
+.fade-leave-active {
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+}
+
+
 /* General line styling for horizontal rules or separators */
 .line {
     margin: 0.5em auto; /* Top and bottom margin, centering horizontally */
@@ -25,6 +45,11 @@
     fill: #171A1FFF; /* Polygon fill color */
 }
 
+.container {
+    display: flex; /* Set container as a flexbox */
+    flex-wrap: nowrap; /* Prevent wrapping on smaller screens */
+}
+
 /* Flexbox layout for navigation elements */
 .nav-elements {
     display: flex; /* Flexbox for horizontal layout */
@@ -44,32 +69,22 @@
     transition: transform 0.3s ease; /* Smooth transitions for responsive view */
     backdrop-filter: blur(10px); /* Blur background for a frosted effect */
     transition: width 0.3s ease; /* Add transition here for smooth width changes */
+    z-index: 1000; /* Ensure it stays on top */
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
-/* Sidebar styling for small screens */
-@media (max-width: 768px) {
-    .sidebar {
-        width: 100%; /* Full width on mobile */
-        height: auto; /* Adjust height based on content */
-        position: relative; /* Positioning for mobile view */
-        padding: 10px; /* Adjust padding */
-        transform: translateY(0); /* No slide in mobile */
-        transition: width 0.3s ease;
-    }
+.sidebar .nav-item{
+    margin: 4px 0;
 }
 
-/* Sidebar styling for medium screens */
-@media (max-width: 1024px) {
-    .sidebar {
-        width: 250px; /* Adjusted sidebar width */
-        transition: width 0.3s ease;
-    }
-}
+
 
 /* Adjusting the navigation links */
 .sidebar .nav-link {
     display: flex; /* Flexbox to align icon and text */
     align-items: center; /* Center align the contents */
+    padding: 4px 20px;
     color: #000; /* Default text color */
     text-decoration: none; /* Remove underline */
     font-weight: bold; /* Bold text */
@@ -126,32 +141,17 @@
 
 /* Spacer for layout adjustments */
 .space {
-    height: 60px; /* Spacer height */
+    height: 40px; /* Spacer height */
     width: auto; /* Adjust width automatically */
 }
 
 /* Main content styling to adjust for the sidebar */
 .main-app-content {
+    flex-grow: 1; /* Make the content area take up the remaining space */
     padding: 40px; /* Content padding */
     margin-left: 300px; /* Offset for sidebar */
     width: calc(100% - 300px); /* Full width minus sidebar width */
-}
-
-/* Small screen adjustments for the main content */
-@media (max-width: 768px) {
-    .main-app-content {
-        padding: 20px; /* Reduce padding on smaller screens */
-        margin-left: 0; /* Remove sidebar offset */
-        width: 100%; /* Full width content */
-    }
-}
-
-/* Medium screen adjustments for the main content */
-@media (max-width: 1024px) {
-    .main-app-content {
-        margin-left: 250px; /* Adjust for smaller sidebar */
-        width: calc(100% - 250px); /* Full width minus smaller sidebar */
-    }
+    overflow: auto; /* Allow scrolling in the main content area */
 }
 
 /* Responsive typography adjustments */
@@ -165,6 +165,44 @@ h2 {
 
 p {
     font-size: 1.2rem; /* Paragraph text */
+}
+
+
+/* Sidebar styling screen adjustments for the main content in small screens */
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: row; /* Maintain row layout */
+    }
+
+    .sidebar {
+        width: 200px; /* Shrink sidebar for smaller screens */
+        height: 100vh; /* Maintain full height */
+        position: fixed;
+    }
+
+    .main-app-content {
+        margin-left: 200px; /* Adjust margin to match sidebar */
+        flex-grow: 1; /* Allow content to take remaining space */
+        padding: 20px;
+        width: calc(100% - 200px); /* Ensure content takes remaining space */
+    }
+}
+
+/* Sidebar styling and screen adjustments for the main content in medium screens */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 250px; /* Adjusted sidebar width */
+        transition: width 0.3s ease;
+    }
+
+    .main-app-content {
+        margin-left: 250px; /* Adjust for smaller sidebar */
+        flex-grow: 1; /* Allow content to take remaining space */
+        padding: 20px;
+        width: calc(100% - 250px); /* Full width minus smaller sidebar */
+    }
 }
 
 @media (max-width: 768px) {

@@ -29,13 +29,9 @@
             background-size: cover;
             background-position: center;
             font-family: Balsamiq Sans;
+            transition: opacity 0.5s ease-in;
         }
 
-        .main-app-content {
-            padding: 40px;
-            margin-left: 300px; /* Adjust for sidebar width */
-            width: calc(100% - 300px); /* Ensure content doesn't overlap sidebar */
-        }
         
     </style>
 
@@ -43,28 +39,13 @@
 
 <body>
 
-    <!-- Include Sidebar from PHP -->
-    <?php include "components/sidebar.php"?>
+    <div class="container">
+        <div class="row" style="--bs-gutter-x: 0.75rem;">
+            <!-- Include Sidebar from PHP -->
+            <?php include "components/sidebar.php"?>
 
-    <!-- Dashboard Content -->
-    <div class="main-app-content">
-        <h2 class="dashboard-title">Dashboard</h2>
-
-        <div class="card-container ">
-            <div class="card" onclick="window.location.href='#'">
-                <h3>Current Balance</h3>
-                <p class="amount">₱0.00</p>
-            </div>
-            <div class="card" onclick="window.location.href='#'">
-                <h3>Total Expenses</h3>
-                <p class="amount">₱0.00</p>
-                <p class="record">Record: <span>0</span></p>
-            </div>
-            <div class="card" onclick="window.location.href='#'">
-                <h3>Deposits</h3>
-                <p class="amount">₱0.00</p>
-                <p class="record">Record: <span>0</span></p>
-            </div>
+            <!-- Dashboard Content -->
+            <?php include "components/dashboard_content.php"?>
         </div>
     </div>
 

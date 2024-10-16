@@ -3,7 +3,7 @@
     $currentPage = basename($_SERVER['PHP_SELF']);
 ?>
 
-<nav class="sidebar">
+<nav class="col-md-3 col-12 sidebar vh-100 position-fixed">
     <div class="container-fluid">
         <div class="nav-elements container flex-column">
             <img class="profile" src="assets/reserve_profile.svg" alt="Profile Image">
@@ -64,4 +64,3 @@
         </ul>
     </div>
 </nav>
-
