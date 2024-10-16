@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Expense Record</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #f7f8fa;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-title {
+            color: #3874b7;
+            margin-bottom: 20px;
+        }
+
+        .btn-submit {
+            background-color: #69c0ff;
+            color: white;
+            border: none;
+        }
+
+        .btn-submit:hover {
+            background-color: #58aee7;
+        }
+
+        .btn-back {
+            background-color: #f0ad4e;
+            color: white;
+            margin-top: 10px;
+        }
+
+        .btn-back:hover {
+            background-color: #ec971f;
+        }
+
+        .display-info {
+            margin-top: 30px;
+        }
+
+        .info-box {
+            padding: 15px;
+            background-color: #e5f3f9;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Form for creating an expense record -->
+    <div class="form-container">
+        <h2 class="form-title">Create Expense Record</h2>
+        <form id="expenseForm">
+            <div class="mb-3">
+                <label for="date" class="form-label">Date</label>
+                <input type="date" class="form-control" id="date" required>
+            </div>
+            <div class="mb-3">
+                <label for="category" class="form-label">Category</label>
+                <select class="form-select" id="category" required>
+                    <option selected disabled>Choose category...</option>
+                    <option value="Food">Food</option>
+                    <option value="Transportation">Transportation</option>
+                    <option value="Supplies">Supplies</option>
+                    <option value="Utilities">Utilities</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="items" class="form-label">Items</label>
+                <input type="text" class="form-control" id="items" placeholder="Enter items purchased" required>
+            </div>
+            <div class="mb-3">
+                <label for="amount" class="form-label">Amount</label>
+                <input type="number" class="form-control" id="amount" placeholder="Enter amount" required>
+            </div>
+            <button type="submit" class="btn btn-submit">Submit Expense</button>
+        </form>
+
+        <!-- Back button to go back to Expenses page -->
+        <a href="expenses.html" class="btn btn-back">⬅️ Back to Expenses Page</a>
+    </div>
+
+    <!-- Display submitted information -->
+    <div class="display-info" id="displayInfo" style="display: none;">
+        <h3>Submitted Expense Record</h3>
+        <div class="info-box">
+            <p><strong>Date:</strong> <span id="displayDate"></span></p>
+            <p><strong>Category:</strong> <span id="displayCategory"></span></p>
+            <p><strong>Items:</strong> <span id="displayItems"></span></p>
+            <p><strong>Amount:</strong> $<span id="displayAmount"></span></p>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript to display submitted info -->
+    <script>
+        document.getElementById('expenseForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get values from form inputs
+            var date = document.getElementById('date').value;
+            var category = document.getElementById('category').value;
+            var items = document.getElementById('items').value;
+            var amount = document.getElementById('amount').value;
+
+            // Display the submitted information
+            document.getElementById('displayDate').textContent = date;
+            document.getElementById('displayCategory').textContent = category;
+            document.getElementById('displayItems').textContent = items;
+            document.getElementById('displayAmount').textContent = amount;
+
+            // Show the display section
+            document.getElementById('displayInfo').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

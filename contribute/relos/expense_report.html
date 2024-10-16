@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Report</title>
+    <!-- Import Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            display: flex;
+        }
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            padding: 30px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 30px;
+        }
+        .header .search-box {
+            position: relative;
+        }
+        .header .search-box input {
+            padding: 10px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            width: 300px;
+        }
+        .header .search-box input::placeholder {
+            color: #aaa;
+        }
+        .header .search-box i {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            color: #aaa;
+        }
+        .filter-buttons {
+            margin-bottom: 20px;
+        }
+        .filter-buttons button {
+            padding: 8px 15px;
+            margin-right: 10px;
+            border-radius: 20px;
+            border: none;
+            background-color: #5dade2;
+            color: #fff;
+            cursor: pointer;
+            position: relative;
+        }
+        .filter-buttons button span {
+            font-size: 14px;
+            background-color: #3498db;
+            padding: 2px 8px;
+            border-radius: 50%;
+            position: absolute;
+            top: -10px;
+            right: -10px;
+        }
+        .filter-buttons button:hover {
+            background-color: #3498db;
+        }
+        /* Month Labels */
+        .month-label {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #333;
+        }
+        .expense-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 10px;
+        }
+        .expense-grid .expense-card {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .expense-grid .expense-card:hover {
+            background-color: #f0f8ff;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 12px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h1>Expense Report</h1>
+            <div class="search-box">
+                <input type="text" placeholder="Search Transaction / Date">
+                <i class="ion-search"></i>
+            </div>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="filter-buttons">
+            <button>All <span>20</span></button>
+            <button>Category</button>
+            <button>Month</button>
+        </div>
+
+        <!-- January 2024 -->
+        <div class="month-label">January 2024</div>
+        <div class="expense-grid">
+            <div class="expense-card">PANATIGI</div>
+            <div class="expense-card">TRANSPORTATION</div>
+            <div class="expense-card">SUPPLIES AND MATERIALS</div>
+        </div>
+
+        <!-- February 2024 -->
+        <div class="month-label">February 2024</div>
+        <div class="expense-grid">
+            <div class="expense-card">GROCERIES</div>
+            <div class="expense-card">TRANSPORTATION</div>
+            <div class="expense-card">SUPPLIES</div>
+        </div>
+    </div>
+</body>
+</html>
