@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Deposit Record</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS file -->
-</head>
-<body>
 
 <div class="col-md-9 offset-md-3 col-12 main-app-content">
+
+    <div class="dashboard-header container-fluid">
+        <h1 class="dashboard-title">Dashboard</h1>
+    </div>
+
     <!-- Create Deposit Record Button -->
-    <button class="btn btn-success" id="create-deposit-btn" onclick="openDepositModal()">Create Deposit Record</button>
+    <button class="btn_deposit-success" id="create-deposit-btn" onclick="openDepositModal()">Create Deposit Record</button>
 
     <!-- Search Bar -->
     <div class="search-container">
@@ -62,6 +58,8 @@
             <label for="category">Category</label>
             <select id="category" class="form-control" required>
                 <option value="">Select Category</option>
+                <option value="">Category 1</option>
+                <option value="">Category 2</option>
                 <!-- Add categories as options -->
             </select>
 
@@ -77,7 +75,7 @@
             <label for="receipt">Receipt</label>
             <input type="file" id="receipt" class="form-control" />
 
-            <button type="submit" class="btn btn-primary">Add Expenses</button>
+            <button type="submit" class="btn_deposit-primary">Add Expenses</button>
         </form>
     </div>
 </div>

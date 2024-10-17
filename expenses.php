@@ -18,6 +18,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/main_app.css">
+    <link rel="stylesheet" href="css/expenses.css">
 
     <style>
         body{
@@ -34,6 +35,8 @@
 
 <body>
     <?php include "components/sidebar.php"?>
+
+    <?php include "components/expense_component.php"?>
 
     <script src="javascript/sidebar_button_active.js"></script>
 </body>

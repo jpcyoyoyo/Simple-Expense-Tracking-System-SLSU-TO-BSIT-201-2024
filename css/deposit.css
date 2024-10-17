@@ -1,6 +1,19 @@
-body {
-    background-color: #f4f6f9;
-    font-family: 'Arial', sans-serif;
+
+.dashboard-title {
+    font-size: 4em;
+    color: #fff;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.dashboard-header {
+    background-color: rgba(162, 217, 249, 0.44);
+    width: 100%; /* 300px is the assumed width of the sidebar */
+    transition: width 0.3s ease; /* Smooth transition when the width changes */
+    padding: 20px 50px 5px 50px;
+    top: 0;
+    margin: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .table-container {
@@ -16,7 +29,7 @@ body {
     background-color: rgba(255, 255, 255, 0.4); /* More transparent table background (40%) */
 }
 
-.btn-add {
+.btn_deposit-add {
     margin-bottom: 10px;
 }
 
@@ -82,23 +95,16 @@ thead.table-dark {
     border: 1px solid #ddd;
 }
 
-.btn {
-    padding: 10px 20px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-}
-
-.btn-success {
+.btn_deposit-success {
     background-color: #007bff;
     color: white;
 }
 
-.btn-primary {
+.btn_deposit-primary {
     background-color: #007bff;
     color: white;
 }
 
-.btn-add {
+.btn_deposit-add {
     margin-top: 10px;
 }

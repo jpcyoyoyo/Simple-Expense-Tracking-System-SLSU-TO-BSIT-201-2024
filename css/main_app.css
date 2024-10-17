@@ -78,8 +78,6 @@
     margin: 4px 0;
 }
 
-
-
 /* Adjusting the navigation links */
 .sidebar .nav-link {
     display: flex; /* Flexbox to align icon and text */
@@ -143,15 +141,15 @@
 .space {
     height: 40px; /* Spacer height */
     width: auto; /* Adjust width automatically */
+    color: rgba(0, 0, 0, 0);
 }
 
 /* Main content styling to adjust for the sidebar */
 .main-app-content {
     flex-grow: 1; /* Make the content area take up the remaining space */
-    padding: 40px; /* Content padding */
     margin-left: 300px; /* Offset for sidebar */
+    padding: 0px; /* Content padding */
     width: calc(100% - 300px); /* Full width minus sidebar width */
-    overflow: auto; /* Allow scrolling in the main content area */
 }
 
 /* Responsive typography adjustments */
@@ -185,7 +183,6 @@ p {
     .main-app-content {
         margin-left: 200px; /* Adjust margin to match sidebar */
         flex-grow: 1; /* Allow content to take remaining space */
-        padding: 20px;
         width: calc(100% - 200px); /* Ensure content takes remaining space */
     }
 }
@@ -200,8 +197,8 @@ p {
     .main-app-content {
         margin-left: 250px; /* Adjust for smaller sidebar */
         flex-grow: 1; /* Allow content to take remaining space */
-        padding: 20px;
         width: calc(100% - 250px); /* Full width minus smaller sidebar */
+        position: fixed;
     }
 }
 

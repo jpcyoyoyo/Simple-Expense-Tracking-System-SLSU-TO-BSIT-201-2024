@@ -1,38 +1,58 @@
 .dashboard-title {
-    font-size: 2em;
+    font-size: 4em;
+    color: #fff;
     margin-bottom: 30px;
+    text-align: left;
+}
+
+.dashboard-header {
+    background-color: rgba(162, 217, 249, 0.44);
+    width: 100%; /* 300px is the assumed width of the sidebar */
+    transition: width 0.3s ease; /* Smooth transition when the width changes */
+    padding: 20px 50px 5px 50px;
+    top: 0;
+    margin: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .card-container {
     display: flex;
     flex-wrap: wrap; /* Allows cards to wrap on smaller screens */
     gap: 20px;
+    margin: 0;
+    justify-content: center; /* Center the cards within the container */
+    overflow: auto; /* Allow scrolling in the main content area */
 }
 
 .card {
-    flex: 1 1 calc(33.333% - 20px); /* Makes sure cards are 3 per row with spacing */
+    flex: 1 1 calc(33.333% - 20px); /* 3 cards per row with space */
     background-color: rgba(162, 217, 249, 0.35);
-    border-radius: 10px;
+    border-radius: 12px;
     height: 250px;
-    width: 250px;
+    margin-top: 20px;
+    max-width: 250px; /* Set a max width for consistency */
+    min-width: 250px; /* Ensure the cards don't shrink too much */
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: transform 0.3s;
     color: #ffffff;
+    padding: 0;
 }
 
-.card-header { 
-    background-color: aqua;
-    padding: 20px;
+.card .card-header { 
+    background-color: #43B6D6FF;
+    padding: 20px 0px 0px 0px;
+    border-radius: 12px;
+    margin-bottom: 20px;
 }
 
 .card:hover {
     transform: scale(1.05);
 }
 
-.card h3 {
-    font-size: 1.5em;
+.card-header h3 {
+    font-size: 1.75em;
     margin-bottom: 20px;
 }
 
@@ -50,30 +70,26 @@
 
 @media (max-width: 1200px) {
     .card {
-        flex: 1 1 60%;  
-        margin: 0 180px;
-        transition: flex 0.3s ease;
+        flex: 1 1 100%;  /* 2 cards per row on medium screens */
+        max-width: 250px;
     }
-}
 
-
-@media (max-width: 1024px) {
-    .card {
-        flex: 1 1 calc(60% - 30px);  
-        margin: 0 210px;
+    .dashboard-title {
+        text-align: center;
     }
 }
 
 @media (max-width: 992px) {
     .card {
-        flex: 1 1 100%; 
-        margin: 0 90px;
+        flex: 1 1 100%; /* Still 2 cards per row on smaller screens */
+        max-width: 250px;
     }
 }
 
 @media (max-width: 768px) {
     .card {
-        flex: 1 1 100%; /* Cards will stack vertically on mobile */
-        margin: 0;
+        flex: 1 1 100%; /* Full width cards on mobile */
+        max-width: 250px;
     }
 }
+

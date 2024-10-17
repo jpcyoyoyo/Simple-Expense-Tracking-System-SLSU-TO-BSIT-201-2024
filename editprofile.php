@@ -19,6 +19,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/main_app.css">
+    <link rel="stylesheet" href="css/editprofile.css">    
 
     <style>
         body{
@@ -35,6 +36,8 @@
 
 <body>
     <?php include "components/sidebar.php"?>
+
+    <?php include "components/editprofile_component.php"?>
 
     <script src="javascript/sidebar_button_active.js"></script>
 </body>
