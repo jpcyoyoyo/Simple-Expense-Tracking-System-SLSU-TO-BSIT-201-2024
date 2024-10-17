@@ -40,7 +40,7 @@
             <li class="nav-item <?php if($currentPage == 'reports.php'){ echo 'active'; } ?>" style="padding: 0;">
                 <a class="nav-link container-fluid" href="reports.php">
                     <img class="icon" src="assets/expense_tracker_reports.svg" alt="Reports Icon">
-                    Records
+                    Reports
                 </a>
             </li>
 

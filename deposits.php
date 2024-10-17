@@ -18,6 +18,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/main_app.css">
+    <link rel="stylesheet" href="css/deposit.css">
 
     <style>
         body {
@@ -34,7 +35,15 @@
 </head>
 
 <body>
-    <?php include "components/sidebar.php"?>
+<div class="container">
+        <div class="row" style="--bs-gutter-x: 0.75rem;">
+            <!-- Include Sidebar from PHP -->
+            <?php include "components/sidebar.php"?>
+
+            <!-- Deposit Content -->
+            <?php include "components/deposit_component.php"?>
+        </div>
+    </div>
 
     <script src="javascript/page_transition.js"></script>
 </body>
