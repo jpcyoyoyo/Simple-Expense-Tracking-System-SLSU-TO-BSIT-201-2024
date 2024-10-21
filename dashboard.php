@@ -39,8 +39,8 @@
 
 <body>
 
-    <div class="container">
-        <div class="row" style="--bs-gutter-x: 0.75rem;">
+    <div class="container-fluid" style="padding:0;">
+        <div class="row" style="--bs-gutter-x: 0.75rem; margin: 0;">
             <!-- Include Sidebar from PHP -->
             <?php include "components/sidebar.php"?>
 

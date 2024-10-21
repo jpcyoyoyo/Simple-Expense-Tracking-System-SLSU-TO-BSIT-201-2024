@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit Report</title>
+    <!-- Import Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        /* Header Container */
+        .header-container {
+            background-color: #f6f8fc;
+            z-index: 4;
+            padding: 30px;
+            position: sticky;
+            top: 0;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header h1 {
+            font-size: 40px;
+        }
+        .header .search-box {
+            position: relative;
+        }
+        .header .search-box input {
+            padding: 10px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            width: 400px;
+        }
+        .header .search-box input::placeholder {
+            color: #aaa;
+        }
+        .header .search-box i {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            color: #aaa;
+        }
+        .filter-buttons {
+            margin-top: 10px;
+        }
+        .filter-buttons button {
+            padding: 8px 15px;
+            margin-right: 10px;
+            border-radius: 20px;
+            border: none;
+            background-color: #5dade2;
+            color: #fff;
+            cursor: pointer;
+            position: relative;
+        }
+        .filter-buttons button span {
+            font-size: 14px;
+            background-color: #1e5c85;
+            padding: 2px 8px;
+            border-radius: 40%;
+            position: absolute;
+            top: -10px;
+            right: -10px;
+        }
+        .filter-buttons button:hover {
+            background-color: #3498db;
+        }
+        /* Scrollable content wrapper */
+        .content-wrapper {
+            overflow-y: auto;
+            flex-grow: 1;
+            padding: 30px;
+            padding-top: 20px; /* Adjust padding to prevent overlap with fixed header */
+        }
+        /* Month Labels */
+        .month-label {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+            color: #333;
+        }
+        .expense-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 70px;
+            margin-top: 20px;
+        }
+        .expense-grid .expense-card {
+            background-color: #90aaf1;
+            padding: 40px;
+            box-shadow: 0 2px 8px rgba(41, 38, 38, 0.1);
+            border-radius: 0;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .expense-grid .expense-card:hover {
+            background-color: #aed3f3;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 12px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Fixed Header Container -->
+        <div class="header-container">
+            <div class="header">
+                <h1>Deposit Report</h1>
+                <div class="search-box">
+                    <input type="text" placeholder="Search Transaction / Date">
+                    <i class="ion-search"></i>
+                </div>
+            </div>
+            <!-- Filter Buttons -->
+            <div class="filter-buttons">
+                <button>All <span>20</span></button>
+                <button>Category</button>
+                <button>Month</button>
+            </div>
+        </div>
+
+        <!-- Scrollable Content -->
+        <div class="content-wrapper">
+            <!-- January 2024 -->
+            <div class="month-label">January 2024</div>
+            <div class="expense-grid">
+                <div class="expense-card">WATER VENDO</div>
+                <div class="expense-card">BOOTH</div>
+                <div class="expense-card">PRINTING</div>
+            </div>
+
+            <!-- February 2024 -->
+            <div class="month-label">February 2024</div>
+            <div class="expense-grid">
+                <div class="expense-card">GROCERIES</div>
+                <div class="expense-card">MATERIALS</div>
+                <div class="expense-card">SUPPLIES</div>
+            </div>
+
+            <!-- March 2024 -->
+            <div class="month-label">March 2024</div>
+            <div class="expense-grid">
+                <div class="expense-card">GROCERIES</div>
+                <div class="expense-card">TRANSPORTATION</div>
+                <div class="expense-card">SUPPLIES</div>
+            </div>
+
+            <!-- April 2024 -->
+            <div class="month-label">April 2024</div>
+            <div class="expense-grid">
+                <div class="expense-card">GROCERIES</div>
+                <div class="expense-card">TRANSPORTATION</div>
+                <div class="expense-card">SUPPLIES</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+body {
+    background-color: #f7f8fa;
+    font-family: Arial, sans-serif;
+    padding: 25px;
+}
+
+/* Main content styling */
+.content h2 {
+    color: #3874b7;
+}
+
+.btn-create, .btn-dropdown {
+    background: linear-gradient(45deg, #5aaaff, #5f86ff);
+    color: #fff;
+    border: none;
+    font-size: 14px;
+}
+
+.btn-create:hover, .btn-dropdown:hover {
+    background: linear-gradient(45deg, #4f9ee0, #5c75e1);
+}
+
+/* Adjusted dropdown button size */
+.btn-dropdown {
+    padding: 6px 12px; /* Adjusted for smaller size */
+    font-size: 13px;
+}
+
+.table-wrapper {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-top: 20px;
+}
+
+.table thead th {
+    background-color: #e5f3f9;
+}
+
+.table tbody td {
+    vertical-align: middle;
+    color: #fff;
+}
+
+.btn-create {
+    background-color: #69c0ff;
+    color: #fff;
+    border: none;
+}
+
+.btn-create:hover {
+    background-color: #58aee7;
+}
+
+/* Styling for scrollbars */
+.table-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
