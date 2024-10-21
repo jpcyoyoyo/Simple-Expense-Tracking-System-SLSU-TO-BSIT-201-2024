@@ -1,14 +1,43 @@
 <?php
-// Assuming you retrieve the current user information from the database
-$user = [
-    'fullname' => 'John Doe',
-    'username' => 'johndoe123',
-    'email' => 'john@example.com',
-    'password' => '' // Do not show actual password
-];
+// Database connection
+$servername = "localhost";
+$username = "root";
+$password = ""; // Adjust this according to your setup
+$dbname = "expense_tracker";
 
-// Path to the profile image
-$profileImage = 'backim.png'; // Set the path to your current profile picture
+// Create a connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Assuming you have a user ID from a session or another method
+$userId = 1; // Replace with dynamic user ID from session or authentication
+
+// Fetch user information from the database (table: user_accounts)
+$sql = "SELECT fullname, username, email, profile_picture FROM user_accounts WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $ID);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Check if user data exists
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+} else {
+    // If no user data, set defaults
+    $user = [
+        'fullname' => '',
+        'username' => '',
+        'email' => '',
+        'profile_picture' => 'backim.png' // Default profile picture
+    ];
+}
+
+// Close the connection
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -18,43 +47,39 @@ $profileImage = 'backim.png'; // Set the path to your current profile picture
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile</title>
 
-    <!-- CSS -->
+    <!-- CSS styles (remains unchanged) -->
     <style>
         body, html {
             height: 100%;
             margin: 0;
             font-family: Cambria;
-            background-image: url('backim.png'); /* Background image */
+            background-image: url('backim.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            overflow: auto; /* Make the page scrollable */
+            overflow: auto;
         }
-
         .center-container {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            min-height: 100vh; /* Ensure container can grow beyond the viewport */
-            padding-top: 60px; /* Padding from the top */
+            min-height: 100vh;
+            padding-top: 60px;
         }
-
         .form-container {
             position: relative;
             background-color: rgba(255, 255, 255, 0.85);
-            padding: 60px 40px 40px; /* Adjust top padding for better spacing */
+            padding: 60px 40px 40px;
             border-radius: 10px;
             width: 300px;
             text-align: center;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            margin-top: 60px; /* Added space from the top */
+            margin-top: 60px;
         }
-
-        /* Profile picture container */
         .profile-pic-container {
             position: absolute;
-            top: -60px; /* Makes it overlap the form */
+            top: -60px;
             left: 50%;
             transform: translateX(-50%);
             width: 120px;
@@ -65,25 +90,21 @@ $profileImage = 'backim.png'; // Set the path to your current profile picture
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
             background-color: #fff;
         }
-
         .profile-pic-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
         .form-content {
-            margin-top: 60px; /* Reduced space between the profile text and the form content */
+            margin-top: 60px;
             text-align: left;
         }
-
         .form-container label {
             display: block;
             margin-bottom: 5px;
             font-size: 14px;
             color: #333;
         }
-
         .form-container input {
             padding: 10px;
             margin-bottom: 20px;
@@ -95,7 +116,6 @@ $profileImage = 'backim.png'; // Set the path to your current profile picture
             font-size: 16px;
             box-sizing: border-box;
         }
-
         .form-container button {
             padding: 10px;
             background-color: #007bff;
@@ -108,26 +128,20 @@ $profileImage = 'backim.png'; // Set the path to your current profile picture
             margin-right: 10px;
             font-size: 16px;
         }
-
         .form-container button:hover {
             background-color: #0056b3;
         }
-
-        /* "Change Profile" text style */
         .change-profile-text {
             display: block;
-            margin-top: 15px; /* Reduced margin for better spacing */
+            margin-top: 15px;
             color: #007bff;
             cursor: pointer;
             font-size: 14px;
             text-decoration: underline;
         }
-
         .change-profile-text:hover {
             color: #0056b3;
         }
-
-        /* Hide file input */
         .file-input {
             display: none;
         }
@@ -139,7 +153,7 @@ $profileImage = 'backim.png'; // Set the path to your current profile picture
     <div class="form-container">
         <!-- Circular profile picture -->
         <div class="profile-pic-container">
-            <img src="<?php echo $profileImage; ?>" alt="Profile Picture"> <!-- Display image inside the frame -->
+            <img src="<?php echo htmlspecialchars($user['profile_picture']); ?>" alt="Profile Picture"> <!-- Display image inside the frame -->
         </div>
 
         <!-- "Change Profile" text -->
@@ -170,9 +184,8 @@ $profileImage = 'backim.png'; // Set the path to your current profile picture
     </div>
 </div>
 
-<!-- JavaScript -->
+<!-- JavaScript for profile picture preview -->
 <script>
-    // Preview selected profile picture
     function previewProfilePic(event) {
         const profilePic = document.querySelector('.profile-pic-container img');
         const file = event.target.files[0];
@@ -182,7 +195,7 @@ $profileImage = 'backim.png'; // Set the path to your current profile picture
             reader.onload = function(e) {
                 profilePic.src = e.target.result; // Replace the current profile picture
             };
-            reader.readAsDataURL(file); // Read the selected file as a data URL
+            reader.readAsDataURL(file);
         }
     }
 </script>
