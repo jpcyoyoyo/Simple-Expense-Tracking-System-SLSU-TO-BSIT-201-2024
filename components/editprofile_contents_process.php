@@ -1,10 +1,33 @@
 <?php
 // Database connection (replace with your actual connection)
 include "conn/conn.php";
+// Start the session
+session_start();
+
+// Check if user is logged in
+if (!isset($_SESSION['userId'])) {
+    die("Access denied. Please log in.");
+}
+
+// Get the logged-in user's ID from the session
+$userId = $_SESSION['userId'];
+
+// Database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "expense_tracker";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
 // Get the current logged-in user ID (e.g., from session)
 session_start();
-$user_id = $_SESSION['username']; // Ensure user ID is available from session
+$user_id = $_SESSION['user_id']; // Ensure user ID is available from session
 
 // Get form data from POST
 $fullname = isset($_POST['fullname']) ? trim($_POST['fullname']) : '';
@@ -36,21 +59,14 @@ if ($fullname && $username && $email) {
             $stmt->bind_param("sssi", $fullname, $username, $email, $user_id);
         }
 
-        // Execute the statement
-        if ($stmt->execute()) {
-            // Success message or redirect
-            echo "Profile updated successfully!";
-            header("Location: profile.php"); // Redirect to profile page after updating
-            exit();
-        } else {
-            echo "Error: " . $stmt->error;
-        }
-
-        $stmt->close();
-    }
+// Execute the query and check for success
+if ($stmt->execute()) {
+    echo "Profile updated successfully!";
 } else {
-    echo "All fields except password are required.";
+    echo "Error: " . $stmt->error;
 }
 
+// Close the statement and connection
+$stmt->close();
 $conn->close();
 ?>
