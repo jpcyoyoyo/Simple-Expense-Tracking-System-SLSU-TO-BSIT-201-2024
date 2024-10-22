@@ -18,7 +18,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/main_app.css">
-    <link rel="stylesheet" href="css/expenses.css">
+    <link rel="stylesheet" href="css/dashboard.css">
 
     <style>
         body{
@@ -34,10 +34,20 @@
 </head>
 
 <body>
-    <?php include "components/sidebar.php"?>
+    <div class="container-fluid" style="padding:0;">
+        <div class="row" style="--bs-gutter-x: 0.75rem; margin: 0;">
+            <!-- Include Sidebar from PHP -->
+            <?php include "components/sidebar.php"?>
 
-    <?php include "components/expense_component.php"?>
+            <!-- Dashboard Content -->
+            <div class="col-md-9 offset-md-3 col-12 main-app-content">
+                <?php include "components/expense_component.php"?>
+            </div>
+        </div>
+    </div>
 
-    <script src="javascript/sidebar_button_active.js"></script>
+    <?php include "components/create_expense_modal.php"?>
+    <script src="backend/javascript/create_expense.js"></script>
+   
 </body>
 </html>

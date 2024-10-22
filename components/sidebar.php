@@ -1,6 +1,6 @@
 <?php
-    // Get the current file name
-    $currentPage = basename($_SERVER['PHP_SELF']);
+// Get the current file name
+$currentPage = basename($_SERVER['PHP_SELF']);
 ?>
 
 <nav class="col-md-3 col-12 sidebar vh-100 position-fixed">
@@ -8,8 +8,12 @@
         <div class="nav-elements container flex-column">
             <img class="profile" src="assets/reserve_profile.svg" alt="Profile Image">
             <div class="line container"></div>
-            <p class="h5 text-center" style="color:black;">Computer Society Org.</p>
-            <p class="display-h6 text-center" style="font-size: 15px; color:black;">comsocsociety@gmail.com</p>
+            <p class="h5 text-center" style="color:black;">
+                <?php echo isset($_SESSION['fullname']) ? $_SESSION['fullname'] : 'User'; ?>
+            </p>
+            <p class="display-h6 text-center" style="font-size: 15px; color:black;">
+                <?php echo isset($_SESSION['email']) ? $_SESSION['email'] : 'user@example.com'; ?>
+            </p>
             <a href="editprofile.php" class="btn container-fluid">Edit Profile</a>
         </div>
 

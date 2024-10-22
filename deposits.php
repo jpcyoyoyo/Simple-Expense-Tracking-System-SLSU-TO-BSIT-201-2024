@@ -1,5 +1,6 @@
 <?php 
     include "components/user_auth.php";
+    include "conn/conn.php";
 ?>
 
 <!DOCTYPE html>
@@ -18,11 +19,11 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/main_app.css">
-    <link rel="stylesheet" href="css/deposit.css">
+    <link rel="stylesheet" href="css/dashboard.css">
 
     <style>
         body {
-            background-image: url("assets/imageback.png");
+            background-image: url("assets/bg1.jpg");
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
@@ -35,16 +36,21 @@
 </head>
 
 <body>
-<div class="container">
-        <div class="row" style="--bs-gutter-x: 0.75rem;">
+
+    <div class="container-fluid" style="padding:0;">
+        <div class="row" style="--bs-gutter-x: 0.75rem; margin: 0;">
             <!-- Include Sidebar from PHP -->
             <?php include "components/sidebar.php"?>
 
             <!-- Deposit Content -->
-            <?php include "components/deposit_component.php"?>
+            <div class="col-md-9 offset-md-3 col-12 main-app-content">
+                <?php include "components/deposit_component.php"?>
+            </div>
         </div>
     </div>
-
-    <script src="javascript/page_transition.js"></script>
+    <?php include "components/create_deposit_modal.php"?>
+    <?php include "components/update_deposit_modal.php"?>
+    
+    <script src="backend/javascript/deposit.js"></script>
 </body>
 </html>

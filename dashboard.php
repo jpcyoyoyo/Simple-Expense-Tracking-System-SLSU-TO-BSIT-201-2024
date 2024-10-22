@@ -23,7 +23,7 @@
     
     <style>
         body {
-            background-image: url("assets/imageback.png");
+            background-image: url("assets/bg1.jpg");
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
@@ -45,7 +45,9 @@
             <?php include "components/sidebar.php"?>
 
             <!-- Dashboard Content -->
-            <?php include "components/dashboard_component.php"?>
+            <div class="col-md-9 offset-md-3 col-12 main-app-content">
+                <?php include "components/dashboard_component.php"?>
+            </div>
         </div>
     </div>
 

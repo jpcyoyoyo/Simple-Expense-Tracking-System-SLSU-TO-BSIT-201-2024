@@ -1,20 +1,10 @@
 <?php
 // Database connection (replace with your actual connection)
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "expense_tracker"; // Updated with the correct database name
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include "conn/conn.php";
 
 // Get the current logged-in user ID (e.g., from session)
 session_start();
-$user_id = $_SESSION['user_id']; // Ensure user ID is available from session
+$user_id = $_SESSION['username']; // Ensure user ID is available from session
 
 // Get form data from POST
 $fullname = isset($_POST['fullname']) ? trim($_POST['fullname']) : '';

@@ -26,6 +26,8 @@
                 // Password is correct
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['fullname'] = $user['fullname'];
+                $_SESSION['email'] = $user['email'];
+                $_SESSION['user_id'] = $user['id'];
                 // You can store other user details in session as needed
 
                 // Redirect to dashboard

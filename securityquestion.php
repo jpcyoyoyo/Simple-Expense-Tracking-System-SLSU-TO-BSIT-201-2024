@@ -21,47 +21,64 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Get the username from session
     $username = $_SESSION['username'];
 
-    // Update the database with security questions and answers
-    $sql = "UPDATE user_accounts SET 
-                q1 = ?, q1_answer = ?, 
-                q2 = ?, q2_answer = ?, 
-                q3 = ?, q3_answer = ?
-            WHERE username = ?";
+    // Insert into the security_q table
+    $insert_sql = "INSERT INTO security_q (q1, q1_answer, q2, q2_answer, q3, q3_answer) VALUES (?, ?, ?, ?, ?, ?)";
+    
+    // Prepare insert statement
+    if ($insert_stmt = $conn->prepare($insert_sql)) {
+        // Bind parameters
+        $insert_stmt->bind_param("ssssss", $q1, $q1_answer, $q2, $q2_answer, $q3, $q3_answer);
+        
+        // Execute the insert statement
+        if ($insert_stmt->execute()) {
+            // Get the ID of the newly inserted row
+            $question_id = $conn->insert_id; 
 
-    // Prepare statement
-    if ($stmt = $conn->prepare($sql)) {
-        // Bind parameters (s = string)
-        $stmt->bind_param("sssssss", $q1, $q1_answer, $q2, $q2_answer, $q3, $q3_answer, $username);
+            // Now update the user_accounts table with the question_id
+            $update_sql = "UPDATE user_accounts SET question_id = ? WHERE username = ?";
+            
+            if ($update_stmt = $conn->prepare($update_sql)) {
+                // Bind parameters for update
+                $update_stmt->bind_param("is", $question_id, $username);
 
-        // Execute the statement
-        if ($stmt->execute()) {
-            // After successfully updating the security questions, fetch the user's full name
-            $fetch_name_sql = "SELECT fullname FROM user_accounts WHERE username = ?";
+                // Execute the update statement
+                if ($update_stmt->execute()) {
+                    // After successfully updating the question_id, fetch the user's full name
+                    $fetch_name_sql = "SELECT fullname FROM user_accounts WHERE username = ?";
 
-            if ($fetch_stmt = $conn->prepare($fetch_name_sql)) {
-                // Bind the username to the SQL query
-                $fetch_stmt->bind_param("s", $username);
-                $fetch_stmt->execute();
-                $fetch_stmt->bind_result($fullname);
-                
-                // Fetch the full name and store it in the session
-                if ($fetch_stmt->fetch()) {
-                    $_SESSION['fullname'] = $fullname; // Store the full name in session
+                    if ($fetch_stmt = $conn->prepare($fetch_name_sql)) {
+                        // Bind the username to the SQL query
+                        $fetch_stmt->bind_param("s", $username);
+                        $fetch_stmt->execute();
+                        $fetch_stmt->bind_result($fullname);
+                        
+                        // Fetch the full name and store it in the session
+                        if ($fetch_stmt->fetch()) {
+                            $_SESSION['fullname'] = $fullname; // Store the full name in session
+                            $_SESSION['email'] = $email;
+                            $_SESSION['user_id'] = $id;
+                        }
+
+                        // Close the fetch statement
+                        $fetch_stmt->close();
+                    }
+
+                    // Redirect to dashboard or success page
+                    header("Location: dashboard.php");
+                    exit();
+                } else {
+                    echo "Error updating user account: $update_stmt->error";
                 }
 
-                // Close the fetch statement
-                $fetch_stmt->close();
+                // Close the update statement
+                $update_stmt->close();
             }
-
-            // Redirect to dashboard or success page
-            header("Location: dashboard.php");
-            exit();
         } else {
-            echo "Error: $stmt->error";
+            echo "Error inserting security questions: $insert_stmt->error";
         }
 
-        // Close the statement
-        $stmt->close();
+        // Close the insert statement
+        $insert_stmt->close();
     }
 
     // Close connection
