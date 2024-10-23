@@ -1,5 +1,5 @@
 <?php 
-    include "components/user_auth.php";
+    include "backend/php/user_auth.php";
 ?>
 
 
@@ -37,7 +37,7 @@
 <body>
     <?php include "components/sidebar.php"?>
 
-    <?php include "components/editprofile_component.php"?>
+    <?php include "components/main_app_content/editprofile/editprofile_component.php"?>
 
     <script src="javascript/sidebar_button_active.js"></script>
 </body>

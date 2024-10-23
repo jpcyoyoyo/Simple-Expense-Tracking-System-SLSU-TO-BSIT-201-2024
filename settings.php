@@ -1,5 +1,5 @@
 <?php 
-    include "components/user_auth.php";
+    include "backend/php/user_auth.php";
 ?>
 
 <!DOCTYPE html>

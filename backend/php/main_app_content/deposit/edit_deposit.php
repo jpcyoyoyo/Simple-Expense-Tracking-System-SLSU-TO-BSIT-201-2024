@@ -1,5 +1,5 @@
 <?php
-include '../../conn/conn.php'; // Adjust the path accordingly
+include '../../../../conn/conn.php'; // Adjust the path accordingly
 
 header('Content-Type: application/json');
 ini_set('display_errors', 1);
@@ -24,11 +24,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $amount = $input['amount'];
 
     // Prepare the SQL statement
-    $stmt = $conn->prepare("UPDATE deposit SET description = ?, date = ?, category = ?, amount = ? WHERE id = ? AND user_id = ?");
-    $stmt->bind_param("ssdsii", $description, $date, $category, $amount, $deposit_id, $_SESSION['user_id']);
+    $stmt = $conn->prepare("UPDATE deposit SET description = ?, date = ?, amount = ?, category = ? WHERE id = ? AND user_id = ?");
+    $stmt->bind_param("ssdsii", $description, $date, $amount, $category, $deposit_id, $_SESSION['user_id']);
 
     if ($stmt->execute()) {
-        echo json_encode(['success' => true]);
+        echo json_encode(['success' => true, 'input' => $input, 'category' => $category]);
     } else {
         echo json_encode(['success' => false, 'message' => 'Failed to update deposit']);
     }
@@ -36,4 +36,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->close();
     $conn->close();
 }
-?>
+

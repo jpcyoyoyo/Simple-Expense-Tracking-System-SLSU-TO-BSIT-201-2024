@@ -1,50 +1,6 @@
 <?php
     include "conn/conn.php";
-    session_start(); // Start the session at the beginning of the script
-
-    // Check if the form was submitted
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Validate and sanitize input data
-        $fullname = mysqli_real_escape_string($conn, trim($_POST['fullname']));
-        $username = mysqli_real_escape_string($conn, trim($_POST['username']));
-        $email = mysqli_real_escape_string($conn, trim($_POST['email']));
-        $password = $_POST['password'];
-        $confirm_password = $_POST['confirm_password'];
-
-        $error_message = "";
-        
-        // Password match check
-        if ($password === $confirm_password) {
-            // Hash the password before saving
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-            // Prepare SQL to prevent SQL injection
-            $stmt = $conn->prepare("INSERT INTO user_accounts (fullname, username, email, password) VALUES (?, ?, ?, ?)");
-            $stmt->bind_param("ssss", $fullname, $username, $email, $hashed_password);
-
-            // Execute the statement and check if the insertion was successful
-            if ($stmt->execute()) {
-                // Store the username in session for use in securityquestion.php
-                $_SESSION['username'] = $username;
-
-                // Redirect to the security questions page
-                header("Location: securityquestion.php");
-                exit();
-            } else {
-                // Show error if SQL execution fails
-                $error_message = "Error: " . $stmt->error;
-            }
-
-            // Close the prepared statement
-            $stmt->close();
-        } else {
-            // If passwords don't match, display an error
-            $error_message = "Passwords do not match!";
-        }
-    }
-
-    // Close the connection at the end
-    $conn->close();
+    include "backend/php/user_login/signup_process.php";
 ?>
 
 <!DOCTYPE html>
@@ -71,59 +27,11 @@
             background-image: url("assets/backim.png");
             background-repeat: no-repeat;
             background-attachment: fixed;
-
             background-size: cover;
             background-position: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-family: Balsamiq Sans;
         }
-
-        /* Form container */
-        .form-container {
-            background-color: rgba(255, 255, 255, 0.85); /* Slight transparency for the form background */
-            padding: 20px 40px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            width: 300px; /* Fixed width for the form */
-        }
-
-        /* Form labels */
-        .form-container label {
-            margin-bottom: 5px;
-            font-size: 14px;
-            color: #333;
-        }
-
-        /* Form inputs */
-        .form-container input {
-            padding: 10px;
-            margin-bottom: 20px;
-            width: 100%;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        /* Submit button */
-        .form-container button {
-            padding: 10px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .form-container button:hover {
-            background-color: #218838;
-        }
-
     </style>
-
 </head>
 
 <body>

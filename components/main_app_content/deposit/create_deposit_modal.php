@@ -4,9 +4,9 @@
         <span class="close" onclick="closeDepositModal()">&times;</span>
         <h1>Create Deposit Record</h1>
 
-        <form id="deposit-form" onsubmit="addDepositRecord(event)">
+        <form id="create-deposit-form" onsubmit="addDepositRecord(event)">
             <div class="form-grid col-12">
-                <div class="row">
+                <div class="row row-no-gutters">
                     <div class="form-group col-lg-6">
                         <label for="description">Description</label>
                         <input type="text" id="create_description" class="form-control" placeholder="Enter description" required />
@@ -19,7 +19,7 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row row-no-gutters">
                     <div class="form-group col-lg-6">
                         <label for="category">Category</label>
                         <select id="create_category" class="form-control" required>
@@ -31,14 +31,14 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row row-no-gutters">
                     <div class="form-group col-lg-6">
                         <label for="amount">Amount</label>
                         <input type="number" id="create_amount" class="form-control" placeholder="Enter amount" step="0.01" required />
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row row-no-gutters">
                     <div class="form-group-full col-lg-12 d-flex justify-content-end align-items-end">
                         <button type="submit" class="btn_deposit-primary">Add Deposit</button>
                     </div>

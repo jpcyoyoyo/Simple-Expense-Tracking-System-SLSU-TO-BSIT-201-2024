@@ -1,5 +1,5 @@
 <?php 
-    include "components/user_auth.php";
+    include "backend/php/user_auth.php";
 ?>
 
 <!DOCTYPE html>
@@ -46,12 +46,12 @@
 
             <!-- Dashboard Content -->
             <div class="col-md-9 offset-md-3 col-12 main-app-content">
-                <?php include "components/dashboard_component.php"?>
+                <?php include "components/main_app_content/dashboard/dashboard_component.php"?>
             </div>
         </div>
     </div>
 
-    <script src="javascript/page_transition.js"></script>
+    <script src="backend/javascript/main_app_content/dashboard.js"></script>
 
 </body>
 </html>

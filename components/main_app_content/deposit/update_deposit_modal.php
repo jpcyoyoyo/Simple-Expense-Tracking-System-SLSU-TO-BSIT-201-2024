@@ -4,7 +4,7 @@
         <span class="close" onclick="closeEditDepositModal()">&times;</span>
         <h1>Edit Deposit Record</h1>
 
-        <form id="deposit-form" onsubmit="updateDeposit(event)">
+        <form id="update-deposit-form" onsubmit="updateDeposit(event)">
             <input type="hidden" id="deposit-id">
             <div class="form-grid col-12">
                 <div class="row">

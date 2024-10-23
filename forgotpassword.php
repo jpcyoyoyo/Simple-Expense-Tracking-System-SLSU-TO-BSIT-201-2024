@@ -1,39 +1,7 @@
-<?php
-    include "conn/conn.php"; // Include database connection
-    session_start();
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Get and sanitize the username input
-        $username = mysqli_real_escape_string($conn, trim($_POST['username']));
-        
-        // Query to check if username exists in the database
-        $query = "SELECT username FROM user_accounts WHERE username = ?";
-
-        $error_message = "";
-        
-        if ($stmt = $conn->prepare($query)) {
-            $stmt->bind_param("s", $username);
-            $stmt->execute();
-            $stmt->store_result();
-            
-            // Check if the username exists
-            if ($stmt->num_rows > 0) {
-                // Store the username in session and proceed to the next step
-                $_SESSION['forgot_password_username'] = $username;
-                header("Location: verifyuser.php"); // Redirect to security questions page
-                exit();
-            } else {
-                $error_message = "Username not found. Please try again.";
-            }
-            
-            $stmt->close();
-        }
-        
-        // Close the database connection
-        $conn->close();
-    }
+<?php 
+    include 'conn/conn.php';
+    include 'backend/php/user_login/forgotpassword_process.php';
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">

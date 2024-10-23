@@ -1,5 +1,5 @@
 <?php 
-    include "components/user_auth.php";
+    include "backend/php/user_auth.php";
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +36,7 @@
 <body>
     <div>
         <?php include "components/sidebar.php"?>
-        <?php include "components/reports_component.php"?>
+        <?php include "components/main_app_content/report/reports_component.php"?>
     </div>
 
     <script src="javascript/sidebar_button_active.js"></script>

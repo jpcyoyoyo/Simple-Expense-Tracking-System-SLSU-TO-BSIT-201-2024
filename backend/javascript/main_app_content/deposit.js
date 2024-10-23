@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', fetchDeposits);
 
 function fetchDeposits() {
-    fetch('backend/php/get_deposits.php')
+    fetch('backend/php/main_app_content/deposit/get_deposits.php')
         .then(response => response.json())
         .then(data => {
             if (data.success) {
@@ -31,8 +31,15 @@ function populateDepositTable(deposits) {
             <td>₱${parseFloat(deposit.amount).toFixed(2)}</td>
             <input type="hidden" class="deposit-id" value="${deposit.id}">
             <td class="action-buttons">
-                <button class="btn btn-warning btn-sm" onclick="editRow(this)">Edit</button>
-                <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">Delete</button>
+                <div class="row g-2 justify-content-center" style="--bs-gutter-y: 0;">
+                    <div class="col-auto">
+                        <button class="btn btn-md btn-outline-primary" onclick="editRow(this)">Edit</button>
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-md btn-outline-danger" onclick="deleteRow(this)">Delete</button>
+                    </div>
+                </div>
+
             </td>
         `;
         tableBody.appendChild(row);
@@ -77,7 +84,7 @@ function addDepositRecord(event) {
     }
 
     // Send data to the server
-    fetch('backend/php/create_deposit.php', {
+    fetch('backend/php/main_app_content/deposit/create_deposit.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -102,14 +109,21 @@ function addDepositRecord(event) {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${rowCount}.</td>
-                <td>${description}</td>
-                <td>${category}</td>
                 <td>${date}</td>
+                <td>${category}</td>
+                <td>${description}</td>
                 <td>₱${amount.toFixed(2)}</td>
                 <input type="hidden" class="deposit-id" value="${depositId}">
                 <td class="action-buttons">
-                    <button class="btn btn-warning btn-sm" onclick="editRow(this)">Edit</button>
-                    <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">Delete</button>
+                    <div class="row g-2 justify-content-center">
+                        <div class="col-auto">
+                            <button class="btn btn-md btn-outline-primary" onclick="editRow(this)">Edit</button>
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-md btn-outline-danger" onclick="deleteRow(this)">Delete</button>
+                        </div>
+                    </div>
+
                 </td>
             `;
             tableBody.appendChild(row);
@@ -117,7 +131,7 @@ function addDepositRecord(event) {
             calculateTotal(); // Update total after adding a new record
 
             // Clear the form and close the modal
-            document.getElementById('deposit-form').reset();
+            document.getElementById('create-deposit-form').reset();
             closeDepositModal();
         } else {
             alert('Error: ' + data.message);
@@ -139,7 +153,7 @@ function deleteRow(button) {
     
     // Confirm deletion
     if (confirm("Are you sure you want to delete this deposit?")) {
-        fetch('backend/php/delete_deposit.php', {
+        fetch('backend/php/main_app_content/deposit/delete_deposit.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -217,17 +231,17 @@ function editRow(button) {
     }
 
     const depositId = row.querySelector('.deposit-id').value; // Get deposit ID from hidden input
-    const description = row.cells[1].innerText; // Assuming description is in the second cell
+    const date = row.cells[1].innerText; // Assuming date is in the third cell
     const category = row.cells[2].innerText;
-    const date = row.cells[3].innerText; // Assuming date is in the third cell
+    const description = row.cells[3].innerText; // Assuming description is in the second cell
     const amount = parseFloat(row.cells[4].innerText.replace('₱', '').replace(',', '')); // Ensure proper parsing
 
     // Populate the form with these values
-    document.getElementById('edit_description').value = description;
-    document.getElementById('edit_category').value = category
-    document.getElementById('edit_date').value = date;
-    document.getElementById('edit_amount').value = amount.toFixed(2);
     document.getElementById('deposit-id').value = depositId; // Ensure this ID exists
+    document.getElementById('edit_date').value = date;
+    document.getElementById('edit_category').value = category;
+    document.getElementById('edit_description').value = description;
+    document.getElementById('edit_amount').value = amount.toFixed(2);
 
     openEditDepositModal(); // Show the modal to edit
 }
@@ -238,9 +252,9 @@ function updateDeposit(event) {
 
     // Collect updated form data
     const depositId = document.getElementById('deposit-id').value;
-    const description = document.getElementById('edit_description').value;
     const date = document.getElementById('edit_date').value;
     const category = document.getElementById('edit_category').value;
+    const description = document.getElementById('edit_description').value;
     const amount = parseFloat(document.getElementById('edit_amount').value);
     
     console.log('Deposit ID:', depositId);
@@ -250,23 +264,38 @@ function updateDeposit(event) {
     console.log('Amount:', amount);
 
     // Check if any field is empty or invalid
-    if (!depositId || !description || !date || !category || isNaN(amount)) {
-        console.error('One or more fields are empty or invalid');
-        alert('Please fill all fields correctly.');
-        return; // Stop execution if validation fails
+    if (!depositId) {
+        alert('Deposit ID is missing.');
+        return;
+    }
+    if (!description || description.trim() === '') {
+        alert('Please enter a valid description.');
+        return;
+    }
+    if (!date) {
+        alert('Please enter a valid date.');
+        return;
+    }
+    if (!category || category.trim() === '') {
+        alert('Please select a category.');
+        return;
+    }
+    if (isNaN(amount) || amount <= 0) {
+        alert('Please enter a valid amount greater than zero.');
+        return;
     }
 
     // Send updated data via fetch or AJAX to update_deposit.php
-    fetch('backend/php/edit_deposit.php', {
+    fetch('backend/php/main_app_content/deposit/edit_deposit.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
             deposit_id: depositId,
-            description: description,
             date: date,
             category: category,
+            description: description,
             amount: amount
         })
     })
@@ -274,9 +303,10 @@ function updateDeposit(event) {
     .then(data => {
         if (data.success) {
             console.log('Deposit updated successfully');
-            // Optionally, update the table row with the new data
+            // Update the table row with the new data
             updateRowInTable(depositId, description, date, category, amount);
-            closeDepositModal(); // Close the modal after updating
+            document.getElementById('update-deposit-form').reset(); // Reset the form
+            closeEditDepositModal(); // Close the modal after updating
         } else {
             console.error('Error updating deposit:', data.message);
             alert('Error: ' + data.message);
@@ -290,9 +320,30 @@ function updateDeposit(event) {
 
 // Update the table row with the new deposit data
 function updateRowInTable(depositId, description, date, category, amount) {
-    const row = document.querySelector(`tr[data-id="${depositId}"]`);
-    row.cells[1].innerText = description;
-    row.cells[2].innerText = date;
-    row.cells[3].innerText = `₱${amount.toFixed(2)}`;
+    // Find the row containing the hidden input with the matching depositId
+    const input = document.querySelector(`input.deposit-id[value="${depositId}"]`);
+    
+    if (!input) {
+        console.error(`No row found with depositId: ${depositId}`);
+        return;
+    }
+
+    // Get the closest row (tr) containing the hidden input
+    const row = input.closest('tr');
+    
+    if (!row) {
+        console.error('Row not found for the deposit ID.');
+        return;
+    }
+
+    if (row.cells.length >= 5) { // Ensure the row has at least 5 cells
+        row.cells[1].innerText = date;
+        row.cells[2].innerText = category;
+        row.cells[3].innerText = description;
+        row.cells[4].innerText = `₱${amount.toFixed(2)}`;
+    } else {
+        console.error('Row does not have enough cells.');
+    }
 }
+
 

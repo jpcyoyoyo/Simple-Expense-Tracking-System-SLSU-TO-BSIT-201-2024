@@ -1,4 +1,3 @@
-
 <div class="app_header container-fluid">
     <h1 class="title">Dashboard</h1>
 </div>

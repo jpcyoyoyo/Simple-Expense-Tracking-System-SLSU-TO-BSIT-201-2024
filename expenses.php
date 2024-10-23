@@ -1,5 +1,5 @@
 <?php 
-    include "components/user_auth.php";
+    include "backend/php/user_auth.php";
 ?>
 
 <!DOCTYPE html>
@@ -39,15 +39,15 @@
             <!-- Include Sidebar from PHP -->
             <?php include "components/sidebar.php"?>
 
-            <!-- Dashboard Content -->
+            <!-- Expense Content -->
             <div class="col-md-9 offset-md-3 col-12 main-app-content">
-                <?php include "components/expense_component.php"?>
+                <?php include "components/main_app_content/expense/expense_component.php"?>
             </div>
         </div>
     </div>
 
-    <?php include "components/create_expense_modal.php"?>
-    <script src="backend/javascript/create_expense.js"></script>
+    <?php include "components/main_app_content/expense/create_expense_modal.php"?>
+    <script src="backend/javascript/main_app_content/create_expense.js"></script>
    
 </body>
 </html>

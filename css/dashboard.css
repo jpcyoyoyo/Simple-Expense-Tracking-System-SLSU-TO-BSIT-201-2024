@@ -119,9 +119,9 @@
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    margin-top: 30px;
+    margin-top: 20px;
     width: 100%;
-    height: calc(100% - 150px);
+    height: calc(100% - 170px);
 }
 
 /* Styling for scrollbars */
@@ -165,7 +165,9 @@
 .modal-content {
     background-color: white;
     padding: 40px;
-    margin: 40px;
+    margin: 0 40px;
+    margin-top: 40px;
+    margin-bottom: 40px;
     border: 1px solid #888;
     width: calc(100% - 80px);
     height: calc(100% - 80px);
@@ -227,7 +229,7 @@
     border-radius: 12px; /* Rounded corners */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional shadow */
     padding: 10px 20px;
-    margin: 40px;
+    margin: 40px 0;
     border: none;
     cursor: pointer;
 }
@@ -243,7 +245,7 @@
     border: 1px solid #ddd;
 }
 
-p {
+.total-section {
     color: #fff;
 }
 
@@ -267,6 +269,21 @@ p {
         flex: 1 1 100%; /* Still 2 cards per row on smaller screens */
         max-width: 250px;
     }
+
+    .modal-content {
+        height: auto;
+        width: 90%; /* Adjust the width of the modal for tablets */
+        margin: 40px auto; /* Centers the modal with some margin on top and bottom */
+    }
+
+    /* Additional adjustments if necessary for tablet landscape */
+    @media (max-height: 768px) {
+        .modal-content {
+            height: calc(100% - 100px); /* Height adjustment for landscape */
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+    }
 }
 
 @media (max-width: 768px) {
@@ -279,4 +296,5 @@ p {
         padding-left: 200px;
     }
 }
+
 

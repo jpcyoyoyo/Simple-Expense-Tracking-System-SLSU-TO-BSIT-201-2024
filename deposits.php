@@ -1,5 +1,5 @@
 <?php 
-    include "components/user_auth.php";
+    include "backend/php/user_auth.php";
     include "conn/conn.php";
 ?>
 
@@ -44,13 +44,13 @@
 
             <!-- Deposit Content -->
             <div class="col-md-9 offset-md-3 col-12 main-app-content">
-                <?php include "components/deposit_component.php"?>
+                <?php include "components/main_app_content/deposit/deposit_component.php"?>
             </div>
         </div>
     </div>
-    <?php include "components/create_deposit_modal.php"?>
-    <?php include "components/update_deposit_modal.php"?>
+    <?php include "components/main_app_content/deposit/create_deposit_modal.php"?>
+    <?php include "components/main_app_content/deposit/update_deposit_modal.php"?>
     
-    <script src="backend/javascript/deposit.js"></script>
+    <script src="backend/javascript/main_app_content/deposit.js"></script>
 </body>
 </html>

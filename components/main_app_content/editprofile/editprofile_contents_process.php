@@ -46,6 +46,7 @@ if ($fullname && $username && $email) {
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
         $sql .= ", password=?";
     }
+}
 
     $sql .= " WHERE id=?"; // Update user by their ID
 
@@ -58,6 +59,7 @@ if ($fullname && $username && $email) {
             // If no password is provided, exclude password binding
             $stmt->bind_param("sssi", $fullname, $username, $email, $user_id);
         }
+    }
 
 // Execute the query and check for success
 if ($stmt->execute()) {
