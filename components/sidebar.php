@@ -6,9 +6,9 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 <nav class="col-md-3 col-12 sidebar vh-100 position-fixed">
     <div class="container-fluid">
         <div class="nav-elements container flex-column">
-            <img class="profile" src="assets/reserve_profile.svg" alt="Profile Image">
+            <img class="profile" src="<?php echo isset($_SESSION['profile_pic']) ? $_SESSION['profile_pic'] : 'assets/reserve_profile.svg'; ?>" alt="Profile Image">
             <div class="line container"></div>
-            <p class="h5 text-center" style="color:black;">
+            <p class="h6 text-center" style="color:black;">
                 <?php echo isset($_SESSION['fullname']) ? $_SESSION['fullname'] : 'User'; ?>
             </p>
             <p class="display-h6 text-center" style="font-size: 15px; color:black;">

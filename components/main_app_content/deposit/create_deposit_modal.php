@@ -9,20 +9,20 @@
                 <div class="row row-no-gutters">
                     <div class="form-group col-lg-6">
                         <label for="description">Description</label>
-                        <input type="text" id="create_description" class="form-control" placeholder="Enter description" required />
+                        <input type="text" id="create_deposit_description" class="form-control" placeholder="Enter description" required />
                     </div>
 
                     <!-- Date in the second column -->
                     <div class="form-group col-lg-6">
                         <label for="date">Date</label>
-                        <input type="date" id="create_date" class="form-control" required />
+                        <input type="date" id="create_deposit_date" class="form-control" required />
                     </div>
                 </div>
 
                 <div class="row row-no-gutters">
                     <div class="form-group col-lg-6">
                         <label for="category">Category</label>
-                        <select id="create_category" class="form-control" required>
+                        <select id="create_deposit_category" class="form-control" required>
                             <option value="">Select Category</option>
                             <option value="Category 1">Category 1</option>
                             <option value="Category 2">Category 2</option>
@@ -34,13 +34,13 @@
                 <div class="row row-no-gutters">
                     <div class="form-group col-lg-6">
                         <label for="amount">Amount</label>
-                        <input type="number" id="create_amount" class="form-control" placeholder="Enter amount" step="0.01" required />
+                        <input type="number" id="create_amountdeposit_" class="form-control" placeholder="Enter amount" step="0.01" required />
                     </div>
                 </div>
 
                 <div class="row row-no-gutters">
                     <div class="form-group-full col-lg-12 d-flex justify-content-end align-items-end">
-                        <button type="submit" class="btn_deposit-primary">Add Deposit</button>
+                        <button type="submit" class="btn_submit-primary">Add Deposit</button>
                     </div>
                 </div>
             </div>

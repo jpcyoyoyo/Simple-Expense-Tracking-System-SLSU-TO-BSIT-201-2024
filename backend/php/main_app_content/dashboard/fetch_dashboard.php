@@ -1,5 +1,6 @@
 <?php
-include '../../conn/conn.php'; // Adjust the path accordingly
+include '../../../../conn/conn.php'; // Adjust the path accordingly
+session_start();
 
 header('Content-Type: application/json');
 

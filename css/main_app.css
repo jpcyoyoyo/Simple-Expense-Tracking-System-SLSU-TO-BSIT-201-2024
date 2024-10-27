@@ -29,16 +29,23 @@
 /* Profile image container */
 .profile {
     position: relative; /* Positioned relative for further customization */
-    width: 120px; /* Fixed width */
-    height: 120px; /* Fixed height */
+    width: 100px; /* Fixed width */
+    height: 100px; /* Fixed height */
     fill: #636AE8FF; /* Default fill color for SVG elements */
+    border-radius: 50%;
+}
+
+.profile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* Icon styling */
 .icon line,
 .icon polygon {
-    width: 28px; /* Icon width */
-    height: 28px; /* Icon height */
+    width: 24px; /* Icon width */
+    height: 24px; /* Icon height */
     vertical-align: middle; /* Vertically align with text */
     margin-right: 10px; /* Right margin for spacing */
     stroke: #171A1FFF; /* Line stroke color */
@@ -63,7 +70,7 @@
     position: fixed; /* Fixed sidebar */
     top: 0; /* Align to the top of the viewport */
     left: 0; /* Align to the left of the viewport */
-    width: 300px; /* Sidebar width */
+    width: 250px; /* Sidebar width */
     background-color: rgba(222, 225, 230, 0.6); /* Semi-transparent background */
     padding-top: 20px; /* Top padding */
     transition: transform 0.3s ease; /* Smooth transitions for responsive view */
@@ -75,7 +82,7 @@
 }
 
 .sidebar .nav-item{
-    margin: 4px 0;
+    margin: 2px 0;
 }
 
 /* Adjusting the navigation links */
@@ -86,7 +93,7 @@
     color: #000; /* Default text color */
     text-decoration: none; /* Remove underline */
     font-weight: bold; /* Bold text */
-    font-size: large; /* Font size */
+    font-size: medium; /* Font size */
     border-radius: 12px; /* Rounded corners */
     transition: background-color 0.3s ease, color 0.3s ease; /* Smooth hover transition */
     background-color: transparent; /* Default background */
@@ -96,6 +103,8 @@
 .sidebar .nav-link .icon {
     fill: #171A1F; /* Icon color */
     margin-right: 10px; /* Space between icon and text */
+    width: 24px; /* Icon width */
+    height: 24px; /* Icon height */
 }
 
 /* Hover effect for navigation links */
@@ -127,6 +136,7 @@
     border-radius: 12px; /* Rounded corners */
     margin: 4px 0; /* Vertical margin */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 5px;
 }
 
 /* Button hover effect */
@@ -147,22 +157,22 @@
 /* Main content styling to adjust for the sidebar */
 .main-app-content {
     flex-grow: 1; /* Make the content area take up the remaining space */
-    margin-left: 300px; /* Offset for sidebar */
+    margin-left: 250px; /* Offset for sidebar */
     padding: 0px; /* Content padding */
-    width: calc(100% - 300px); /* Full width minus sidebar width */
+    width: calc(100% - 250px); /* Full width minus sidebar width */
 }
 
 /* Responsive typography adjustments */
 h1 {
-    font-size: 3rem; /* Large heading */
+    font-size: 2.8rem; /* Large heading */
 }
 
 h2 {
-    font-size: 2rem; /* Secondary heading */
+    font-size: 1.8rem; /* Secondary heading */
 }
 
 p {
-    font-size: 1.2rem; /* Paragraph text */
+    font-size: 1rem; /* Paragraph text */
 }
 
 
@@ -175,36 +185,36 @@ p {
     }
 
     .sidebar {
-        width: 200px; /* Shrink sidebar for smaller screens */
+        width: 190px; /* Shrink sidebar for smaller screens */
         height: 100vh; /* Maintain full height */
         position: fixed;
     }
 
     .main-app-content {
-        margin-left: 200px; /* Adjust margin to match sidebar */
+        margin-left: 190px; /* Adjust margin to match sidebar */
         flex-grow: 1; /* Allow content to take remaining space */
-        width: calc(100% - 200px); /* Ensure content takes remaining space */
+        width: calc(100% - 190px); /* Ensure content takes remaining space */
     }
 }
 
 /* Sidebar styling and screen adjustments for the main content in medium screens */
 @media (max-width: 1024px) {
     .sidebar {
-        width: 250px; /* Adjusted sidebar width */
+        width: 220px; /* Adjusted sidebar width */
         transition: width 0.3s ease;
     }
 
     .main-app-content {
-        margin-left: 250px; /* Adjust for smaller sidebar */
+        margin-left: 220px; /* Adjust for smaller sidebar */
         flex-grow: 1; /* Allow content to take remaining space */
-        width: calc(100% - 250px); /* Full width minus smaller sidebar */
+        width: calc(100% - 220px); /* Full width minus smaller sidebar */
         position: fixed;
     }
 }
 
 @media (max-width: 768px) {
     h1 {
-        font-size: 2.5rem; /* Adjust heading size on smaller screens */
+        font-size: 2rem; /* Adjust heading size on smaller screens */
     }
 
     h2 {

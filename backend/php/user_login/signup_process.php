@@ -9,6 +9,7 @@
         $email = mysqli_real_escape_string($conn, trim($_POST['email']));
         $password = $_POST['password'];
         $confirm_password = $_POST['confirm_password'];
+        $profile_pic = "profile_pic/profile_default.svg";
 
         $error_message = "";
         
@@ -18,8 +19,8 @@
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
             // Prepare SQL to prevent SQL injection
-            $stmt = $conn->prepare("INSERT INTO user_accounts (fullname, username, email, password) VALUES (?, ?, ?, ?)");
-            $stmt->bind_param("ssss", $fullname, $username, $email, $hashed_password);
+            $stmt = $conn->prepare("INSERT INTO user_accounts (fullname, username, email, password, profile_pic) VALUES (?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssss", $fullname, $username, $email, $hashed_password, $profile_pic);
 
             // Execute the statement and check if the insertion was successful
             if ($stmt->execute()) {

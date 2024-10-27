@@ -1,6 +1,7 @@
 .app_header h1 {
     color: #3874b7;
     text-align: left;
+    font-size: 2em;
 }
 
 .app_header {
@@ -34,10 +35,10 @@
     flex: 1 1 calc(33.333% - 20px); /* 3 cards per row with space */
     background-color: rgba(162, 217, 249, 0.35);
     border-radius: 12px;
-    height: 250px;
+    height: 200px;
     margin-top: 20px;
     max-width: 250px; /* Set a max width for consistency */
-    min-width: 250px; /* Ensure the cards don't shrink too much */
+    min-width: 200px; /* Ensure the cards don't shrink too much */
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
@@ -51,6 +52,10 @@
     padding: 20px 0px 0px 0px;
     border-radius: 12px;
     margin-bottom: 20px;
+}
+
+.card h1 {
+    font-size: 2em;
 }
 
 .card:hover {
@@ -95,6 +100,22 @@
     transition: background-color 0.3s ease, color 0.3s ease; /* Smooth hover transition */
 }
 
+/* Button styling */
+.btn_submit-primary {
+    background-color: #43B6D6FF; /* Highlight background */
+    color: white; /* Ensure contrast with active background */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional shadow */
+    padding: 10px 20px;
+    margin: 40px 0;
+    border: none;
+    cursor: pointer;
+}
+
+.action-buttons {
+    width: 150px;
+}
+
 .table-wrapper {
     max-height: 100%;
     overflow-x: auto;
@@ -108,6 +129,8 @@
 .table tbody td {
     vertical-align: middle;
     color: #fff;
+    font-size: medium;
+    padding: 2px 5px;
 }
 
 .table-bordered {
@@ -125,7 +148,8 @@
 }
 
 /* Styling for scrollbars */
-.table-wrapper::-webkit-scrollbar{
+.table-responsive::-webkit-scrollbar, 
+.table-wrapper::-webkit-scrollbar {
     width: 8px;
     height: 8px;
 }
@@ -138,13 +162,15 @@
     margin-right: 12px;
 }
 
-.table-wrapper::-webkit-scrollbar-thumb
+.table-responsive::-webkit-scrollbar-thumb,
+.table-wrapper::-webkit-scrollbar-thumb,
 .modal-content::-webkit-scrollbar-thumb {
-    background-color: #888;
+    background-color: #c0c0c0;
     border-radius: 12px;
 }
 
-.table-wrapper::-webkit-scrollbar-thumb:hover
+.table-responsive::-webkit-scrollbar-thumb:hover,
+.table-wrapper::-webkit-scrollbar-thumb:hover,
 .modal-content::-webkit-scrollbar-thumb:hover {
     background-color: #555;
 }
@@ -222,17 +248,6 @@
     flex: 1;
 }
 
-/* Button styling */
-.btn_deposit-primary {
-    background-color: #43B6D6FF; /* Highlight background */
-    color: white; /* Ensure contrast with active background */
-    border-radius: 12px; /* Rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional shadow */
-    padding: 10px 20px;
-    margin: 40px 0;
-    border: none;
-    cursor: pointer;
-}
 
 .search-container {
     margin-bottom: 10px !important;
@@ -247,6 +262,69 @@
 
 .total-section {
     color: #fff;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-color: rgba(255, 255, 255, 0.85);
+    margin: 40px;
+    padding: 40px 80px; /* Adjust top padding for better spacing */
+    border-radius: 10px;
+    width: calc(100% - 80px);
+    height: calc(100% - 80px);
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile picture container */
+.profile-pic-container {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    border: 5px solid white;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff4e;
+    margin-bottom: 20px;
+}
+
+.profile-pic-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.form-content {
+    text-align: left;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+
+/* "Change Profile" text style */
+.change-profile-text {
+    display: block;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+.change-profile-text:hover {
+    color: #0056b3;
+}
+
+/* Hide file input */
+.file-input {
+    display: none;
 }
 
 /* Responsive adjustments */
@@ -269,7 +347,9 @@
         flex: 1 1 100%; /* Still 2 cards per row on smaller screens */
         max-width: 250px;
     }
+}
 
+@media (min-width: 992px) {
     .modal-content {
         height: auto;
         width: 90%; /* Adjust the width of the modal for tablets */
@@ -277,9 +357,8 @@
     }
 
     /* Additional adjustments if necessary for tablet landscape */
-    @media (max-height: 768px) {
+    @media (min-height: 768px) {
         .modal-content {
-            height: calc(100% - 100px); /* Height adjustment for landscape */
             margin-top: 50px;
             margin-bottom: 50px;
         }

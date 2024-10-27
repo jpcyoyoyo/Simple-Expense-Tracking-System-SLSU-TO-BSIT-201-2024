@@ -17,7 +17,7 @@
                 <h2>Month:</h2><input type="month" class="month-year-input" id="month-input" value="2024-01" />
             </div>
             <div class="total-section col-6">
-                <h2>Total:</h2> ₱ <span id="total-amount">0.00</span>
+                <h2>Total:</h2><span id="deposit-total-amount">0.00</span>
             </div>
         </div>
         
@@ -26,18 +26,18 @@
     <div class="table_container">
         <div class="table-wrapper">
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Date</th>
-                            <th>Category</th>
-                            <th>Name of Transaction</th>
-                            <th>Amount (₱)</th>
+                            <th style="padding-right: 60px">Date</th>
+                            <th style="padding-right: 60px">Category</th>
+                            <th style="padding-right: 60px">Name of Transaction</th>
+                            <th style="padding-right: 60px">Amount (₱)</th>
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody id="table-body">
+                    <tbody id="deposit-table-body">
                         <!-- Initial empty table. Rows will be added dynamically. -->
                     </tbody>
                 </table>

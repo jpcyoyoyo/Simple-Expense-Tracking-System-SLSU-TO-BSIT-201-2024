@@ -16,17 +16,17 @@
 
     $user_id = $_SESSION['user_id'];
 
-    $stmt = $conn->prepare("SELECT id, description, date, category, amount FROM deposit WHERE user_id = ?");
+    $stmt = $conn->prepare("SELECT id, description, date, category, item, quantity, amount FROM expense WHERE user_id = ?");
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
     $result = $stmt->get_result();
-
-    $deposits = [];
+ 
+    $expenses = [];
     while ($row = $result->fetch_assoc()) {
-        $deposits[] = $row;
+        $expenses[] = $row;
     }
 
-    echo json_encode(['success' => true, 'deposits' => $deposits]);
+    echo json_encode(['success' => true, 'expenses' => $expenses]);
 
     $stmt->close();
     $conn->close();

@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password']; // Password will be hashed, no need to sanitize here
 
     // Prepare SQL statement to prevent SQL injection
-    $stmt = $conn->prepare("SELECT id, username, fullname, email, password FROM user_accounts WHERE username = ?");
+    $stmt = $conn->prepare("SELECT id, username, fullname, email, password, dashboard_id, profile_pic FROM user_accounts WHERE username = ?");
     $stmt->bind_param("s", $username);
 
     // Execute the query
@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['email'] = $user['email'];
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['dashboard_id'] = $user['dashboard_id'];
+            $_SESSION['profile_pic'] = $user['profile_pic'];
             // You can store other user details in session as needed
 
             // Redirect to dashboard
@@ -45,4 +46,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->close();
     $conn->close();
 }
-?>

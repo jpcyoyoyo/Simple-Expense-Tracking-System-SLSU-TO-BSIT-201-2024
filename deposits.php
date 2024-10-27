@@ -19,7 +19,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/main_app.css">
-    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/main_app_content.css">
 
     <style>
         body {

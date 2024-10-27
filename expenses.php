@@ -18,7 +18,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/main_app.css">
-    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/main_app_content.css">
 
     <style>
         body{
@@ -47,7 +47,8 @@
     </div>
 
     <?php include "components/main_app_content/expense/create_expense_modal.php"?>
-    <script src="backend/javascript/main_app_content/create_expense.js"></script>
+    <?php include "components/main_app_content/expense/update_expense_modal.php"?>
+    <script src="backend/javascript/main_app_content/expense.js"></script>
    
 </body>
 </html>
