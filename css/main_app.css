@@ -1,19 +1,11 @@
-/* Fade transition styles */
-.fade-enter {
-    opacity: 0;
-}
 
-.fade-enter-active {
-    opacity: 1;
-    transition: opacity 0.5s ease-in;
-}
-
-.fade-leave {
-    opacity: 1;
-}
-
-.fade-leave-active {
-    opacity: 0;
+body {
+    background-image: url("../assets/bg1.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    font-family: Archivo;
     transition: opacity 0.5s ease-in;
 }
 
@@ -62,6 +54,7 @@
     display: flex; /* Flexbox for horizontal layout */
     align-items: center; /* Vertically center items */
     justify-content: center; /* Horizontally center items */
+    font-family: Balsamiq Sans;
 }
 
 /* Sidebar styling for navigation */

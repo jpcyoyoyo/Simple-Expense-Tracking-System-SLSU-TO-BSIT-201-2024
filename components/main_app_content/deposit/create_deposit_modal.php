@@ -34,7 +34,7 @@
                 <div class="row row-no-gutters">
                     <div class="form-group col-lg-6">
                         <label for="amount">Amount</label>
-                        <input type="number" id="create_amountdeposit_" class="form-control" placeholder="Enter amount" step="0.01" required />
+                        <input type="number" id="create_deposit_amount" class="form-control" placeholder="Enter amount" step="0.01" required />
                     </div>
                 </div>
 

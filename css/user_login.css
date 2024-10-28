@@ -1,17 +1,16 @@
 
 /* Base Styles */
 body {
-    font-family: Arial, sans-serif;
     margin: 0.5in 1in;
     padding: 0;
-    background: url('backim.png') no-repeat center center fixed;
+    background-image: url("../assets/backim.png");
     background-size: cover;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    height: calc(100vh - 1in);
-    color: #ffffff;
+    background-position: center;
+    font-family: Archivo;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
+
 
 h1, h2, p {
     color: #ffffff;
@@ -38,6 +37,7 @@ h1, h2, p {
     line-height: 1.5;
     text-align: justify;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    font-family: Balsamiq Sans;
 }
 
 /* Container Styles */
@@ -53,6 +53,10 @@ h1, h2, p {
     align-items: center;
     height: auto;
     backdrop-filter: blur(10px);
+}
+
+.user-login {
+    align-self: flex-start;
 }
 
 /* Section Headings */
@@ -138,6 +142,7 @@ input:focus {
     
     .container {
         width: 100%;
+        max-width: 600px;
         margin: 0;
         padding: 30px;
     }

@@ -5,12 +5,12 @@
 </div>
 
 <div class="app_body">
-    <div class="search-container mt-3 mb-4">
+    <div class="search-container mb-2">
         <input type="text" id="search-bar" class="form-control" placeholder="Search Transaction / Date" oninput="searchTable()">
     </div>
 
     <div class="container-fluid flex-row">
-        <div class="row">
+        <div class="filter-settings row">
             <div class="col-6">
                 <div class="d-flex mb-3" style="margin-bottom: 0 !important;">
                     <button class="btn btn-category btn-outline-info me-2">All 50</button>
@@ -46,20 +46,20 @@
 
     <!-- Scrollable Table -->
     
-    <div class="table_container">
+    <div class="table_container" style="height: calc(100% - 140px);">
         <div class="table-wrapper">
             <div class="table-responsive">
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
-                            <th>No.</th>
-                            <th style="padding-right: 60px">Date</th>
-                            <th style="padding-right: 60px">Category</th>
-                            <th style="padding-right: 60px">Description</th>
-                            <th style="padding-right: 60px">Items</th>
-                            <th>Qty</th>
-                            <th style="padding-right: 60px">Amount</th>
-                            <th>Action</th>
+                            <th>NO.</th>
+                            <th style="padding-right: 60px">DATE</th>
+                            <th style="padding-right: 60px">CATEGORY</th>
+                            <th style="padding-right: 60px">DESCRIPTION</th>
+                            <th style="padding-right: 60px">ITEMS</th>
+                            <th>QTY</th>
+                            <th style="padding-right: 60px">AMOUNT</th>
+                            <th>ACTION</th>
                         </tr>
                     </thead>
                     <tbody id="expense-table-body">

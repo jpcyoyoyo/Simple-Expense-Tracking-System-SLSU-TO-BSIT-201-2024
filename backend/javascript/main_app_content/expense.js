@@ -1,18 +1,18 @@
 // Fetch and display deposits on page load
-document.addEventListener('DOMContentLoaded', fetchDeposits);
+document.addEventListener('DOMContentLoaded', fetchExpenses);
 
-function fetchDeposits() {
+function fetchExpenses() {
     fetch('backend/php/main_app_content/expense/get_expenses.php')
         .then(response => response.json())
         .then(data => {
             if (data.success) {
                 populateExpenseTable(data.expenses);
             } else {
-                console.error('Failed to fetch deposits:', data.message);
+                console.error('Failed to fetch expenses:', data.message);
             }
         })
         .catch(error => {
-            console.error('Error fetching deposits:', error);
+            console.error('Error fetching expenses:', error);
         });
 }
 
@@ -29,16 +29,16 @@ function populateExpenseTable(expenses) {
 
         row.innerHTML = `
             <td>${index + 1}.</td>
-            <td>${expense.date}</td>
-            <td>${expense.category}</td>
-            <td>${expense.description}</td>
+            <td style="vertical-align: text-top;">${expense.date}</td>
+            <td style="vertical-align: text-top;">${expense.category}</td>
+            <td style="vertical-align: text-top;">${expense.description}</td>
             <td>
                 <ul style="list-style-type: disc; padding-left: 20px; margin-bottom: 0;">
                     ${items}
                 </ul>
             </td>
-            <td>${expense.quantity}</td>
-            <td>₱ ${parseFloat(expense.amount).toFixed(2)}</td>
+            <td style="vertical-align: text-top;">${expense.quantity}</td>
+            <td style="vertical-align: text-top;">₱ ${parseFloat(expense.amount).toFixed(2)}</td>
             <input type="hidden" class="expense-id" value="${expense.id}">
             <td class="action-buttons">
                 <div class="row g-2 justify-content-center" style="--bs-gutter-y: 0;">
@@ -93,10 +93,10 @@ function addExpenseRecord(event) {
     event.preventDefault(); // Prevent the default form submission behavior
 
     // Collect form data
-    const description = document.getElementById("create_expense_description").value;
     const date = document.getElementById("create_expense_date").value;
     const category = document.getElementById("create_expense_category").value;
-    const item = document.getElementById("create_expense_item").value;
+    const description = sanitizeInput(document.getElementById("create_expense_description").value);
+    const item = sanitizeInput(document.getElementById("create_expense_item").value);
     const quantity = document.getElementById("create_expense_quantity").value;
     const amount = parseFloat(document.getElementById("create_expense_amount").value);
 
@@ -178,6 +178,12 @@ function addExpenseRecord(event) {
     });
 }
 
+// Utility function to sanitize user input
+function sanitizeInput(input) {
+    // Remove leading/trailing whitespace and escape any HTML characters
+    return input.trim().replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
 
 // Function to delete a record
 function deleteRow(button) {
@@ -256,8 +262,8 @@ function updateExpense(event) {
     const expenseId = document.getElementById("expense-id").value; // Assuming description is actually the category
     const date = document.getElementById("edit-expense-date").value;
     const category = document.getElementById("edit-expense-category").value;
-    const description = document.getElementById('edit-expense-description').value;
-    const item = document.getElementById("edit-expense-item").value; // Set the joined items as value
+    const description = sanitizeInput(document.getElementById('edit-expense-description').value);
+    const item = sanitizeInput(document.getElementById("edit-expense-item").value); // Set the joined items as value
     const quantity =document.getElementById("edit-expense-quantity").value;
     const amount = parseFloat(document.getElementById("edit-expense-amount").value);
 

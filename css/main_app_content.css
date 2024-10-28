@@ -13,14 +13,12 @@
     top: 0;
     margin: 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-family: Balsamiq Sans;
 }
 
 .app_body {
     height: calc(100vh - 90px); /* Fill remaining screen height */
-    overflow-y: auto; /* Enable scrolling if content overflows */
-    padding: 0 40px;
-    padding-top: 10px;
-    padding-bottom: 40px;
+    padding: 40px;
 }
 
 .card-container {
@@ -124,6 +122,7 @@
 
 .table thead th {
     background-color: #e5f3f9;
+    font-weight: bolder;
 }
 
 .table tbody td {
@@ -142,14 +141,15 @@
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    margin-top: 20px;
+    margin-top: 8px;
     width: 100%;
-    height: calc(100% - 170px);
+    height: 100%;
 }
 
 /* Styling for scrollbars */
 .table-responsive::-webkit-scrollbar, 
-.table-wrapper::-webkit-scrollbar {
+.table-wrapper::-webkit-scrollbar,
+.tab-pane::-webkit-scrollbar {
     width: 8px;
     height: 8px;
 }
@@ -157,21 +157,22 @@
 .modal-content::-webkit-scrollbar {
     width: 8px;
     height: 8px;
-    background-color: #fff;
     border-radius: 12px;
     margin-right: 12px;
 }
 
 .table-responsive::-webkit-scrollbar-thumb,
 .table-wrapper::-webkit-scrollbar-thumb,
-.modal-content::-webkit-scrollbar-thumb {
+.modal-content::-webkit-scrollbar-thumb,
+.tab-pane::-webkit-scrollbar-thumb {
     background-color: #c0c0c0;
     border-radius: 12px;
 }
 
 .table-responsive::-webkit-scrollbar-thumb:hover,
 .table-wrapper::-webkit-scrollbar-thumb:hover,
-.modal-content::-webkit-scrollbar-thumb:hover {
+.modal-content::-webkit-scrollbar-thumb:hover,
+.tab-pane::-webkit-scrollbar-thumb:hover {
     background-color: #555;
 }
 
@@ -184,8 +185,9 @@
     top: 0;
     width: 100%;
     height: 100%;
-    padding-left: 300px;
+    padding-left: 250px;
     background-color: rgba(0, 0, 0, 0.684);
+    font-family: Balsamiq Sans;
 }
 
 .modal-content {
@@ -209,8 +211,8 @@
 
 .close {
     color: #aaa;
-    float: right;
     font-size: 28px;
+    width: 28px;
     font-weight: bold;
 }
 
@@ -248,11 +250,6 @@
     flex: 1;
 }
 
-
-.search-container {
-    margin-bottom: 10px !important;
-}
-
 #search-bar {
     width: 100%;
     padding: 8px;
@@ -270,11 +267,10 @@
     align-items: center;
     flex-direction: row;
     background-color: rgba(255, 255, 255, 0.85);
-    margin: 40px;
     padding: 40px 80px; /* Adjust top padding for better spacing */
     border-radius: 10px;
-    width: calc(100% - 80px);
-    height: calc(100% - 80px);
+    width: 100%;
+    height: 100%;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -296,6 +292,7 @@
     height: 100%;
     object-fit: cover;
 }
+
 
 .form-content {
     text-align: left;
@@ -327,6 +324,103 @@
     display: none;
 }
 
+.tab-content {
+    height: calc(100% - 80px);
+    width: 100%;
+}
+
+.tab-pane {
+    background-color: rgba(222, 225, 230, 0.6);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+}
+
+.tab-pane-head {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    
+}
+
+.report-container {
+    padding: 20px 40px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.25); /* More transparent white (50%) */
+    border-radius: 8px;
+    width: 100%;
+    margin-top: -10px;
+}
+
+/* Table padding adjustment */
+.report-table-container {
+    padding: 20px 30px; /* Adjusted padding for better spacing */
+    width: 100%;
+    height: calc(100% - 170px);
+    overflow-y: auto;
+}
+
+.tab-nav-item {
+    font-size: 2em;
+}
+
+/* Base style for inactive tab */
+.tab-nav-item .tab-nav-link {
+    background-color: #00000000;
+    padding: 0px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-color: #00000000;
+    color: #000;
+}
+
+/* Active tab styling */
+.tab-nav-item .tab-nav-link.active {
+    background-color: rgba(0, 0, 128, 0.6); /* Darker blue for active tab */
+    color: #fff;
+}
+
+/* Hover effect for filter buttons */
+.filter-btn:hover {
+    background-color: #d3d3d3; /* Light gray on hover */
+    cursor: pointer;
+}
+
+/* Style for active tab */
+.tab-nav-item .tab-nav-link.active {
+    background-color: rgba(222, 225, 230, 0.6);
+    color: #fff;
+    padding: 0px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-color: #00000000;
+}
+
+.nav-tabs {
+    border-bottom: 0px;
+}
+
+
+.filter-btn {
+    margin: 0;
+    padding: 5px; 
+    margin-right: 5px;
+    font-size: 0.75em;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    
+}
+
+.filter-buttons {
+    margin: 0;
+    padding: 0;
+}
+
+.filter-options {
+    font-size: 0.75em;
+}
+
 /* Responsive adjustments */
 
 @media (max-width: 1200px) {
@@ -338,7 +432,7 @@
 
 @media (max-width: 1024px) {
     .modal { 
-        padding-left: 250px;
+        padding-left: 220px;
     }
 }
 
@@ -372,7 +466,11 @@
     }
 
     .modal { 
-        padding-left: 200px;
+        padding-left: 190px;
+    }
+
+    .form-container {
+        padding: 40px 40px;
     }
 }
 

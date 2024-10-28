@@ -72,13 +72,15 @@ let rowCount = 0;
 function addDepositRecord(event) {
     event.preventDefault(); // Prevent form submission
 
-    // Collect form data
-    const description = document.getElementById('create_deposit_description').value;
+    // Collect and sanitize form data
+    const description = sanitizeInput(document.getElementById('create_deposit_description').value);
     const date = document.getElementById('create_deposit_date').value;
     const category = document.getElementById('create_deposit_category').value;
     const amount = parseFloat(document.getElementById('create_deposit_amount').value);
 
-    if (!description || !date || !category || isNaN(amount)) {
+    // Validate input
+    if (!description || !date || !category || isNaN(amount) || amount <= 0) {
+        alert('Please fill in all fields correctly.');
         console.error('One or more fields are empty or invalid');
         return;
     }
@@ -104,7 +106,7 @@ function addDepositRecord(event) {
             rowCount++;
             const tableBody = document.getElementById('deposit-table-body');
 
-            console.log('id:', depositId);
+            console.log('Deposit ID:', depositId);
 
             const row = document.createElement('tr');
             row.innerHTML = `
@@ -123,7 +125,6 @@ function addDepositRecord(event) {
                             <button class="btn btn-md btn-outline-danger" style="font-size: small; width: 60px; padding: 2px 0;" onclick="deleteRow(this)">Delete</button>
                         </div>
                     </div>
-
                 </td>
             `;
             tableBody.appendChild(row);
@@ -143,6 +144,12 @@ function addDepositRecord(event) {
         console.error('Error during AJAX request:', error);
         alert('An error occurred: ' + error.message);
     });
+}
+
+// Utility function to sanitize user input
+function sanitizeInput(input) {
+    // Remove leading/trailing whitespace and escape any HTML characters
+    return input.trim().replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
 
@@ -268,11 +275,11 @@ function updateDeposit(event) {
 
     // Collect updated form data
     const depositId = document.getElementById('deposit-id').value;
-    const date = document.getElementById('edit_deposit_date').value;
-    const category = document.getElementById('edit_deposit_category').value;
-    const description = document.getElementById('edit_deposit_description').value;
+    const date = document.getElementById('edit_deposit_date').value; // Sanitize input
+    const category = document.getElementById('edit_deposit_category').value; // Sanitize input
+    const description = sanitizeInput(document.getElementById('edit_deposit_description').value); // Sanitize input
     const amount = parseFloat(document.getElementById('edit_deposit_amount').value);
-    
+
     console.log('Deposit ID:', depositId);
     console.log('Description:', description);
     console.log('Date:', date);
@@ -285,8 +292,9 @@ function updateDeposit(event) {
         return;
     }
 
-    if (!description || !date || !category || isNaN(amount)) {
+    if (!description || !date || !category || isNaN(amount) || amount <= 0) { // Additional check for amount > 0
         console.error('One or more fields are empty or invalid');
+        alert('Please fill in all fields correctly.');
         return;
     }
 
@@ -323,6 +331,7 @@ function updateDeposit(event) {
         alert('An error occurred: ' + error.message);
     });
 }
+
 
 // Update the table row with the new deposit data
 function updateRowInTable(depositId, description, date, category, amount) {

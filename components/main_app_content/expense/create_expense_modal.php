@@ -1,7 +1,7 @@
 <!-- Modal for Create Deposit Record -->
 <div id="expense-modal" class="modal">
     <div class="modal-content">
-        <span class="close" onclick="closeExpenseModal()">&times;</span>
+        <div class="close" onclick="closeExpenseModal()">&times;</div>
         <h1>Create Expense Record</h1>
 
         <form id="create-expense-form" onsubmit="addExpenseRecord(event)">
