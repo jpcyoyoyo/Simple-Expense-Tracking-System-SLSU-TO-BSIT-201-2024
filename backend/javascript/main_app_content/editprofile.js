@@ -38,3 +38,4 @@ function updateProfile(event) {
     })
     .catch(error => console.error('Error:', error));
 }
+

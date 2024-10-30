@@ -21,12 +21,19 @@ function populateExpenseTable(expenses) {
     const tableBody = document.getElementById('expense-table-body');
     tableBody.innerHTML = ''; // Clear existing rows
 
+    // Check for empty expenses array and add a message if no records are found
+    if (expenses.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="8">No expense records found.</td></tr>';
+        calculateTotal(); // Call calculateTotal to handle empty state if needed
+        return;
+    }
+
     expenses.forEach((expense, index) => {
         const row = document.createElement('tr');
-
-        // Split the item by comma and create a list
-        const items = expense.item.split(',').map(item => `<li>${item.trim()}</li>`).join('');
-
+        
+        // Create list items for each item in the expense record
+        const items = expense.item ? expense.item.split(',').map(item => `<li>${item.trim()}</li>`).join('') : '<li>N/A</li>';
+        
         row.innerHTML = `
             <td>${index + 1}.</td>
             <td style="vertical-align: text-top;">${expense.date}</td>
@@ -49,7 +56,6 @@ function populateExpenseTable(expenses) {
                         <button class="btn btn-md btn-outline-danger" style="font-size: small; width: 60px; padding: 2px 0" onclick="deleteRow(this)">Delete</button>
                     </div>
                 </div>
-
             </td>
         `;
 

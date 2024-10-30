@@ -18,13 +18,16 @@
 
     // Fetch deposit records
     $stmt = $conn->prepare("SELECT id, description, date, category, amount FROM deposit WHERE user_id = ?");
+    if (!$stmt) {
+        echo json_encode(['success' => false, 'message' => 'Database error: failed to prepare statement']);
+        exit;
+    }
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
     $result = $stmt->get_result();
 
     $deposits = [];
     while ($row = $result->fetch_assoc()) {
-        // Extract month and year from the date field
         $row['month'] = date('F', strtotime($row['date'])); // Full month name (e.g., January)
         $row['year'] = date('Y', strtotime($row['date']));  // Year (e.g., 2023)
         $deposits[] = $row;
@@ -41,20 +44,15 @@
         $categories[] = $row['category'];
     }
 
-    // Fetch distinct month-year combinations for filtering
-    $stmt_dates = $conn->prepare("SELECT DISTINCT DATE_FORMAT(date, '%Y-%m') AS month_year FROM deposit WHERE user_id = ? ORDER BY date");
+    // Fetch distinct years for filtering
+    $stmt_dates = $conn->prepare("SELECT DISTINCT DATE_FORMAT(date, '%Y') AS year_months FROM deposit WHERE user_id = ? ORDER BY date");
     $stmt_dates->bind_param("i", $user_id);
     $stmt_dates->execute();
     $result_dates = $stmt_dates->get_result();
 
-    $months_years = [];
+    $years = [];
     while ($row = $result_dates->fetch_assoc()) {
-        // Separate month and year for each record
-        $month_year = explode("-", $row['month_year']);
-        $months_years[] = [
-            'month' => date('F', mktime(0, 0, 0, $month_year[1], 10)), // Month as full name (e.g., January)
-            'year' => $month_year[0] // Year (e.g., 2023)
-        ];
+        $years[] = $row['year_months'];
     }
 
     // Send response including deposits, distinct categories, and month-year options
@@ -62,7 +60,7 @@
         'success' => true,
         'deposits' => $deposits,
         'categories' => $categories,
-        'months_years' => $months_years
+        'years' => $years
     ]);
 
     // Close prepared statements and connection
@@ -70,4 +68,4 @@
     $stmt_categories->close();
     $stmt_dates->close();
     $conn->close();
-?>
+

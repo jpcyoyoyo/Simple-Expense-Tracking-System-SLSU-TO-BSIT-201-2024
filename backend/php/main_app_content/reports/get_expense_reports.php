@@ -24,7 +24,7 @@
 
     $expenses = [];
     while ($row = $result->fetch_assoc()) {
-        // Format the date to extract month and year for filters
+        // Extract month and year from the date field
         $row['month'] = date('F', strtotime($row['date'])); // Full month name (e.g., January)
         $row['year'] = date('Y', strtotime($row['date']));  // Year (e.g., 2023)
         $expenses[] = $row;
@@ -42,16 +42,14 @@
     }
 
     // Fetch distinct month-year combinations for filtering
-    $stmt_dates = $conn->prepare("SELECT DISTINCT DATE_FORMAT(date, '%Y-%m') AS month_year FROM expense WHERE user_id = ? ORDER BY date");
+    $stmt_dates = $conn->prepare("SELECT DISTINCT DATE_FORMAT(date, '%Y') AS year_months FROM expense WHERE user_id = ? ORDER BY date");
     $stmt_dates->bind_param("i", $user_id);
     $stmt_dates->execute();
     $result_dates = $stmt_dates->get_result();
 
-    $months_years = [];
+    $years = [];
     while ($row = $result_dates->fetch_assoc()) {
-        // Separate month and year for each record
-        $month_year = explode("-", $row['month_year']);
-        $months_years[] = ['month' => date('F', mktime(0, 0, 0, $month_year[1], 10)), 'year' => $month_year[0]];
+        $years[] = $row['year_months'];
     }
 
     // Send response including expenses, distinct categories, and month-year options
@@ -59,7 +57,7 @@
         'success' => true,
         'expenses' => $expenses,
         'categories' => $categories,
-        'months_years' => $months_years
+        'years' => $years
     ]);
 
     // Close prepared statements and connection
@@ -67,4 +65,4 @@
     $stmt_categories->close();
     $stmt_dates->close();
     $conn->close();
-?>
+

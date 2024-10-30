@@ -2,7 +2,7 @@
     <h1>Generate Reports</h1>
 </div>
 
-<div class="app_body container">
+<div class="app_body container-fluid">
     <div class="report-container">
         <!-- Tab Navigation with Full-Width Tabs -->
         <ul class="nav nav-tabs d-flex" id="reportTabs" role="tablist">
@@ -24,10 +24,13 @@
                     <div class="row d-flex justify-content-center align-items-center mb-2">
                         <div class="filter-buttons d-flex justify-content-center align-items-center">
                             <h4 style="margin: 0; margin-right: 10px;">Filters: </h4>
-                            <button class="filter-btn btn-outline-primary" onclick="toggleFilterOptions('all', 'deposit')">All</button>
-                            <button class="filter-btn btn-outline-primary" onclick="toggleFilterOptions('month', 'deposit')">Month</button>
-                            <button class="filter-btn btn-outline-primary" onclick="toggleFilterOptions('category', 'deposit')">Category</button>
-                            <button class="filter-btn btn-outline-primary" onclick="toggleFilterOptions('dateRange', 'deposit')">Date Range</button>
+                            <button class="btn filter-btn" onclick="toggleFilterOptions('all', 'deposit')">All</button>
+                            <button class="btn filter-btn" onclick="toggleFilterOptions('month', 'deposit')">Month</button>
+                            <button class="btn filter-btn" onclick="toggleFilterOptions('category', 'deposit')">Category</button>
+                            <button class="btn filter-btn" onclick="toggleFilterOptions('dateRange', 'deposit')">Date Range</button>
+                            <div style="margin-right: 10px; width: 1px; height: 24px; border-width: 1px; border-color: #43B6D6FF; border-style: solid;"></div>
+                            <h4 style="margin: 0; margin-right: 10px;">Generate: </h4>
+                            <button class="btn filter-btn btn-primary" onclick="generateReportDocument('deposit')" style="width: 100px;">Generate PDF</button>
                         </div>
                     </div>
                     
@@ -35,18 +38,19 @@
                         <!-- Filter Options (hidden by default) -->
                         <div id="deposit-filters" class="filter-options d-flex justify-content-center">
                             <!-- Month Filter -->
-                            <div id="deposit-month-filter" class="filter-option" style="display: block;">
-                                <label for="deposit-month-select">Select Month:</label>
-                                <select id="deposit-month-select">
-                                    <!-- Add more months as needed -->
-                                </select>
+                            <div id="deposit-month-filter" class="filter-option" style="display: none;">
 
                                 <label for="deposit-year-select">Select Year:</label>
                                 <select id="deposit-year-select">
                                     <!-- Add more months as needed -->
                                 </select>
 
-                                <button class="filter-btn btn-outline-primary" onclick="applyFilter('month', 'deposit')">Apply</button>
+                                <label for="deposit-month-select">Select Month:</label>
+                                <select id="deposit-month-select">
+                                    <!-- Add more months as needed -->
+                                </select>
+
+                                <button class="btn filter-btn btn-outline-primary" onclick="applyFilter('month', 'deposit')">Apply</button>
                             </div>
 
                             <!-- Category Filter -->
@@ -55,7 +59,7 @@
                                 <select id="deposit-category-select">
                                     <!-- Add more categories as needed -->
                                 </select>
-                                <button class="filter-btn btn-outline-primary" onclick="applyFilter('category', 'deposit')">Apply</button>
+                                <button class="btn filter-btn btn-outline-primary" onclick="applyFilter('category', 'deposit')">Apply</button>
                             </div>
 
                             <!-- Date Range Filter -->
@@ -67,19 +71,24 @@
                                 <label for="deposit-end-date">End Date:</label>
                                 <input type="date" id="deposit-end-date">
                                                 
-                                <button class="filter-btn btn-outline-primary" onclick="applyFilter('dateRange', 'deposit')">Apply</button>
+                                <button class="btn filter-btn btn-outline-primary" onclick="applyFilter('dateRange', 'deposit')">Apply</button>
                                 
                             </div>
+
                         </div>
+
                     </div>
                 
-                    <div class="report-title">
+                    <div class="deposit-report-title report-title">
                         <h2>Deposit Report</h2>
-                        <p>Content for deposits goes here.</p>
+                        <p id="deposit-report-description">All deposit records</p>
+                        <div class="total-section d-flex justify-content-center align-items-center">
+                            <p>Total:</p><span id="deposit-total-amount">0.00</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="report-table-container">
+                <div class="report-table-container deposit-table">
                     <div class="table-wrapper">
                         <div class="table-responsive">
                             <table class="table table-hover table-bordered">
@@ -108,10 +117,13 @@
                     <div class="row d-flex justify-content-center align-items-center mb-2">
                         <div class="filter-buttons d-flex justify-content-center align-items-center">
                             <h4 style="margin: 0; margin-right: 10px;">Filters: </h4>
-                            <button class="filter-btn btn-outline-primary" onclick="toggleFilterOptions('all', 'expense')">All</button>
-                            <button class="filter-btn btn-outline-primary" onclick="toggleFilterOptions('month', 'expense')">Month</button>
-                            <button class="filter-btn btn-outline-primary" onclick="toggleFilterOptions('category', 'expense')">Category</button>
-                            <button class="filter-btn btn-outline-primary" onclick="toggleFilterOptions('dateRange', 'expense')">Date Range</button>
+                            <button class="btn filter-btn btn-outline-primary" onclick="toggleFilterOptions('all', 'expense')">All</button>
+                            <button class="btn filter-btn btn-outline-primary" onclick="toggleFilterOptions('month', 'expense')">Month</button>
+                            <button class="btn filter-btn btn-outline-primary" onclick="toggleFilterOptions('category', 'expense')">Category</button>
+                            <button class="btn filter-btn" onclick="toggleFilterOptions('dateRange', 'expense')">Date Range</button>
+                            <div style="margin-right: 10px; width: 1px; height: 24px; border-width: 1px; border-color: #43B6D6FF; border-style: solid;"></div>
+                            <h4 style="margin: 0; margin-right: 10px;">Generate: </h4>
+                            <button class="btn filter-btn btn-primary" onclick="generateReportDocument('expense')" style="width: 100px;">Generate PDF</button>
                         </div>
                     </div>
                     
@@ -119,17 +131,17 @@
                         <!-- Filter Options (hidden by default) -->
                         <div id="expense-filters" class="filter-options d-flex justify-content-center">
                             <!-- Month Filter -->
-                            <div id="expense-month-filter" class="filter-option" style="display: block;">
-                                <label for="expense-month-select">Select Month:</label>
-                                <select id="expense-month-select">
-                                    <!-- Add more months as needed -->
-                                </select>
-
+                            <div id="expense-month-filter" class="filter-option" style="display: none;">
                                 <label for="expense-year-select">Select Year:</label>
                                 <select id="expense-year-select">
                                     <!-- Add more months as needed -->
                                 </select>
-                                <button class="filter-btn btn-outline-primary" onclick="applyFilter('month', 'deposit')">Apply</button>
+
+                                <label for="expense-month-select">Select Month:</label>
+                                <select id="expense-month-select">
+                                    <!-- Add more months as needed -->
+                                </select>
+                                <button class="btn filter-btn btn-outline-primary" onclick="applyFilter('month', 'expense')">Apply</button>
                             </div>
 
                             <!-- Category Filter -->
@@ -138,7 +150,7 @@
                                 <select id="expense-category-select">
                                     <!-- Add more categories as needed -->
                                 </select>
-                                <button class="filter-btn btn-outline-primary" onclick="applyFilter('category', 'deposit')">Apply</button>
+                                <button class="btn filter-btn btn-outline-primary" onclick="applyFilter('category', 'expense')">Apply</button>
                             </div>
 
                             <!-- Date Range Filter -->
@@ -150,19 +162,24 @@
                                 <label for="expense-end-date">End Date:</label>
                                 <input type="date" id="expense-end-date">
                                                 
-                                <button class="filter-btn btn-outline-primary" onclick="applyFilter('dateRange', 'deposit')">Apply</button>
+                                <button class="btn filter-btn btn-outline-primary" onclick="applyFilter('dateRange', 'expense')">Apply</button>
                                 
                             </div>
+
                         </div>
+
                     </div>
                 
-                    <div class="report-title">
+                    <div class="expense-report-title report-title">
                         <h2>Expense Report</h2>
-                        <p>Content for xpenses goes here.</p>
+                        <p id="expense-report-description">All expense records</p>
+                        <div class="total-section d-flex justify-content-center align-items-center" style="margin: 0;">
+                            <p>Total: </p><span id="expense-total-amount">0.00</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="report-table-container">
+                <div class="report-table-container expense-table">
                     <div class="table-wrapper">
                         <div class="table-responsive">
                             <table class="table table-hover table-bordered">
@@ -183,9 +200,7 @@
                             </table>
                         </div>
                     </div>
-
                 </div>
-            
             </div>
         </div>
     </div>
@@ -193,8 +208,10 @@
 
 <script>
 
-document.addEventListener('DOMContentLoaded', fetchDepositsReports);
-document.addEventListener('DOMContentLoaded', fetchExpensesReports);
+document.addEventListener('DOMContentLoaded', () => {
+    fetchDepositsReports();
+    fetchExpensesReports();
+});
 
 function fetchDepositsReports() {
     fetch('backend/php/main_app_content/reports/get_deposit_reports.php')
@@ -202,7 +219,7 @@ function fetchDepositsReports() {
         .then(data => {
             if (data.success) {
                 populateDepositTable(data.deposits);
-                populateDepositFilters(data.categories, data.months, data.years);
+                populateDepositFilters(data.categories, data.years);
             } else {
                 console.error('Failed to fetch deposits:', data.message);
             }
@@ -219,7 +236,7 @@ function fetchExpensesReports() {
         .then(data => {
             if (data.success) {
                 populateExpenseTable(data.expenses);
-                populateExpenseFilters(data.categories, data.months, data.years);
+                populateExpenseFilters(data.categories, data.years);
             } else {
                 console.error('Failed to fetch expenses:', data.message);
             }
@@ -230,109 +247,294 @@ function fetchExpensesReports() {
 }
 
 // Populate deposit filters dynamically
-function populateDepositFilters(categories, months, years) {
+function populateDepositFilters(categories, years) {
     const categorySelect = document.getElementById('deposit-category-select');
     const monthSelect = document.getElementById('deposit-month-select');
+    const yearSelect = document.getElementById('deposit-year-select');
 
-    // Populate categories
-    categorySelect.innerHTML = categories.map(category => `<option value="${category}">${category}</option>`).join('');
+    // Populate categories or show "No records available"
+    categorySelect.innerHTML = categories.length > 0 
+        ? categories.map(category => `<option value="${category}">${category}</option>`).join('')
+        : `<option value="">No records available</option>`;
 
-    // Populate months
-    monthSelect.innerHTML = months.map(month => `<option value="${month}">${month}</option>`).join('');
+    // Handle months and years
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    if (years.length > 0) {
+        // Populate years
+        yearSelect.innerHTML = years.map(year => `<option value="${year}">${year}</option>`).join('');
 
-    // Populate years (e.g., if you add a separate year select)
-    const yearSelect = document.createElement('select');
-    yearSelect.id = 'deposit-year-select';
-    yearSelect.innerHTML = years.map(year => `<option value="${year}">${year}</option>`).join('');
-    document.querySelector('#deposit-filters').appendChild(yearSelect);
+        // Populate months
+        monthSelect.innerHTML = months.map(month => `<option value="${month}">${month}</option>`).join('');
+        monthSelect.disabled = false;  // Enable month select
+    } else {
+        // Show "No records available" for years and disable month dropdown
+        yearSelect.innerHTML = `<option value="">No records available</option>`;
+        monthSelect.disabled = true;  // Disable month select
+    }
 }
 
 // Populate expense filters dynamically
-function populateExpenseFilters(categories, months, years) {
+function populateExpenseFilters(categories, years) {
     const categorySelect = document.getElementById('expense-category-select');
     const monthSelect = document.getElementById('expense-month-select');
+    const yearSelect = document.getElementById('expense-year-select');
 
-    // Populate categories
-    categorySelect.innerHTML = categories.map(category => `<option value="${category}">${category}</option>`).join('');
+    // Populate categories or show "No records available"
+    categorySelect.innerHTML = categories.length > 0 
+        ? categories.map(category => `<option value="${category}">${category}</option>`).join('')
+        : `<option value="">No records available</option>`;
 
-    // Populate months
-    monthSelect.innerHTML = months.map(month => `<option value="${month}">${month}</option>`).join('');
+    // Handle months and years
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    if (years.length > 0) {
+        yearSelect.innerHTML = years.map(year => `<option value="${year}">${year}</option>`).join('');
 
-    // Populate years (optional, if you add a year select)
-    const yearSelect = document.createElement('select');
-    yearSelect.id = 'expense-year-select';
-    yearSelect.innerHTML = years.map(year => `<option value="${year}">${year}</option>`).join('');
-    document.querySelector('#expense-filters').appendChild(yearSelect);
+        // Populate months
+        monthSelect.innerHTML = months.map(month => `<option value="${month}">${month}</option>`).join('');
+        monthSelect.disabled = false;  // Enable month select
+    } else {
+        // Show "No records available" for years and disable month dropdown
+        yearSelect.innerHTML = `<option value="">No records available</option>`;
+        monthSelect.disabled = true;  // Disable month select
+    }
 }
 
-// Apply filter function
 function applyFilter(filterType, reportType) {
-    let filterValue = {};
+    const tableBody = document.getElementById(`${reportType}-table-body`); // Get the table body by ID
+    const rows = tableBody.querySelectorAll('tr'); // Get all rows in the table body
+    const descriptionElement = document.getElementById(`${reportType}-report-description`);
+    let filterMonth, filterYear, filterCategory, filterStartDate, filterEndDate;
+    let descriptionText = `All ${reportType} records`; // Default description if no filters are applied
+    let totalAmount = 0; // Initialize total amount for filtered rows
 
+    // Get values based on filter type
     if (filterType === 'month') {
-        filterValue.month = document.getElementById(`${reportType}-month-select`).value;
-    } else if (filterType === 'category') {
-        filterValue.category = document.getElementById(`${reportType}-category-select`).value;
-    } else if (filterType === 'dateRange') {
-        filterValue.startDate = document.getElementById(`${reportType}-start-date`).value;
-        filterValue.endDate = document.getElementById(`${reportType}-end-date`).value;
+        filterMonth = document.getElementById(`${reportType}-month-select`).value;
+        filterYear = document.getElementById(`${reportType}-year-select`).value;
+        if (filterMonth && filterYear) {
+            descriptionText = `Showing ${reportType} records for ${filterMonth} ${filterYear}`;
+        }
+    }
+    if (filterType === 'category') {
+        filterCategory = document.getElementById(`${reportType}-category-select`).value;
+        if (filterCategory) {
+            descriptionText = `Showing ${reportType} records for category: ${filterCategory}`;
+        }
+    }
+    if (filterType === 'dateRange') {
+        filterStartDate = document.getElementById(`${reportType}-start-date`).value;
+        filterEndDate = document.getElementById(`${reportType}-end-date`).value;
+
+        // Check if both start and end dates are provided
+        if (!filterStartDate || !filterEndDate) {
+            descriptionElement.textContent = 'Error: Please select both a start date and an end date.';
+            return; // Stop filtering if either date is missing
+        }
+
+        // Parse dates
+        const startDate = new Date(filterStartDate);
+        const endDate = new Date(filterEndDate);
+
+        // Check for valid dates
+        if (isNaN(startDate) || isNaN(endDate)) {
+            descriptionElement.textContent = 'Error: One or both of the dates are invalid.';
+            return; // Stop filtering if dates are invalid
+        }
+
+        // Check for invalid date range
+        if (endDate < startDate) {
+            descriptionElement.textContent = 'Error: End date cannot be earlier than start date.';
+            return; // Stop filtering if the date range is invalid
+        }
+
+        descriptionText = `Showing ${reportType} records from ${startDate.toLocaleDateString()} to ${endDate.toLocaleDateString()}`;
+        filterStartDate = startDate;
+        filterEndDate = endDate;
     }
 
-    // Filter records based on criteria
-    fetchFilteredRecords(reportType, filterValue);
-}
+    // Update the description element with the current filter criteria
+    descriptionElement.textContent = descriptionText;
 
-// Fetch records based on filter criteria
-function fetchFilteredRecords(reportType, filterValue) {
-    const url = `backend/php/main_app_content/${reportType}/get_${reportType}.php`;
+    rows.forEach(row => {
+        const rowMonth = row.querySelector(`.${reportType}-month`)?.value;
+        const rowYear = row.querySelector(`.${reportType}-year`)?.value;
+        const rowCategory = row.querySelector(`.${reportType}-category`)?.value;
+        const rowDate = new Date(row.querySelector(`.${reportType}-date`)?.value);
 
-    fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(filterValue)
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                if (reportType === 'deposit') {
-                    populateDepositTable(data.deposits);
-                } else {
-                    populateExpenseTable(data.expenses);
-                }
-            } else {
-                console.error(`Failed to fetch filtered ${reportType} records:`, data.message);
+        // Select the amount cell, which is the second to last cell in the row
+        const amountCell = row.querySelector(`td:nth-last-child(5)`); // Assumes the amount is the second to last cell
+
+        let showRow = true;
+
+        // Check if amountCell exists
+        let amount = 0;
+        if (amountCell) {
+            amount = parseFloat(amountCell.textContent.replace(/[^0-9.-]+/g,"")); // Parse amount
+        } else {
+            console.warn('Amount cell not found for row:', row);
+        }
+
+        // Apply month and year filter
+        if (filterMonth && filterYear) {
+            if (rowMonth !== filterMonth || rowYear !== filterYear) showRow = false;
+        }
+
+        // Apply category filter
+        if (filterCategory && rowCategory !== filterCategory) {
+            showRow = false;
+        }
+
+        // Apply date range filter
+        if (filterStartDate && filterEndDate) {
+            if (rowDate < filterStartDate || rowDate > filterEndDate) {
+                showRow = false;
             }
-        })
-        .catch(error => {
-            console.error(`Error fetching filtered ${reportType} records:`, error);
-        });
+        }
+
+        // Show or hide the row based on filter criteria
+        row.style.display = showRow ? '' : 'none';
+
+        // Calculate total amount for visible rows
+        if (showRow) {
+            totalAmount += amount; // Only add to total if the row is visible
+        }
+    });
+
+    // Update the total amount display for the respective report type
+    document.getElementById(`${reportType}-total-amount`).textContent = `₱ ${totalAmount.toFixed(2)}`;
 }
+
+const userFullName = "<?php echo $_SESSION['fullname']; ?>"; // Assuming 'fullname' is stored in the session
+
+async function generateReportDocument(type) {
+    const titleElement = document.querySelector(`.${type}-report-title h2`);
+    const descriptionElement = document.querySelector(`.${type}-report-title p`);
+    const tableContainer = document.querySelector(`.report-table-container.${type}-table`);
+    
+    // Ensure elements are found before proceeding
+    if (!titleElement || !descriptionElement || !tableContainer) {
+        console.error('One or more report elements could not be found.');
+        return;
+    }
+
+    // Select the total amount section content
+    const amountElement = document.querySelector(`.total-section span`).textContent || '0.00';
+
+    // Combine description with user's full name
+    const fullnameText = `Generated by: ${userFullName}`;
+
+    // Save original color and apply black color to each table cell
+    const cells = tableContainer.querySelectorAll('th, td');
+    cells.forEach(cell => {
+        cell.setAttribute('data-original-color', cell.style.color || ''); // Save original color
+        cell.style.color = '#000'; // Set text color to black
+    });
+
+    // Create a container for the PDF content with enforced black text
+    const pdfContent = `
+        <div style="font-family: Archivo; margin: 20px; color: black;">
+            <h1 style="text-align: center; color: black;">${titleElement.textContent}</h2>
+            <p style="text-align: center; color: black; margin: 0;">${descriptionElement.textContent}</p>
+            <p style="text-align: center; color: black; margin: 0;">${fullnameText}</p>
+            <div style="color: #000;">${tableContainer.outerHTML}</div>
+            <div style="margin: 10px 30px; text-align: right; color: black;">
+                <p style="font-size: 1.5em;">Total: <span>${amountElement}</span></p>
+            </div>
+        </div>
+    `;
+
+    // Temporary element to hold content for conversion
+    const tempDiv = document.createElement('div');
+    tempDiv.style.position = 'absolute';
+    tempDiv.style.top = '-9999px';
+    tempDiv.innerHTML = pdfContent;
+    document.body.appendChild(tempDiv);
+
+    // Use html2canvas to capture the content and convert it to PDF
+    const { jsPDF } = window.jspdf;
+    const pdfDoc = new jsPDF('p', 'pt', 'a4');
+    
+    await html2canvas(tempDiv, { scale: 3 }).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const imgWidth = pdfDoc.internal.pageSize.getWidth();
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        pdfDoc.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+    });
+
+    document.body.removeChild(tempDiv); // Clean up temporary element
+
+    // Revert each cell's color to its original value
+    cells.forEach(cell => {
+        cell.style.color = cell.getAttribute('data-original-color');
+        cell.removeAttribute('data-original-color'); // Clean up the temporary attribute
+    });
+
+    // Save the PDF with the report title as the file name
+    pdfDoc.save(`${titleElement.textContent}.pdf`);
+}
+
+
 
 // Populate the deposits table
+// Populate the deposits table and calculate total amount
 function populateDepositTable(deposits) {
     const tableBody = document.getElementById('deposit-table-body');
     tableBody.innerHTML = '';
 
+    if (deposits.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="5">No deposit records found.</td></tr>';
+        document.getElementById('deposit-total-amount').textContent = '₱ 0.00'; // Reset total amount
+        return;
+    }
+
+    // Sort deposits by date (ascending)
+    deposits.sort((a, b) => new Date(a.date) - new Date(b.date));
+    
+    let totalAmount = 0; // Initialize total amount
+
     deposits.forEach((deposit, index) => {
         const row = document.createElement('tr');
+        const amount = parseFloat(deposit.amount); // Parse the amount
+        totalAmount += amount; // Add to total amount
+
         row.innerHTML = `
             <td>${index + 1}.</td>
             <td>${deposit.date}</td>
             <td>${deposit.category}</td>
             <td>${deposit.description}</td>
-            <td>₱ ${parseFloat(deposit.amount).toFixed(2)}</td>
+            <td>₱ ${amount.toFixed(2)}</td>
+            <input type="hidden" class="deposit-month" value="${deposit.month}">
+            <input type="hidden" class="deposit-year" value="${deposit.year}">
+            <input type="hidden" class="deposit-date" value="${deposit.date}">
+            <input type="hidden" class="deposit-category" value="${deposit.category}">
         `;
         tableBody.appendChild(row);
     });
+
+    // Update the total amount display
+    document.getElementById('deposit-total-amount').textContent = `₱ ${totalAmount.toFixed(2)}`;
 }
 
-// Populate the expenses table
+// Populate the expenses table and calculate total amount
 function populateExpenseTable(expenses) {
     const tableBody = document.getElementById('expense-table-body');
     tableBody.innerHTML = '';
 
+    if (expenses.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="7">No expense records found.</td></tr>';
+        document.getElementById('expense-total-amount').textContent = '₱ 0.00'; // Reset total amount
+        return;
+    }
+
+    // Sort expenses by date (ascending)
+    expenses.sort((a, b) => new Date(a.date) - new Date(b.date));
+    
+    let totalAmount = 0; // Initialize total amount
+
     expenses.forEach((expense, index) => {
         const items = expense.item.split(',').map(item => `<li>${item.trim()}</li>`).join('');
+        const amount = parseFloat(expense.amount); // Parse the amount
+        totalAmount += amount; // Add to total amount
 
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -342,22 +544,38 @@ function populateExpenseTable(expenses) {
             <td>${expense.description}</td>
             <td><ul>${items}</ul></td>
             <td>${expense.quantity}</td>
-            <td>₱ ${parseFloat(expense.amount).toFixed(2)}</td>
+            <td>₱ ${amount.toFixed(2)}</td>
+            <input type="hidden" class="expense-month" value="${expense.month}">
+            <input type="hidden" class="expense-year" value="${expense.year}">
+            <input type="hidden" class="expense-date" value="${expense.date}">
+            <input type="hidden" class="expense-category" value="${expense.category}">
         `;
         tableBody.appendChild(row);
     });
+
+    // Update the total amount display
+    document.getElementById('expense-total-amount').textContent = `₱ ${totalAmount.toFixed(2)}`;
 }
 
+
+// Toggle filter options based on the selected filter type
 function toggleFilterOptions(filterType, tabType) {
     const filterContainer = document.getElementById(`${tabType}-filters`);
     const allFilters = filterContainer.querySelectorAll('.filter-option');
-    
+
     // Hide all filter options
     allFilters.forEach(filter => filter.style.display = 'none');
-    
-    // Display the selected filter option
-    const selectedFilter = document.getElementById(`${tabType}-${filterType}-filter`);
-    if (selectedFilter) selectedFilter.style.display = 'block';
+
+    // Display the selected filter option, or show all rows if 'All' is selected
+    if (filterType === 'all') {
+        applyFilter('all', tabType); // Show all rows
+    } else {
+        const selectedFilter = document.getElementById(`${tabType}-${filterType}-filter`);
+        if (selectedFilter) selectedFilter.style.display = 'block';
+    }
 }
 
 </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>

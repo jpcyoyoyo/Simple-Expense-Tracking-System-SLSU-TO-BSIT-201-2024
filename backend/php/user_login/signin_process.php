@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 // Check if the form was submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Retrieve and sanitize inputs

@@ -21,6 +21,12 @@ function populateDepositTable(deposits) {
     const tableBody = document.getElementById('deposit-table-body');
     tableBody.innerHTML = ''; // Clear existing rows
 
+    if (deposits.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="6">No deposit records found.</td></tr>';
+        calculateTotal();
+        return;
+    }
+
     deposits.forEach((deposit, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
