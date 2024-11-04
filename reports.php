@@ -36,7 +36,10 @@
             </div>
         </div>
     </div>
+    
+    <script src="backend/javascript/main_app_content/reports.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
 
-    <script src="javascript/sidebar_button_active.js"></script>
 </body>
 </html>

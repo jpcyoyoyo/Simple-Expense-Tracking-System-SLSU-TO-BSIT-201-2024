@@ -118,6 +118,7 @@
     max-height: 100%;
     overflow-x: auto;
     overflow-y: auto; 
+    background-color: rgba(222, 225, 230, 0.4);
 }
 
 .table thead th {
@@ -127,7 +128,7 @@
 
 .table tbody td {
     vertical-align: middle;
-    color: #fff;
+    color: #000;
     font-size: medium;
     padding: 2px 5px;
 }
@@ -360,10 +361,6 @@
     width: 100%;
     height: calc(100% - 120px);
     overflow-y: auto;
-}
-
-.report-table-container .table-wrapper {
-    background-color: rgba(222, 225, 230, 0.4);
 }
 
 .tab-nav-item {

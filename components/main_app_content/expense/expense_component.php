@@ -9,39 +9,74 @@
         <input type="text" id="search-bar" class="form-control" placeholder="Search Transaction / Date" oninput="searchTable()">
     </div>
 
-    <div class="container-fluid flex-row">
-        <div class="filter-settings row">
-            <div class="col-6">
-                <div class="d-flex mb-3" style="margin-bottom: 0 !important;">
-                    <button class="btn btn-category btn-outline-info me-2">All 50</button>
-                    <button class="btn btn-category btn-outline-info">Month</button>
+    <!-- Month and Year input fields -->
+    <div class="col-12" style="margin: 0;">
+        <div class="row" style="margin: 0 5px;">
+            <div class="total-section col-6" >
+                <div class="row d-flex mb-2">
+                    <div class="filter-buttons d-flex">
+                        <h4 style="margin: 0; margin-right: 10px;">Filters: </h4>
+                        <button class="btn filter-btn" onclick="toggleFilterOptions('all', 'expense')">All</button>
+                        <button class="btn filter-btn" onclick="toggleFilterOptions('month', 'expense')">Month</button>
+                        <button class="btn filter-btn" onclick="toggleFilterOptions('category', 'expense')">Category</button>
+                        <button class="btn filter-btn" onclick="toggleFilterOptions('dateRange', 'expense')">Date Range</button>
+                    </div>
                 </div>
+                
+                <div class="row d-flex mb-2">
+                    <!-- Filter Options (hidden by default) -->
+                    <div id="expense-filters" class="filter-options d-flex">
+                        <!-- Month Filter -->
+                        <div id="expense-month-filter" class="filter-option" style="display: none;">
 
-                <!-- Dropdown for months -->
-                <div class="dropdown">
-                    <button class="btn btn-dropdown dropdown-toggle" type="button" id="menu1" data-bs-toggle="dropdown" aria-expanded="false">
-                        Select Month
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="menu1">
-                        <li><a class="dropdown-item" href="#">FEBRUARY</a></li>
-                        <li><a class="dropdown-item" href="#">MARCH</a></li>
-                        <li><a class="dropdown-item" href="#">APRIL</a></li>
-                        <li><a class="dropdown-item" href="#">MAY</a></li>
-                        <li><a class="dropdown-item" href="#">JUNE</a></li>
-                        <li><a class="dropdown-item" href="#">JULY</a></li>
-                        <li><a class="dropdown-item" href="#">AUGUST</a></li>
-                        <li><a class="dropdown-item" href="#">SEPTEMBER</a></li>
-                        <li><a class="dropdown-item" href="#">OCTOBER</a></li>
-                        <li><a class="dropdown-item" href="#">NOVEMBER</a></li>
-                        <li><a class="dropdown-item" href="#">DECEMBER</a></li>
-                    </ul>
+                            <label for="expense-year-select">Select Year:</label>
+                            <select id="expense-year-select">
+                                <!-- Add more months as needed -->
+                            </select>
+
+                            <label for="expense-month-select">Select Month:</label>
+                            <select id="expense-month-select">
+                                <!-- Add more months as needed -->
+                            </select>
+
+                            <button class="btn filter-btn btn-outline-primary" onclick="applyFilter('month', 'expense')">Apply</button>
+                        </div>
+
+                        <!-- Category Filter -->
+                        <div id="expense-category-filter" class="filter-option" style="display: none;">
+                            <label for="expense-category-select">Select Category:</label>
+                            <select id="expense-category-select">
+                                <!-- Add more categories as needed -->
+                            </select>
+                            <button class="btn filter-btn btn-outline-primary" onclick="applyFilter('category', 'expense')">Apply</button>
+                        </div>
+
+                        <!-- Date Range Filter -->
+                        <div id="expense-dateRange-filter" class="filter-option" style="display: none;">
+                            
+                            <label for="expense-start-date">Start Date:</label>
+                            <input type="date" id="expense-start-date">
+                        
+                            <label for="expense-end-date">End Date:</label>
+                            <input type="date" id="expense-end-date">
+                                            
+                            <button class="btn filter-btn btn-outline-primary" onclick="applyFilter('dateRange', 'expense')">Apply</button>
+                            
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
-
             <div class="total-section col-6">
                 <h2>Total:</h2><span id="expense-total-amount">0.00</span>
             </div>
         </div>
+        
+    </div>
+
+    <div class="expense-report-title report-title" style="color: #fff;">
+        <p id="expense-description">All expense records</p>
     </div>
 
     <!-- Scrollable Table -->

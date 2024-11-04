@@ -9,12 +9,6 @@ error_reporting(E_ALL);
 // Start session to access session variables
 session_start();
 
-// Check if the user is authenticated
-if (!isset($_SESSION['user_id'])) {
-    echo json_encode(['success' => false, 'message' => 'User not authenticated']);
-    exit;
-}
-
 // Get user_id from session
 $user_id = $_SESSION['user_id'];
 

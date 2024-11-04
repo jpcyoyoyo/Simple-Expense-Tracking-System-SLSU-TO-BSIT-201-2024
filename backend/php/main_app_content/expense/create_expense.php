@@ -11,11 +11,6 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $input = json_decode(file_get_contents('php://input'), true);
 
-    if (!isset($_SESSION['user_id'])) {
-        echo json_encode(['success' => false, 'message' => 'User not authenticated']);
-        exit;
-    }
-
     $user_id = $_SESSION['user_id']; // Assuming user_id is stored in the session
 
     // Check if the user exists
@@ -33,23 +28,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $description = $input['description'];
     $date = $input['date'];
     $category = $input['category'];
-    $item = $input['item'];
-    $quantity = $input['quantity'];
+    $item = $input['item']; // Added item field
+    $quantity = $input['quantity']; // Added quantity field
     $amount = $input['amount'];
- 
 
     $stmt = $conn->prepare("INSERT INTO expense (user_id, description, date, category, item, quantity, amount) VALUES (?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("issssid", $user_id, $description, $date, $category, $item, $quantity, $amount);
 
     if ($stmt->execute()) {
-        // Get the newly inserted deposit ID
+        // Get the newly inserted expense ID
         $expense_id = $stmt->insert_id;
-        echo json_encode(['success' => true, 'expense_id' => $expense_id]);
+
+        // Fetch the inserted record
+        $fetchStmt = $conn->prepare("SELECT id, description, date, category, item, quantity, amount FROM expense WHERE id = ?");
+        $fetchStmt->bind_param("i", $expense_id);
+        $fetchStmt->execute();
+        $result = $fetchStmt->get_result();
+        $expenseData = $result->fetch_assoc();
+
+        // Add expense ID, month, and year to the fetched data
+        if ($expenseData) {
+            $expenseData['expense_id'] = $expense_id; // Include expense ID
+            $expenseData['month'] = date('F', strtotime($expenseData['date'])); // Full month name (e.g., January)
+            $expenseData['year'] = date('Y', strtotime($expenseData['date']));  // Year (e.g., 2023)
+        }
+
+        echo json_encode(['success' => true, 'expense' => $expenseData]);
     } else {
-        echo json_encode(['success' => false, 'message' => 'Failed to add deposit']);
+        echo json_encode(['success' => false, 'message' => 'Failed to add expense']);
     }
 
     $stmt->close();
+    $fetchStmt->close();
     $conn->close();
 }
-

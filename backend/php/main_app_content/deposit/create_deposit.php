@@ -11,11 +11,6 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $input = json_decode(file_get_contents('php://input'), true);
 
-    if (!isset($_SESSION['user_id'])) {
-        echo json_encode(['success' => false, 'message' => 'User not authenticated']);
-        exit;
-    }
-
     $user_id = $_SESSION['user_id']; // Assuming user_id is stored in the session
 
     // Check if the user exists
@@ -41,12 +36,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($stmt->execute()) {
         // Get the newly inserted deposit ID
         $deposit_id = $stmt->insert_id;
-        echo json_encode(['success' => true, 'deposit_id' => $deposit_id]);
+
+        // Fetch the inserted record
+        $fetchStmt = $conn->prepare("SELECT id, description, date, category, amount FROM deposit WHERE id = ?");
+        $fetchStmt->bind_param("i", $deposit_id);
+        $fetchStmt->execute();
+        $result = $fetchStmt->get_result();
+        $depositData = $result->fetch_assoc();
+
+        // Add deposit ID, month, and year to the fetched data
+        if ($depositData) {
+            $depositData['deposit_id'] = $deposit_id; // Include deposit ID
+            $depositData['month'] = date('F', strtotime($depositData['date'])); // Full month name (e.g., January)
+            $depositData['year'] = date('Y', strtotime($depositData['date']));  // Year (e.g., 2023)
+        }
+
+        echo json_encode(['success' => true, 'deposit' => $depositData]);
     } else {
         echo json_encode(['success' => false, 'message' => 'Failed to add deposit']);
     }
 
     $stmt->close();
+    $fetchStmt->close();
     $conn->close();
 }
-

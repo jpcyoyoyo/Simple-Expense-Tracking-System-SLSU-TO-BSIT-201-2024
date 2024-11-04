@@ -7,6 +7,7 @@ function fetchExpenses() {
         .then(data => {
             if (data.success) {
                 populateExpenseTable(data.expenses);
+                populateExpenseFilters(data.categories, data.years);
             } else {
                 console.error('Failed to fetch expenses:', data.message);
             }
@@ -27,6 +28,8 @@ function populateExpenseTable(expenses) {
         calculateTotal(); // Call calculateTotal to handle empty state if needed
         return;
     }
+
+    expenses.sort((a, b) => new Date(a.date) - new Date(b.date));
 
     expenses.forEach((expense, index) => {
         const row = document.createElement('tr');
@@ -57,6 +60,10 @@ function populateExpenseTable(expenses) {
                     </div>
                 </div>
             </td>
+            <input type="hidden" class="expense-month" value="${expense.month}">
+            <input type="hidden" class="expense-year" value="${expense.year}">
+            <input type="hidden" class="expense-date" value="${expense.date}">
+            <input type="hidden" class="expense-category" value="${expense.category}">
         `;
 
         tableBody.appendChild(row);
@@ -131,7 +138,7 @@ function addExpenseRecord(event) {
         console.log(data); // Check the server response
         if (data.success) {
             // Create a new row for the table
-            const expenseId = data.expense_id; // Get the expense_id from the server response
+            const expenseId = data.expense.expense_id; // Get the expense_id from the server response
             rowCount++;
             const tableBody = document.querySelector("tbody");
             const row = document.createElement("tr");
@@ -162,6 +169,10 @@ function addExpenseRecord(event) {
                         </div>
                     </div>
                 </td>
+                <input type="hidden" class="expense-month" value="${data.expense.month}">
+                <input type="hidden" class="expense-year" value="${data.expense.year}">
+                <input type="hidden" class="expense-date" value="${data.expense.date}">
+                <input type="hidden" class="expense-category" value="${data.expense.category}">
             `;
 
             // Append the new row to the table body
@@ -312,7 +323,7 @@ function updateExpense(event) {
         if (data.success) {
             console.log('Expense updated successfully');
             // Update the table row with the new data
-            updateRowInTable(expenseId, date, category, description, item, quantity, amount);
+            updateRowInTable(expenseId, data.input, data.updated_data);
             calculateTotal();
             document.getElementById('update-expense-form').reset(); // Reset the form
             closeEditExpenseModal(); // Close the modal after updating
@@ -327,7 +338,7 @@ function updateExpense(event) {
     });
 }
 
-function updateRowInTable(expenseId, date, category, description, item, quantity, amount) {
+function updateRowInTable(expenseId, inputData, updatedData) {
     const input = document.querySelector(`input.expense-id[value="${expenseId}"]`);
     
     if (!input) {
@@ -344,23 +355,31 @@ function updateRowInTable(expenseId, date, category, description, item, quantity
     }
 
     if (row.cells.length >= 6) { // Ensure the row has at least 6 cells
-        row.cells[1].innerText = date;
-        row.cells[2].innerText = category;
-        row.cells[3].innerText = description;
+        row.cells[1].innerText = inputData.date;
+        row.cells[2].innerText = inputData.category;
+        row.cells[3].innerText = inputData.description;
+
+        const items = inputData.item;
 
         // Split the item string by commas and convert it to a list
-        const itemsList = item.split(',').map(item => `<li>${item.trim()}</li>`).join('');
+        const itemsList = items.split(',').map(items => `<li>${items.trim()}</li>`).join('');
         row.cells[4].innerHTML = `
             <ul style="list-style-type: disc; padding-left: 20px; margin-bottom: 0;">
                 ${itemsList}
             </ul>
         `;
 
-        row.cells[5].innerText = quantity;
-        row.cells[6].innerText = `₱ ${parseFloat(amount).toFixed(2)}`;
+        row.cells[5].innerText = inputData.quantity;
+        row.cells[6].innerText = `₱ ${inputData.amount.toFixed(2)}`;
     } else {
         console.error('Row does not have enough cells.');
     }
+
+    // Update the hidden inputs with the updated data
+    row.querySelector('.expense-month').value = updatedData.month;
+    row.querySelector('.expense-year').value = updatedData.year;
+    row.querySelector('.expense-date').value = updatedData.date;
+    row.querySelector('.expense-category').value = updatedData.category;
 
     updateDashboardValues();
 }
@@ -467,4 +486,156 @@ window.onclick = function(event) {
         closeEditDepositModal();
     }
 };
+
+// Toggle filter options based on the selected filter type
+function toggleFilterOptions(filterType, tabType) {
+    const filterContainer = document.getElementById(`${tabType}-filters`);
+    const allFilters = filterContainer.querySelectorAll('.filter-option');
+
+    // Hide all filter options
+    allFilters.forEach(filter => filter.style.display = 'none');
+
+    // Display the selected filter option, or show all rows if 'All' is selected
+    if (filterType === 'all') {
+        applyFilter('all', tabType); // Show all rows
+    } else {
+        const selectedFilter = document.getElementById(`${tabType}-${filterType}-filter`);
+        if (selectedFilter) selectedFilter.style.display = 'block';
+    }
+}
+
+// Populate expense filters dynamically
+function populateExpenseFilters(categories, years) {
+    const categorySelect = document.getElementById('expense-category-select');
+    const monthSelect = document.getElementById('expense-month-select');
+    const yearSelect = document.getElementById('expense-year-select');
+
+    // Populate categories or show "No records available"
+    categorySelect.innerHTML = categories.length > 0 
+        ? categories.map(category => `<option value="${category}">${category}</option>`).join('')
+        : `<option value="">No records available</option>`;
+
+    // Handle months and years
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    if (years.length > 0) {
+        yearSelect.innerHTML = years.map(year => `<option value="${year}">${year}</option>`).join('');
+
+        // Populate months
+        monthSelect.innerHTML = months.map(month => `<option value="${month}">${month}</option>`).join('');
+        monthSelect.disabled = false;  // Enable month select
+    } else {
+        // Show "No records available" for years and disable month dropdown
+        yearSelect.innerHTML = `<option value="">No records available</option>`;
+        monthSelect.disabled = true;  // Disable month select
+    }
+}
+
+function applyFilter(filterType, reportType) {
+    const tableBody = document.getElementById(`${reportType}-table-body`); // Get the table body by ID
+    const rows = tableBody.querySelectorAll('tr'); // Get all rows in the table body
+    const descriptionElement = document.getElementById(`${reportType}-description`);
+    let filterMonth, filterYear, filterCategory, filterStartDate, filterEndDate;
+    let descriptionText = `All ${reportType} records`; // Default description if no filters are applied
+    let totalAmount = 0; // Initialize total amount for filtered rows
+
+    // Get values based on filter type
+    if (filterType === 'month') {
+        filterMonth = document.getElementById(`${reportType}-month-select`).value;
+        filterYear = document.getElementById(`${reportType}-year-select`).value;
+        if (filterMonth && filterYear) {
+            descriptionText = `Showing ${reportType} records for ${filterMonth} ${filterYear}`;
+        }
+    }
+    if (filterType === 'category') {
+        filterCategory = document.getElementById(`${reportType}-category-select`).value;
+        if (filterCategory) {
+            descriptionText = `Showing ${reportType} records for category: ${filterCategory}`;
+        }
+    }
+    if (filterType === 'dateRange') {
+        filterStartDate = document.getElementById(`${reportType}-start-date`).value;
+        filterEndDate = document.getElementById(`${reportType}-end-date`).value;
+
+        // Check if both start and end dates are provided
+        if (!filterStartDate || !filterEndDate) {
+            descriptionElement.textContent = 'Error: Please select both a start date and an end date.';
+            return; // Stop filtering if either date is missing
+        }
+
+        // Parse dates
+        const startDate = new Date(filterStartDate);
+        const endDate = new Date(filterEndDate);
+
+        // Check for valid dates
+        if (isNaN(startDate) || isNaN(endDate)) {
+            descriptionElement.textContent = 'Error: One or both of the dates are invalid.';
+            return; // Stop filtering if dates are invalid
+        }
+
+        // Check for invalid date range
+        if (endDate < startDate) {
+            descriptionElement.textContent = 'Error: End date cannot be earlier than start date.';
+            return; // Stop filtering if the date range is invalid
+        }
+
+        descriptionText = `Showing ${reportType} records from ${startDate.toLocaleDateString()} to ${endDate.toLocaleDateString()}`;
+        filterStartDate = startDate;
+        filterEndDate = endDate;
+    }
+
+    // Update the description element with the current filter criteria
+    descriptionElement.textContent = descriptionText;
+
+    let visibleRowIndex = 1; // Counter for visible row numbering
+
+    rows.forEach(row => {
+        const rowMonth = row.querySelector(`.${reportType}-month`)?.value;
+        const rowYear = row.querySelector(`.${reportType}-year`)?.value;
+        const rowCategory = row.querySelector(`.${reportType}-category`)?.value;
+        const rowDate = new Date(row.querySelector(`.${reportType}-date`)?.value);
+
+        // Select the amount cell, which is the second to last cell in the row
+        const amountCell = row.querySelector(`td:nth-last-child(7)`); // Assumes the amount is the second to last cell
+
+        let showRow = true;
+
+        // Check if amountCell exists
+        let amount = 0;
+        if (amountCell) {
+            amount = parseFloat(amountCell.textContent.replace(/[^0-9.-]+/g, "")); // Parse amount
+        } else {
+            console.warn('Amount cell not found for row:', row);
+        }
+
+        // Apply month and year filter
+        if (filterMonth && filterYear) {
+            if (rowMonth !== filterMonth || rowYear !== filterYear) showRow = false;
+        }
+
+        // Apply category filter
+        if (filterCategory && rowCategory !== filterCategory) {
+            showRow = false;
+        }
+
+        // Apply date range filter
+        if (filterStartDate && filterEndDate) {
+            if (rowDate < filterStartDate || rowDate > filterEndDate) {
+                showRow = false;
+            }
+        }
+
+        // Show or hide the row based on filter criteria
+        if (showRow) {
+            row.style.display = ''; // Show the row
+            row.querySelector('td:first-child').textContent = visibleRowIndex++; // Update row number
+            totalAmount += amount; // Only add to total if the row is visible
+        } else {
+            row.style.display = 'none'; // Hide the row
+        }
+    });
+
+    // Update the total amount display for the respective report type
+    document.getElementById(`${reportType}-total-amount`).textContent = `₱ ${totalAmount.toFixed(2)}`;
+}
+
 

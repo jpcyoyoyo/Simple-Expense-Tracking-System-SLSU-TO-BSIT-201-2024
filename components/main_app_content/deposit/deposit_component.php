@@ -11,17 +11,74 @@
     </div>
 
     <!-- Month and Year input fields -->
-    <p class="col-12" style="margin: 0;">
-        <div class="row">
+    <div class="col-12" style="margin: 0;">
+        <div class="row" style="margin: 0 5px;">
             <div class="total-section col-6" >
-                <h2>Month:</h2><input type="month" class="month-year-input" id="month-input" value="2024-01" />
+                <div class="row d-flex mb-2">
+                    <div class="filter-buttons d-flex">
+                        <h4 style="margin: 0; margin-right: 10px;">Filters: </h4>
+                        <button class="btn filter-btn" onclick="toggleFilterOptions('all', 'deposit')">All</button>
+                        <button class="btn filter-btn" onclick="toggleFilterOptions('month', 'deposit')">Month</button>
+                        <button class="btn filter-btn" onclick="toggleFilterOptions('category', 'deposit')">Category</button>
+                        <button class="btn filter-btn" onclick="toggleFilterOptions('dateRange', 'deposit')">Date Range</button>
+                    </div>
+                </div>
+                
+                <div class="row d-flex mb-2">
+                    <!-- Filter Options (hidden by default) -->
+                    <div id="deposit-filters" class="filter-options d-flex">
+                        <!-- Month Filter -->
+                        <div id="deposit-month-filter" class="filter-option" style="display: none;">
+
+                            <label for="deposit-year-select">Select Year:</label>
+                            <select id="deposit-year-select">
+                                <!-- Add more months as needed -->
+                            </select>
+
+                            <label for="deposit-month-select">Select Month:</label>
+                            <select id="deposit-month-select">
+                                <!-- Add more months as needed -->
+                            </select>
+
+                            <button class="btn filter-btn btn-outline-primary" onclick="applyFilter('month', 'deposit')">Apply</button>
+                        </div>
+
+                        <!-- Category Filter -->
+                        <div id="deposit-category-filter" class="filter-option" style="display: none;">
+                            <label for="deposit-category-select">Select Category:</label>
+                            <select id="deposit-category-select">
+                                <!-- Add more categories as needed -->
+                            </select>
+                            <button class="btn filter-btn btn-outline-primary" onclick="applyFilter('category', 'deposit')">Apply</button>
+                        </div>
+
+                        <!-- Date Range Filter -->
+                        <div id="deposit-dateRange-filter" class="filter-option" style="display: none;">
+                            
+                            <label for="deposit-start-date">Start Date:</label>
+                            <input type="date" id="deposit-start-date">
+                        
+                            <label for="deposit-end-date">End Date:</label>
+                            <input type="date" id="deposit-end-date">
+                                            
+                            <button class="btn filter-btn btn-outline-primary" onclick="applyFilter('dateRange', 'deposit')">Apply</button>
+                            
+                        </div>
+
+                    </div>
+
+                </div>
             </div>
             <div class="total-section col-6">
                 <h2>Total:</h2><span id="deposit-total-amount">0.00</span>
             </div>
         </div>
         
-    </p>
+    </div>
+
+    <div class="deposit-report-title report-title" style="color: #fff;">
+        <p id="deposit-description">All deposit records</p>
+    </div>
 
     <div class="table_container" style="height: calc(100% - 140px);">
         <div class="table-wrapper">
@@ -45,5 +102,7 @@
         </div>
     </div>
 </div>
+
+
 
 
