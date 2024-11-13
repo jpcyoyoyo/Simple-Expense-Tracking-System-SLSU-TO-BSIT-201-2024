@@ -4,10 +4,10 @@
                     <div class="row d-flex justify-content-center align-items-center mb-2">
                         <div class="filter-buttons d-flex justify-content-center align-items-center">
                             <h4 style="margin: 0; margin-right: 10px;">Filters: </h4>
-                            <button class="btn filter-btn" onclick="toggleFilterOptions('all', 'deposit')">All</button>
-                            <button class="btn filter-btn" onclick="toggleFilterOptions('month', 'deposit')">Month</button>
-                            <button class="btn filter-btn" onclick="toggleFilterOptions('category', 'deposit')">Category</button>
-                            <button class="btn filter-btn" onclick="toggleFilterOptions('dateRange', 'deposit')">Date Range</button>
+                            <button class="btn filter-btn btn-outline-primary" onclick="toggleFilterOptions('all', 'deposit')">All</button>
+                            <button class="btn filter-btn btn-outline-primary" onclick="toggleFilterOptions('month', 'deposit')">Month</button>
+                            <button class="btn filter-btn btn-outline-primary" onclick="toggleFilterOptions('category', 'deposit')">Category</button>
+                            <button class="btn filter-btn btn-outline-primary" onclick="toggleFilterOptions('dateRange', 'deposit')">Date Range</button>
                             <div style="margin-right: 10px; width: 1px; height: 24px; border-width: 1px; border-color: #43B6D6FF; border-style: solid;"></div>
                             <h4 style="margin: 0; margin-right: 10px;">Generate: </h4>
                             <button class="btn filter-btn btn-primary" onclick="generateReportDocument('deposit')" style="width: 100px;">Generate PDF</button>

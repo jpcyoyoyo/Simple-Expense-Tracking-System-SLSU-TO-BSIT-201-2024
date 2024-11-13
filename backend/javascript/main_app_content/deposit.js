@@ -578,7 +578,7 @@ function applyFilter(filterType, reportType) {
         const rowDate = new Date(row.querySelector(`.${reportType}-date`)?.value);
 
         // Select the amount cell, which is the second to last cell in the row
-        const amountCell = row.querySelector(`td:nth-last-child(6)`); // Assumes the amount is the second to last cell
+        const amountCell = row.querySelector(`td:nth-last-child(7)`); // Assumes the amount is the second to last cell
 
         let showRow = true;
 

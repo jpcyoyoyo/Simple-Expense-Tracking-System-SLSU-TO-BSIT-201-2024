@@ -19,7 +19,6 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/main_app.css">
-    <link rel="stylesheet" href="css/reports.css">
     <link rel="stylesheet" href="css/main_app_content.css">
     
 </head>
@@ -36,6 +35,8 @@
             </div>
         </div>
     </div>
+
+    <p type="hidden" class="fullname"><?php echo $_SESSION['fullname']; ?></p>
     
     <script src="backend/javascript/main_app_content/reports.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>

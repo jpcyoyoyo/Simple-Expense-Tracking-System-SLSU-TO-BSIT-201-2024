@@ -7,7 +7,7 @@
                             <button class="btn filter-btn btn-outline-primary" onclick="toggleFilterOptions('all', 'expense')">All</button>
                             <button class="btn filter-btn btn-outline-primary" onclick="toggleFilterOptions('month', 'expense')">Month</button>
                             <button class="btn filter-btn btn-outline-primary" onclick="toggleFilterOptions('category', 'expense')">Category</button>
-                            <button class="btn filter-btn" onclick="toggleFilterOptions('dateRange', 'expense')">Date Range</button>
+                            <button class="btn filter-btn btn-outline-primary" onclick="toggleFilterOptions('dateRange', 'expense')">Date Range</button>
                             <div style="margin-right: 10px; width: 1px; height: 24px; border-width: 1px; border-color: #43B6D6FF; border-style: solid;"></div>
                             <h4 style="margin: 0; margin-right: 10px;">Generate: </h4>
                             <button class="btn filter-btn btn-primary" onclick="generateReportDocument('expense')" style="width: 100px;">Generate PDF</button>

@@ -1,6 +1,7 @@
 <?php 
     include 'conn/conn.php';
     include 'backend/php/user_login/forgotpassword_process.php';
+    include "backend/php/login_auth.php";
 ?>
 
 <!DOCTYPE html>

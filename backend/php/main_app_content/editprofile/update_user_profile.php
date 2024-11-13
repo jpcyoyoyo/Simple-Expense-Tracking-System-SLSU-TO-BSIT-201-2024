@@ -30,7 +30,7 @@ if ($profilePic && $profilePic['error'] === UPLOAD_ERR_OK) {
         }
     }
 
-    $newProfilePicPath = 'profile_pic/' . $newFileName;
+    $newProfilePicPath = "profile_pic/ $newFileName";
 }
 
 // Update database with the new data

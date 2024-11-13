@@ -359,7 +359,7 @@
 .report-table-container {
     padding: 0 20px 20px 20px; /* Adjusted padding for better spacing */
     width: 100%;
-    height: calc(100% - 120px);
+    height: calc(100% - 130px);
     overflow-y: auto;
 }
 
