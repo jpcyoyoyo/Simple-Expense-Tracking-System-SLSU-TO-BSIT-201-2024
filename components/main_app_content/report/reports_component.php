@@ -3,7 +3,7 @@
 </div>
 
 <div class="app_body container-fluid">
-    <div class="report-container">
+    <div class="main_container" style="height: auto;">
         <!-- Tab Navigation with Full-Width Tabs -->
         <ul class="nav nav-tabs d-flex" id="reportTabs" role="tablist">
             <li class="tab-nav-item flex-fill" role="presentation">

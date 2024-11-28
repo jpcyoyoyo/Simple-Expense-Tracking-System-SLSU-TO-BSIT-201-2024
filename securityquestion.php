@@ -1,5 +1,6 @@
 <?php
     include "conn/conn.php"; // Include the database connection file
+    include 'backend/php/create_log.php';
     include "backend/php/user_login/securityquestion_process.php";
     include "backend/php/login_auth.php";
 ?>

@@ -1,5 +1,5 @@
 <!-- Modal for Create Deposit Record -->
-<div id="deposit-modal" class="modal">
+<div id="deposit-modal" class="modal" style="padding-left: 250px; background-color: rgba(0, 0, 0, 0.725);">
     <div class="modal-content">
         <span class="close" onclick="closeDepositModal()">&times;</span>
         <h1>Create Deposit Record</h1>
@@ -23,9 +23,6 @@
                     <div class="form-group col-lg-6">
                         <label for="category">Category</label>
                         <select id="create_deposit_category" class="form-control" required>
-                            <option value="">Select Category</option>
-                            <option value="Category 1">Category 1</option>
-                            <option value="Category 2">Category 2</option>
                             <!-- Add more categories as options -->
                         </select>
                     </div>

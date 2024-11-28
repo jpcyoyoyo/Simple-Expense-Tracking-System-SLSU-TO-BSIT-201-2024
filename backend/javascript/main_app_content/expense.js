@@ -8,8 +8,9 @@ function fetchExpenses() {
             if (data.success) {
                 populateExpenseTable(data.expenses);
                 populateExpenseFilters(data.categories, data.years);
+                populateCategoryOption(data.categories, data.category_ids)
             } else {
-                console.error('Failed to fetch expenses:', data.message);
+                console.error('Failed to fetch expenses:', data.message);0
             }
         })
         .catch(error => {
@@ -17,17 +18,55 @@ function fetchExpenses() {
         });
 }
 
+function searchTable() {
+    const searchValue = document.getElementById('search-bar').value.toLowerCase();
+    const table = document.getElementById('expense-table-body');
+    const rows = table.getElementsByTagName('tr');
+
+    for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        const cells = row.getElementsByTagName('td');
+        let match = false;
+
+        for (let j = 0; j < cells.length; j++) {
+            if (cells[j].innerText.toLowerCase().includes(searchValue)) {
+                match = true;
+                break;
+            }
+        }
+
+        if (match) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    }
+}
+
 // Populate the expenses table
 function populateExpenseTable(expenses) {
     const tableBody = document.getElementById('expense-table-body');
+    let noRecordsRow = document.getElementById('no-records-row'); // Get the "No records found" row
     tableBody.innerHTML = ''; // Clear existing rows
 
-    // Check for empty expenses array and add a message if no records are found
+    // Create the "No records found" row if it doesn't exist
+    if (!noRecordsRow) {
+        noRecordsRow = document.createElement('tr');
+        noRecordsRow.id = 'no-records-row'; // Add an ID for easy access
+        noRecordsRow.style.display = 'none'; // Hide it by default
+        noRecordsRow.innerHTML = '<td colspan="8">No expense records found.</td>';
+        tableBody.appendChild(noRecordsRow);
+    }
+
+    // If no deposits, show the "No records found" row
     if (expenses.length === 0) {
-        tableBody.innerHTML = '<tr><td colspan="8">No expense records found.</td></tr>';
-        calculateTotal(); // Call calculateTotal to handle empty state if needed
+        noRecordsRow.style.display = ''; // Show "No records found"
+        calculateTotal();
         return;
     }
+
+    // Hide "No records found" row when there are expenses
+    noRecordsRow.style.display = 'none';
 
     expenses.sort((a, b) => new Date(a.date) - new Date(b.date));
 
@@ -50,6 +89,7 @@ function populateExpenseTable(expenses) {
             <td style="vertical-align: text-top;">${expense.quantity}</td>
             <td style="vertical-align: text-top;">₱ ${parseFloat(expense.amount).toFixed(2)}</td>
             <input type="hidden" class="expense-id" value="${expense.id}">
+            <input type="hidden" class="category-id" value="${expense.category_id}">
             <td class="action-buttons">
                 <div class="row g-2 justify-content-center" style="--bs-gutter-y: 0;">
                     <div class="col-auto">
@@ -81,6 +121,7 @@ function openExpenseModal() {
 // Function to close the expense modal
 function closeExpenseModal() {
     document.getElementById("expense-modal").style.display = "none";
+    document.getElementById('create-expense-form').reset(); // Reset the form
 }
 
 function openEditExpenseModal() {
@@ -90,13 +131,19 @@ function openEditExpenseModal() {
 // Function to close the expense modal
 function closeEditExpenseModal() {
     document.getElementById("edit-expense-modal").style.display = "none";
+    document.getElementById('update-expense-form').reset(); // Reset the form
 }
 
 // Function to recalculate row numbers after a new record is added or deleted
 function recalculateRowNumbers() {
-    const rows = document.querySelectorAll("tbody tr");
+    const tableBody = document.getElementById('expense-table-body');
+    const rows = tableBody.querySelectorAll('tr');
     rows.forEach((row, index) => {
-        row.querySelector("td:first-child").textContent = `${index + 1}.`;
+        if (row.id === 'no-records-row') {
+            return;
+        }
+
+        row.querySelector('td:first-child').textContent = `${index}.`;
     });
 }
 
@@ -107,14 +154,16 @@ function addExpenseRecord(event) {
 
     // Collect form data
     const date = document.getElementById("create_expense_date").value;
-    const category = document.getElementById("create_expense_category").value;
+    const categorySelect = document.getElementById('create_expense_category'); // Reference the select element
+    const categoryId = categorySelect.value; // Get the value (category ID)
+    const categoryName = categorySelect.options[categorySelect.selectedIndex].text; // Get the corresponding text (category name)
     const description = sanitizeInput(document.getElementById("create_expense_description").value);
     const item = sanitizeInput(document.getElementById("create_expense_item").value);
     const quantity = document.getElementById("create_expense_quantity").value;
     const amount = parseFloat(document.getElementById("create_expense_amount").value);
 
     // Validate that all fields are filled
-    if (!description || !date || !category || !item || !quantity || !amount) {
+    if (!description || !date || !categoryName || !item || !quantity || !amount) {
         alert("Please fill in all required fields.");
         return;
     }
@@ -127,7 +176,8 @@ function addExpenseRecord(event) {
         body: JSON.stringify({
             description: description,
             date: date,
-            category: category,
+            category_id: categoryId,
+            category: categoryName, // Send category name as well
             item: item,
             quantity: quantity,
             amount: amount
@@ -149,7 +199,7 @@ function addExpenseRecord(event) {
             row.innerHTML = `
                 <td>${rowCount}.</td>
                 <td>${date}</td>
-                <td>${category}</td>
+                <td>${categoryName}</td>
                 <td>${description}</td>
                 <td>
                     <ul style="list-style-type: disc; padding-left: 20px; margin-bottom: 0;">
@@ -159,6 +209,7 @@ function addExpenseRecord(event) {
                 <td>${quantity}</td>
                 <td>₱${parseFloat(amount).toFixed(2)}</td>
                 <input type="hidden" class="expense-id" value="${expenseId}">
+                <input type="hidden" class="category-id" value="${categoryId}">
                 <td class="action-buttons">
                     <div class="row g-2 justify-content-center" style="--bs-gutter-y: 0;">
                         <div class="col-auto">
@@ -182,6 +233,7 @@ function addExpenseRecord(event) {
             // Recalculate the row numbers
             recalculateRowNumbers();
             updateDashboardValues();
+            checkTotalRecord();
             // Reset the form fields
             document.getElementById("create-expense-form").reset();
             // Close the modal
@@ -190,8 +242,9 @@ function addExpenseRecord(event) {
             alert('Error: ' + data.message);
         }
     })
-    .catch(error => {
-        console.error('Error:', error);
+    .catch((error) => {
+        console.error('Error during AJAX request:', error);
+        alert('An error occurred: ' + error.message);
     });
 }
 
@@ -226,6 +279,7 @@ function deleteRow(button) {
                 recalculateRowNumbers();
                 calculateTotal();
                 updateDashboardValues();
+                checkTotalRecord();
             } else {
                 console.error('Failed to delete deposit:', data.message);
                 alert('Error: ' + data.message);
@@ -247,10 +301,11 @@ function editRow(button) {
     }
 
     const expenseId = row.querySelector('.expense-id').value; // Get expense ID from hidden input
+    const categoryId = row.querySelector('.category-id')?.value; // Hidden input for category ID
     const date = row.cells[1].innerText; // Assuming date is in the second cell
     const category = row.cells[2].innerText;
     const description = row.cells[3].innerText; // Assuming description is in the second cell
-    
+
     // Extracting items from <ul> and converting them back to a comma-separated string
     const itemList = row.cells[4].querySelectorAll('ul li'); // Assuming the items are inside a <ul> in the third cell
     const items = Array.from(itemList).map(li => li.textContent).join(', '); // Combine items into a comma-separated string
@@ -258,10 +313,16 @@ function editRow(button) {
     const quantity = row.cells[5].innerText;
     const amount = parseFloat(row.cells[6].innerText.replace('₱', '').replace(',', '')); // Ensure proper parsing
 
+    // Validate required values
+    if (!expenseId || !categoryId || !date || !category || isNaN(amount) || !quantity || !items) {
+        console.error("One or more required fields are missing or invalid");
+        return;
+    }
+
     // Fill the modal with current row data
     document.getElementById("expense-id").value = expenseId; // Assuming description is actually the category
     document.getElementById("edit-expense-date").value = date;
-    document.getElementById("edit-expense-category").value = category;
+    document.getElementById("edit_expense_category").value = categoryId;
     document.getElementById('edit-expense-description').value = description;
     document.getElementById("edit-expense-item").value = items; // Set the joined items as value
     document.getElementById("edit-expense-quantity").value = quantity;
@@ -278,7 +339,9 @@ function updateExpense(event) {
     
     const expenseId = document.getElementById("expense-id").value; // Assuming description is actually the category
     const date = document.getElementById("edit-expense-date").value;
-    const category = document.getElementById("edit-expense-category").value;
+    const categorySelect = document.getElementById('edit_expense_category'); // Reference the select element
+    const categoryId = categorySelect.value; // Get the value (category ID)
+    const categoryName = categorySelect.options[categorySelect.selectedIndex].text; // Get the corresponding text (category name)
     const description = sanitizeInput(document.getElementById('edit-expense-description').value);
     const item = sanitizeInput(document.getElementById("edit-expense-item").value); // Set the joined items as value
     const quantity =document.getElementById("edit-expense-quantity").value;
@@ -286,7 +349,8 @@ function updateExpense(event) {
 
     console.log('Expense ID:', expenseId);
     console.log('Date:', date);
-    console.log('Category:', category);
+    console.log('Category ID:', categoryId);
+    console.log('Category Name:', categoryName);
     console.log('Description:', description);
     console.log('Items:', item);
     console.log('Quantity:', quantity);
@@ -298,7 +362,7 @@ function updateExpense(event) {
         return;
     }
 
-    if (!description || !date || !category || !item || !quantity || isNaN(amount)) {
+    if (!description || !date || !categoryName || !item || !quantity || isNaN(amount)) {
         console.error('One or more fields are empty or invalid');
         return;
     }
@@ -311,7 +375,8 @@ function updateExpense(event) {
         body: JSON.stringify({
             expense_id: expenseId,
             date: date,
-            category, category,
+            category_id: categoryId,
+            category: categoryName, // Send category name as well
             description: description,
             item: item,
             quantity: quantity,
@@ -380,6 +445,7 @@ function updateRowInTable(expenseId, inputData, updatedData) {
     row.querySelector('.expense-year').value = updatedData.year;
     row.querySelector('.expense-date').value = updatedData.date;
     row.querySelector('.expense-category').value = updatedData.category;
+    row.querySelector('.category-id').value = inputData.category_id;
 
     updateDashboardValues();
 }
@@ -402,6 +468,11 @@ function calculateTotal() {
     let total = 0;
 
     expenses.forEach(expense => {
+        // Skip the "No records found" row
+        if (expense.id === 'no-records-row') {
+            return;
+        }
+
         const amountText = expense.cells[6].innerText.trim(); // Get amount text from the 5th cell
         const amount = parseFloat(amountText.replace('₱', '').replace(',', '')); // Parse the amount
         if (!isNaN(amount)) {
@@ -419,12 +490,17 @@ function calculateTotal() {
     }
 }
 
+
 function updateDashboardValues() {
     const expenses = document.querySelectorAll('#expense-table-body tr');
     let expenseTotal = 0;
     let expenseCount = 0;
 
     expenses.forEach(expense => {
+        if (expense.id === 'no-records-row') {
+            return;
+        }
+
         const amount = parseFloat(expense.cells[6].innerText.replace('₱', '').replace(',', '')); // Get amount from the 5th cell
         if (!isNaN(amount)) {
             expenseTotal += amount; // Sum the amounts
@@ -504,6 +580,20 @@ function toggleFilterOptions(filterType, tabType) {
     }
 }
 
+function checkTotalRecord() {
+    const rows = document.querySelectorAll('#expense-table-body tr'); // Select all rows in the tbody
+    const noRecordsRow = document.getElementById('no-records-row'); // Get the "No records found" row
+    
+    // Check if there are any visible rows in the tbody
+    if (rows.length - 1 === 0) {
+        noRecordsRow.style.display = ''; // Show "No records found"
+    } else {
+        noRecordsRow.style.display = 'none'; // Hide "No records found"
+    }
+
+    console.log('Row length: ', rows.length);
+}
+
 // Populate expense filters dynamically
 function populateExpenseFilters(categories, years) {
     const categorySelect = document.getElementById('expense-category-select');
@@ -530,15 +620,45 @@ function populateExpenseFilters(categories, years) {
     }
 }
 
-function applyFilter(filterType, reportType) {
-    const tableBody = document.getElementById(`${reportType}-table-body`); // Get the table body by ID
-    const rows = tableBody.querySelectorAll('tr'); // Get all rows in the table body
-    const descriptionElement = document.getElementById(`${reportType}-description`);
-    let filterMonth, filterYear, filterCategory, filterStartDate, filterEndDate;
-    let descriptionText = `All ${reportType} records`; // Default description if no filters are applied
-    let totalAmount = 0; // Initialize total amount for filtered rows
+function populateCategoryOption(categories, category_ids) {
+    const createCategorySelect = document.getElementById('create_expense_category');
+    const editCategorySelect = document.getElementById('edit_expense_category');
 
-    // Get values based on filter type
+    // Check if there are no categories
+    if (categories.length === 0) {
+        const noCategoryOption = `<option value="">You must create a category first</option>`;
+        createCategorySelect.innerHTML = noCategoryOption;
+        editCategorySelect.innerHTML = noCategoryOption;
+        return;
+    }
+
+    // Array of select elements to populate
+    const categorySelects = [createCategorySelect, editCategorySelect];
+
+    // Populate all select elements
+    categorySelects.forEach(selectElement => {
+        // Clear existing options and add default
+        selectElement.innerHTML = `<option value="">Select Category</option>`;
+
+        // Add options dynamically
+        categories.forEach((category, index) => {
+            const option = document.createElement('option');
+            option.value = category_ids[index];
+            option.textContent = category;
+            selectElement.appendChild(option);
+        });
+    });
+}
+function applyFilter(filterType, reportType) {
+    const tableBody = document.getElementById(`${reportType}-table-body`);
+    const rows = tableBody.querySelectorAll('tr');
+    const descriptionElement = document.getElementById(`${reportType}-description`);
+    const noRecordsRow = document.getElementById('no-records-row'); // Get the "No records found" row
+    let filterMonth, filterYear, filterCategory, filterStartDate, filterEndDate;
+    let descriptionText = `All ${reportType} records`;
+    let totalAmount = 0;
+    let hasVisibleRows = false; // Track if any row is visible after filtering
+
     if (filterType === 'month') {
         filterMonth = document.getElementById(`${reportType}-month-select`).value;
         filterYear = document.getElementById(`${reportType}-year-select`).value;
@@ -556,26 +676,22 @@ function applyFilter(filterType, reportType) {
         filterStartDate = document.getElementById(`${reportType}-start-date`).value;
         filterEndDate = document.getElementById(`${reportType}-end-date`).value;
 
-        // Check if both start and end dates are provided
         if (!filterStartDate || !filterEndDate) {
             descriptionElement.textContent = 'Error: Please select both a start date and an end date.';
-            return; // Stop filtering if either date is missing
+            return;
         }
 
-        // Parse dates
         const startDate = new Date(filterStartDate);
         const endDate = new Date(filterEndDate);
 
-        // Check for valid dates
         if (isNaN(startDate) || isNaN(endDate)) {
             descriptionElement.textContent = 'Error: One or both of the dates are invalid.';
-            return; // Stop filtering if dates are invalid
+            return;
         }
 
-        // Check for invalid date range
         if (endDate < startDate) {
             descriptionElement.textContent = 'Error: End date cannot be earlier than start date.';
-            return; // Stop filtering if the date range is invalid
+            return;
         }
 
         descriptionText = `Showing ${reportType} records from ${startDate.toLocaleDateString()} to ${endDate.toLocaleDateString()}`;
@@ -583,58 +699,50 @@ function applyFilter(filterType, reportType) {
         filterEndDate = endDate;
     }
 
-    // Update the description element with the current filter criteria
     descriptionElement.textContent = descriptionText;
 
-    let visibleRowIndex = 1; // Counter for visible row numbering
+    let visibleRowIndex = 1; // Start renumbering from 1
 
     rows.forEach(row => {
+        // Skip the "No records found" row
+        if (row.id === 'no-records-row') {
+            return; // Skip this row entirely
+        }
+
         const rowMonth = row.querySelector(`.${reportType}-month`)?.value;
         const rowYear = row.querySelector(`.${reportType}-year`)?.value;
         const rowCategory = row.querySelector(`.${reportType}-category`)?.value;
         const rowDate = new Date(row.querySelector(`.${reportType}-date`)?.value);
-
-        // Select the amount cell, which is the second to last cell in the row
-        const amountCell = row.querySelector(`td:nth-last-child(7)`); // Assumes the amount is the second to last cell
+        const amountCell = row.querySelector(`td:nth-last-child(7)`);
 
         let showRow = true;
-
-        // Check if amountCell exists
         let amount = 0;
+
         if (amountCell) {
-            amount = parseFloat(amountCell.textContent.replace(/[^0-9.-]+/g, "")); // Parse amount
-        } else {
-            console.warn('Amount cell not found for row:', row);
+            amount = parseFloat(amountCell.textContent.replace(/[^0-9.-]+/g, ""));
         }
 
-        // Apply month and year filter
-        if (filterMonth && filterYear) {
-            if (rowMonth !== filterMonth || rowYear !== filterYear) showRow = false;
-        }
+        if (filterMonth && filterYear && (rowMonth !== filterMonth || rowYear !== filterYear)) showRow = false;
+        if (filterCategory && rowCategory !== filterCategory) showRow = false;
+        if (filterStartDate && filterEndDate && (rowDate < filterStartDate || rowDate > filterEndDate)) showRow = false;
 
-        // Apply category filter
-        if (filterCategory && rowCategory !== filterCategory) {
-            showRow = false;
-        }
-
-        // Apply date range filter
-        if (filterStartDate && filterEndDate) {
-            if (rowDate < filterStartDate || rowDate > filterEndDate) {
-                showRow = false;
-            }
-        }
-
-        // Show or hide the row based on filter criteria
         if (showRow) {
-            row.style.display = ''; // Show the row
-            row.querySelector('td:first-child').textContent = visibleRowIndex++; // Update row number
-            totalAmount += amount; // Only add to total if the row is visible
+            row.style.display = '';
+            row.querySelector('td:first-child').textContent = visibleRowIndex++; // Update index for visible rows
+            totalAmount += amount;
+            hasVisibleRows = true;
         } else {
-            row.style.display = 'none'; // Hide the row
+            row.style.display = 'none';
         }
     });
 
-    // Update the total amount display for the respective report type
+    // Show the "No records found" row if no rows are visible
+    if (!hasVisibleRows && noRecordsRow) {
+        noRecordsRow.style.display = ''; // Show the "No records found" row
+    } else if (noRecordsRow) {
+        noRecordsRow.style.display = 'none'; // Hide it if there are visible rows
+    }
+
     document.getElementById(`${reportType}-total-amount`).textContent = `₱ ${totalAmount.toFixed(2)}`;
 }
 

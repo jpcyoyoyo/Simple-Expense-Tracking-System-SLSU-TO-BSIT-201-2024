@@ -19,22 +19,6 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/main_app.css">
     <link rel="stylesheet" href="css/main_app_content.css">
-    
-    <style>
-        /* Centering styles for the button */
-        .button-container {
-            display: flex;
-            justify-content: center; /* Center horizontally */
-            margin-top: 20px; /* Add some space above the button */
-        }
-
-        /* Style for the button to make it longer */
-        #themeButton {
-            width: 200px; /* Set a fixed width for the button */
-            padding: 10px; /* Padding for better size */
-            font-size: 16px; /* Increase font size if desired */
-        }
-    </style>
 </head>
 
 <body>
@@ -46,15 +30,11 @@
             <!-- Deposit Content -->
             <div class="col-md-9 offset-md-3 col-12 main-app-content">
                 <?php include "components/main_app_content/settings/settings_component.php" ?>
-
-                <!-- Button Container for Centering -->
-                <div class="button-container">
-                    <button id="themeButton" class="btn btn-primary">
-                        Theme
-                    </button>
-                </div>
             </div>
         </div>
     </div>
+
+    <?php include "components/main_app_content/settings/verifyuser_modal.php"?>
+    <?php include "components/main_app_content/settings/resetpassword_modal.php"?>
 </body>
 </html>

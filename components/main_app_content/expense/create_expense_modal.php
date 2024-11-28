@@ -1,5 +1,5 @@
 <!-- Modal for Create Deposit Record -->
-<div id="expense-modal" class="modal">
+<div id="expense-modal" class="modal" style="padding-left: 250px; background-color: rgba(0, 0, 0, 0.725);">
     <div class="modal-content">
         <div class="close" onclick="closeExpenseModal()">&times;</div>
         <h1>Create Expense Record</h1>
@@ -23,9 +23,6 @@
                     <div class="form-group col-lg-6">
                         <label for="category">Category</label>
                         <select id="create_expense_category" class="form-control" required>
-                            <option value="">Select Category</option>
-                            <option value="Category 1">Category 1</option>
-                            <option value="Category 2">Category 2</option>
                             <!-- Add categories as options -->
                         </select>
                     </div>

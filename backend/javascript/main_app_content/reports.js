@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     fetchDepositsReports();
     fetchExpensesReports();
@@ -35,6 +36,114 @@ function fetchExpensesReports() {
             console.error('Error fetching expenses:', error);
         });
 }
+
+// Populate the deposits table and calculate total amount
+function populateDepositTable(deposits) {
+    const tableBody = document.getElementById('deposit-table-body');
+    let noRecordsRow = document.getElementById('no-records-row-deposit'); // Get the "No records found" row
+    tableBody.innerHTML = ''; // Clear existing rows
+
+    // Create the "No records found" row if it doesn't exist
+    if (!noRecordsRow) {
+        noRecordsRow = document.createElement('tr');
+        noRecordsRow.id = 'no-records-row-deposit'; // Add an ID for easy access
+        noRecordsRow.style.display = 'none'; // Hide it by default
+        noRecordsRow.innerHTML = '<td colspan="5">No deposit records found.</td>';
+        tableBody.appendChild(noRecordsRow);
+    }
+
+    // If no deposits, show the "No records found" row
+    if (deposits.length === 0) {
+        noRecordsRow.style.display = ''; // Show "No records found"
+        return;
+    }
+
+    // Hide "No records found" row when there are deposits
+    noRecordsRow.style.display = 'none';
+
+    // Sort deposits by date (ascending)
+    deposits.sort((a, b) => new Date(a.date) - new Date(b.date));
+    
+    let totalAmount = 0; // Initialize total amount
+
+    deposits.forEach((deposit, index) => {
+        const row = document.createElement('tr');
+        const amount = parseFloat(deposit.amount); // Parse the amount
+        totalAmount += amount; // Add to total amount
+
+        row.innerHTML = `
+            <td>${index + 1}.</td>
+            <td>${deposit.date}</td>
+            <td>${deposit.category}</td>
+            <td>${deposit.description}</td>
+            <td>₱ ${amount.toFixed(2)}</td>
+            <input type="hidden" class="deposit-month" value="${deposit.month}">
+            <input type="hidden" class="deposit-year" value="${deposit.year}">
+            <input type="hidden" class="deposit-date" value="${deposit.date}">
+            <input type="hidden" class="deposit-category" value="${deposit.category}">
+        `;
+        tableBody.appendChild(row);
+    });
+
+    // Update the total amount display
+    document.getElementById('deposit-total-amount').textContent = `₱ ${totalAmount.toFixed(2)}`;
+}
+
+// Populate the expenses table and calculate total amount
+function populateExpenseTable(expenses) {
+    const tableBody = document.getElementById('expense-table-body');
+    let noRecordsRow = document.getElementById('no-records-row-expense'); // Get the "No records found" row
+    tableBody.innerHTML = ''; // Clear existing rows
+
+    // Create the "No records found" row if it doesn't exist
+    if (!noRecordsRow) {
+        noRecordsRow = document.createElement('tr');
+        noRecordsRow.id = 'no-records-row-expense'; // Add an ID for easy access
+        noRecordsRow.style.display = 'none'; // Hide it by default
+        noRecordsRow.innerHTML = '<td colspan="7">No expense records found.</td>';
+        tableBody.appendChild(noRecordsRow);
+    }
+
+    // If no deposits, show the "No records found" row
+    if (expenses.length === 0) {
+        noRecordsRow.style.display = ''; // Show "No records found"
+        return;
+    }
+
+    // Hide "No records found" row when there are expenses
+    noRecordsRow.style.display = 'none';
+
+    // Sort expenses by date (ascending)
+    expenses.sort((a, b) => new Date(a.date) - new Date(b.date));
+    
+    let totalAmount = 0; // Initialize total amount
+
+    expenses.forEach((expense, index) => {
+        const items = expense.item.split(',').map(item => `<li>${item.trim()}</li>`).join('');
+        const amount = parseFloat(expense.amount); // Parse the amount
+        totalAmount += amount; // Add to total amount
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${index + 1}.</td>
+            <td>${expense.date}</td>
+            <td>${expense.category}</td>
+            <td>${expense.description}</td>
+            <td><ul>${items}</ul></td>
+            <td>${expense.quantity}</td>
+            <td>₱ ${amount.toFixed(2)}</td>
+            <input type="hidden" class="expense-month" value="${expense.month}">
+            <input type="hidden" class="expense-year" value="${expense.year}">
+            <input type="hidden" class="expense-date" value="${expense.date}">
+            <input type="hidden" class="expense-category" value="${expense.category}">
+        `;
+        tableBody.appendChild(row);
+    });
+
+    // Update the total amount display
+    document.getElementById('expense-total-amount').textContent = `₱ ${totalAmount.toFixed(2)}`;
+}
+
 
 // Populate deposit filters dynamically
 function populateDepositFilters(categories, years) {
@@ -93,9 +202,11 @@ function applyFilter(filterType, reportType) {
     const tableBody = document.getElementById(`${reportType}-table-body`); // Get the table body by ID
     const rows = tableBody.querySelectorAll('tr'); // Get all rows in the table body
     const descriptionElement = document.getElementById(`${reportType}-report-description`);
+    const noRecordsRow = document.getElementById(`no-records-row-${reportType}`); // Get the "No records found" row
     let filterMonth, filterYear, filterCategory, filterStartDate, filterEndDate;
     let descriptionText = `All ${reportType} records`; // Default description if no filters are applied
     let totalAmount = 0; // Initialize total amount for filtered rows
+    let visibleRowCount = 0; // Count of visible rows to determine if no rows are visible
 
     // Get values based on filter type
     if (filterType === 'month') {
@@ -148,6 +259,11 @@ function applyFilter(filterType, reportType) {
     let visibleRowIndex = 1; // Counter for visible row numbering
 
     rows.forEach(row => {
+        // Skip the "No records found" row
+        if (row.id === 'no-records-row') {
+            return; // Skip this row entirely
+        }
+
         const rowMonth = row.querySelector(`.${reportType}-month`)?.value;
         const rowYear = row.querySelector(`.${reportType}-year`)?.value;
         const rowCategory = row.querySelector(`.${reportType}-category`)?.value;
@@ -188,14 +304,23 @@ function applyFilter(filterType, reportType) {
             row.style.display = ''; // Show the row
             row.querySelector('td:first-child').textContent = visibleRowIndex++; // Update row number
             totalAmount += amount; // Only add to total if the row is visible
+            visibleRowCount++; // Increment visible row count
         } else {
             row.style.display = 'none'; // Hide the row
         }
     });
 
+    // If no visible rows, show the "No records found" row
+    if (visibleRowCount === 0 && noRecordsRow) {
+        noRecordsRow.style.display = ''; // Show the "No records found" row
+    } else if (noRecordsRow) {
+        noRecordsRow.style.display = 'none'; // Hide it if there are visible rows
+    }
+
     // Update the total amount display for the respective report type
     document.getElementById(`${reportType}-total-amount`).textContent = `₱ ${totalAmount.toFixed(2)}`;
 }
+
 
 
 async function generateReportDocument(type) {
@@ -214,14 +339,14 @@ async function generateReportDocument(type) {
     const amountElement = document.querySelector(`.total-section span`).textContent || '0.00';
 
     // Combine description with user's full name
-    const fullnameText = `Generated by: ${userFullName}`;
+    const fullnameText = `Generated by: ${userFullName.textContent}`;
 
     // Create a container for the PDF content with enforced black text
     const pdfContent = `
         <div style="font-family: Archivo; margin: 20px; color: black;">
             <h1 style="text-align: center; color: black;">${titleElement.textContent}</h1>
             <p style="text-align: center; color: black; margin: 0;">${descriptionElement.textContent}</p>
-            <p style="text-align: center; color: black; margin: 0;">${userFullName}.textContent</p>
+            <p style="text-align: center; color: black; margin: 0;">${fullnameText}</p>
             <div style="color: #000;">${tableContainer.outerHTML}</div>
             <div style="margin: 10px 30px; text-align: right; color: black;">
                 <p style="font-size: 1.5em;">Total: <span>${amountElement}</span></p>
@@ -252,90 +377,6 @@ async function generateReportDocument(type) {
     // Save the PDF with a descriptive file name
     pdfDoc.save(`${titleElement.textContent} - ${descriptionElement.textContent} (${userFullName.textContent}).pdf`);
 }
-
-
-// Populate the deposits table
-// Populate the deposits table and calculate total amount
-function populateDepositTable(deposits) {
-    const tableBody = document.getElementById('deposit-table-body');
-    tableBody.innerHTML = '';
-
-    if (deposits.length === 0) {
-        tableBody.innerHTML = '<tr><td colspan="5">No deposit records found.</td></tr>';
-        document.getElementById('deposit-total-amount').textContent = '₱ 0.00'; // Reset total amount
-        return;
-    }
-
-    // Sort deposits by date (ascending)
-    deposits.sort((a, b) => new Date(a.date) - new Date(b.date));
-    
-    let totalAmount = 0; // Initialize total amount
-
-    deposits.forEach((deposit, index) => {
-        const row = document.createElement('tr');
-        const amount = parseFloat(deposit.amount); // Parse the amount
-        totalAmount += amount; // Add to total amount
-
-        row.innerHTML = `
-            <td>${index + 1}.</td>
-            <td>${deposit.date}</td>
-            <td>${deposit.category}</td>
-            <td>${deposit.description}</td>
-            <td>₱ ${amount.toFixed(2)}</td>
-            <input type="hidden" class="deposit-month" value="${deposit.month}">
-            <input type="hidden" class="deposit-year" value="${deposit.year}">
-            <input type="hidden" class="deposit-date" value="${deposit.date}">
-            <input type="hidden" class="deposit-category" value="${deposit.category}">
-        `;
-        tableBody.appendChild(row);
-    });
-
-    // Update the total amount display
-    document.getElementById('deposit-total-amount').textContent = `₱ ${totalAmount.toFixed(2)}`;
-}
-
-// Populate the expenses table and calculate total amount
-function populateExpenseTable(expenses) {
-    const tableBody = document.getElementById('expense-table-body');
-    tableBody.innerHTML = '';
-
-    if (expenses.length === 0) {
-        tableBody.innerHTML = '<tr><td colspan="7">No expense records found.</td></tr>';
-        document.getElementById('expense-total-amount').textContent = '₱ 0.00'; // Reset total amount
-        return;
-    }
-
-    // Sort expenses by date (ascending)
-    expenses.sort((a, b) => new Date(a.date) - new Date(b.date));
-    
-    let totalAmount = 0; // Initialize total amount
-
-    expenses.forEach((expense, index) => {
-        const items = expense.item.split(',').map(item => `<li>${item.trim()}</li>`).join('');
-        const amount = parseFloat(expense.amount); // Parse the amount
-        totalAmount += amount; // Add to total amount
-
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${index + 1}.</td>
-            <td>${expense.date}</td>
-            <td>${expense.category}</td>
-            <td>${expense.description}</td>
-            <td><ul>${items}</ul></td>
-            <td>${expense.quantity}</td>
-            <td>₱ ${amount.toFixed(2)}</td>
-            <input type="hidden" class="expense-month" value="${expense.month}">
-            <input type="hidden" class="expense-year" value="${expense.year}">
-            <input type="hidden" class="expense-date" value="${expense.date}">
-            <input type="hidden" class="expense-category" value="${expense.category}">
-        `;
-        tableBody.appendChild(row);
-    });
-
-    // Update the total amount display
-    document.getElementById('expense-total-amount').textContent = `₱ ${totalAmount.toFixed(2)}`;
-}
-
 
 // Toggle filter options based on the selected filter type
 function toggleFilterOptions(filterType, tabType) {

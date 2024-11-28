@@ -6,103 +6,133 @@
 
 <div class="app_body">
     <!-- Search Bar -->
-    <div class="search-container mb-2">
-        <input type="text" id="search-bar" class="form-control" placeholder="Search Deposits..." oninput="searchTable()" />
-    </div>
-
-    <!-- Month and Year input fields -->
-    <div class="col-12" style="margin: 0;">
-        <div class="row" style="margin: 0 5px;">
-            <div class="total-section col-6" >
-                <div class="row d-flex mb-2">
-                    <div class="filter-buttons d-flex">
-                        <h4 style="margin: 0; margin-right: 10px;">Filters: </h4>
-                        <button class="btn filter-btn" onclick="toggleFilterOptions('all', 'deposit')">All</button>
-                        <button class="btn filter-btn" onclick="toggleFilterOptions('month', 'deposit')">Month</button>
-                        <button class="btn filter-btn" onclick="toggleFilterOptions('category', 'deposit')">Category</button>
-                        <button class="btn filter-btn" onclick="toggleFilterOptions('dateRange', 'deposit')">Date Range</button>
-                    </div>
-                </div>
-                
-                <div class="row d-flex mb-2">
-                    <!-- Filter Options (hidden by default) -->
-                    <div id="deposit-filters" class="filter-options d-flex">
-                        <!-- Month Filter -->
-                        <div id="deposit-month-filter" class="filter-option" style="display: none;">
-
-                            <label for="deposit-year-select">Select Year:</label>
-                            <select id="deposit-year-select">
-                                <!-- Add more months as needed -->
-                            </select>
-
-                            <label for="deposit-month-select">Select Month:</label>
-                            <select id="deposit-month-select">
-                                <!-- Add more months as needed -->
-                            </select>
-
-                            <button class="btn filter-btn btn-outline-primary" onclick="applyFilter('month', 'deposit')">Apply</button>
-                        </div>
-
-                        <!-- Category Filter -->
-                        <div id="deposit-category-filter" class="filter-option" style="display: none;">
-                            <label for="deposit-category-select">Select Category:</label>
-                            <select id="deposit-category-select">
-                                <!-- Add more categories as needed -->
-                            </select>
-                            <button class="btn filter-btn btn-outline-primary" onclick="applyFilter('category', 'deposit')">Apply</button>
-                        </div>
-
-                        <!-- Date Range Filter -->
-                        <div id="deposit-dateRange-filter" class="filter-option" style="display: none;">
-                            
-                            <label for="deposit-start-date">Start Date:</label>
-                            <input type="date" id="deposit-start-date">
-                        
-                            <label for="deposit-end-date">End Date:</label>
-                            <input type="date" id="deposit-end-date">
-                                            
-                            <button class="btn filter-btn btn-outline-primary" onclick="applyFilter('dateRange', 'deposit')">Apply</button>
-                            
-                        </div>
-
-                    </div>
-
+    <div class="main_container" style="height: auto;">
+        <!-- Search Bar and Total -->
+        <div class="row gx-3 gy-2">
+            <!-- Search Bar -->
+            <div class="col-xl-7">
+                <input type="text" id="search-bar" class="form-control mb-2" placeholder="Search Deposits..." oninput="searchTable()" />
+                <div>
+                    <h5 class="total-section">Total: <span id="deposit-total-amount" class="ms-2">0.00</span></h5>
                 </div>
             </div>
-            <div class="total-section col-6">
-                <h2>Total:</h2><span id="deposit-total-amount">0.00</span>
+
+            <!-- Filters Section -->
+            <div class="col-xl-5 d-flex flex-row align-items-top">
+                <!-- Filters Dropdown -->
+                <div class="dropdown ms-8 col-sm-3">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        Filters
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+                        <li><a class="dropdown-item" href="#filter-all" onclick="toggleFilterOptions('all', 'deposit')">All</a></li>
+                        <li><a class="dropdown-item" href="#filter-month" onclick="toggleFilterOptions('month', 'deposit')">Month</a></li>
+                        <li><a class="dropdown-item" href="#filter-category" onclick="toggleFilterOptions('category', 'deposit')">Category</a></li>
+                        <li><a class="dropdown-item" href="#filter-date-range" onclick="toggleFilterOptions('dateRange', 'deposit')">Date Range</a></li>
+                    </ul>
+                </div>
+
+                <!-- Filter Options (hidden by default) -->
+                <div id="deposit-filters" class="flex flex-wrap col-sm-7">
+                    <!-- Month Filter -->
+                    <div id="deposit-month-filter" class="filter-option me-3" style="display: none;">
+                        <div class="row align-items-center mb-2">
+                            <div class="col-sm-4" style="padding: 0 2px"> 
+                                <label for="deposit-year-select" class="form-label" style="margin: 0;">Year:</label>
+                            </div>
+                            <div class="col-sm-8" style="padding: 0 2px">
+                                <select id="deposit-year-select">
+                                    <!-- Add years -->
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row align-items-center mb-2">
+                            <div class="col-sm-4" style="padding: 0 2px">
+                                <label for="deposit-month-select" class="form-label" style="margin: 0;">Month:</label>
+                            </div>
+                            <div class="col-sm-8" style="padding: 0 2px">
+                                <select id="deposit-month-select">
+                                    <!-- Add months -->
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="justify-content-end align-items-end">
+                            <button class="btn btn-sm btn-outline-primary filter-btn" onclick="applyFilter('month', 'deposit')">Apply</button>
+                        </div>
+                        
+                    </div>
+
+                    <!-- Category Filter -->
+                    <div id="deposit-category-filter" class="filter-option me-3" style="display: none;">
+                        <div class="row align-items-center mb-2">
+                            <div class="col-sm-4" style="padding: 0 2px">
+                                <label for="deposit-category-select" class="form-label" style="margin: 0;">Category:</label>
+                            </div>
+                            <div class="col-sm-8" style="padding: 0 2px">
+                                <select id="deposit-category-select">
+                                    <!-- Add categories -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="justify-content-end align-items-end">
+                            <button class="btn btn-sm btn-outline-primary filter-btn" onclick="applyFilter('category', 'deposit')">Apply</button>
+                        </div>
+                    </div>
+
+                    <!-- Date Range Filter -->
+                    <div id="deposit-dateRange-filter" class="filter-option me-3" style="display: none;">
+                        <div class="row align-items-center mb-2">
+                            <div class="col-sm-4" style="padding: 0 2px">
+                                <label for="deposit-start-date" class="form-label" style="margin: 0;"></label>Start Date:</label>
+                            </div>
+                            <div class="col-sm-8" style="padding: 0 2px">
+                                <input type="date" id="deposit-start-date">
+                            </div>
+                        </div>
+                        <div class="row align-items-center mb-2">
+                            <div class="col-sm-4" style="padding: 0 2px">
+                                <label for="deposit-end-date" class="form-label" style="margin: 0;">End Date:</label>
+                            </div>
+                            <div class="col-sm-8" style="padding: 0 2px">
+                                <input type="date" id="deposit-end-date">
+                            </div>
+                        </div>
+                        <div class="justify-content-end align-items-end">
+                            <button class="btn btn-sm btn-outline-primary filter-btn" onclick="applyFilter('dateRange', 'deposit')">Apply</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        
-    </div>
 
-    <div class="deposit-report-title report-title" style="color: #fff;">
-        <p id="deposit-description">All deposit records</p>
-    </div>
+        <!-- Report Title -->
+        <div class="deposit-report-title report-title text-center">
+            <p id="deposit-description" class="mb-0">All deposit records</p>
+        </div>
 
-    <div class="table_container" style="height: calc(100% - 140px);">
-        <div class="table-wrapper">
-            <div class="table-responsive">
-                <table class="table table-hover table-bordered">
-                    <thead>
-                        <tr>
-                            <th>NO.</th>
-                            <th style="padding-right: 60px">DATE</th>
-                            <th style="padding-right: 60px">CATEGORY</th>
-                            <th style="padding-right: 60px">NAME OF TRANSACTION</th>
-                            <th style="padding-right: 60px">AMOUNT (₱)</th>
-                            <th>ACTION</th>
-                        </tr>
-                    </thead>
-                    <tbody id="deposit-table-body">
-                        <!-- Initial empty table. Rows will be added dynamically. -->
-                    </tbody>
-                </table>
+        <!-- Table Section -->
+        <div class="main_container" style="height: calc(100% - 140px); margin: 10px 0;">
+            <div class="table-wrapper">
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>NO.</th>
+                                <th>DATE</th>
+                                <th>CATEGORY</th>
+                                <th>NAME OF TRANSACTION</th>
+                                <th>AMOUNT (₱)</th>
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody id="deposit-table-body">
+                            <!-- Initial empty table. Rows will be added dynamically. -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-
-
-

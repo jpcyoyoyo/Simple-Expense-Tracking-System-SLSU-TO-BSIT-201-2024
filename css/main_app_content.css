@@ -7,7 +7,7 @@
 .app_header {
     background-color: rgba(162, 217, 249, 0.30);
     width: 100%; /* 300px is the assumed width of the sidebar */
-    height: 90px;
+    height: 70px;
     transition: width 0.3s ease; /* Smooth transition when the width changes */
     padding: 20px 50px 5px 50px;
     top: 0;
@@ -17,8 +17,11 @@
 }
 
 .app_body {
-    height: calc(100vh - 90px); /* Fill remaining screen height */
-    padding: 40px;
+    height: calc(100vh - 70px); /* Fill remaining screen height */
+    width: 100%;
+    position: relative;
+    margin: 0;
+    overflow-y: auto;
 }
 
 .card-container {
@@ -137,20 +140,21 @@
     margin: 0;
 }
 
-.table_container {
+.main_container {
     background-color: rgba(255, 255, 255, 0.25); /* More transparent white (50%) */
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    margin-top: 8px;
-    width: 100%;
+    margin: 20px 40px;
     height: 100%;
 }
 
 /* Styling for scrollbars */
 .table-responsive::-webkit-scrollbar, 
 .table-wrapper::-webkit-scrollbar,
-.tab-pane::-webkit-scrollbar {
+.tab-pane::-webkit-scrollbar,
+.app_body::-webkit-scrollbar,
+.sidebar::-webkit-scrollbar {
     width: 8px;
     height: 8px;
 }
@@ -165,7 +169,9 @@
 .table-responsive::-webkit-scrollbar-thumb,
 .table-wrapper::-webkit-scrollbar-thumb,
 .modal-content::-webkit-scrollbar-thumb,
-.tab-pane::-webkit-scrollbar-thumb {
+.tab-pane::-webkit-scrollbar-thumb,
+.app_body::-webkit-scrollbar-thumb,
+.sidebar::-webkit-scrollbar-thumb {
     background-color: #c0c0c0;
     border-radius: 12px;
 }
@@ -173,7 +179,9 @@
 .table-responsive::-webkit-scrollbar-thumb:hover,
 .table-wrapper::-webkit-scrollbar-thumb:hover,
 .modal-content::-webkit-scrollbar-thumb:hover,
-.tab-pane::-webkit-scrollbar-thumb:hover {
+.tab-pane::-webkit-scrollbar-thumb:hover,
+.app_body::-webkit-scrollbar-thumb:hover,
+.sidebar::-webkit-scrollbar-thumb:hover {
     background-color: #555;
 }
 
@@ -186,17 +194,12 @@
     top: 0;
     width: 100%;
     height: 100%;
-    padding-left: 250px;
-    background-color: rgba(0, 0, 0, 0.684);
-    font-family: Balsamiq Sans;
 }
 
 .modal-content {
     background-color: white;
     padding: 40px;
-    margin: 0 40px;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin: 40px;
     border: 1px solid #888;
     width: calc(100% - 80px);
     height: calc(100% - 80px);
@@ -267,11 +270,12 @@
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    margin: 40px;
     background-color: rgba(255, 255, 255, 0.85);
-    padding: 40px 80px; /* Adjust top padding for better spacing */
+    padding: 20px 40px; /* Adjust top padding for better spacing */
     border-radius: 10px;
-    width: 100%;
-    height: 100%;
+    width: auto;
+    height: calc(100% - 80px);
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -344,15 +348,6 @@
     justify-content: center;
     text-align: center;
     
-}
-
-.report-container {
-    padding: 20px 20px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    background-color: rgba(255, 255, 255, 0.25); /* More transparent white (50%) */
-    border-radius: 8px;
-    width: 100%;
-    height: 100%;
 }
 
 /* Table padding adjustment */
@@ -444,43 +439,72 @@
     font-size: 0.75em;
 }
 
+.settings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin: 40px;
+}
+
+.settings-column {
+    background-color: rgba(255, 255, 255, 0.25); /* More transparent white (50%) */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* General Spacing for Setting Items */
+.setting-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.setting-item:last-child {
+    border-bottom: none;
+}
+
+/* Labels and Inputs Alignment */
+label.form-label {
+    font-weight: 500;
+    color: #fff;
+    margin: 0;
+}
+
+input[type="checkbox"],
+select.form-select {
+    margin: 0;
+    padding: 5px;
+    font-size: 1rem;
+}
+
+/* Section Header */
+.settings-column h2 {
+    margin-bottom: 15px;
+    font-size: 2.5rem;
+    color: #fff;
+}
+
+.status-indicator {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    color: #fff; /* White text */
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+}
+
+.status-online {
+    color: #28a745; /* Green for online */
+}
+
+.status-offline {
+    color: #dc3545; /* Red for offline */
+}
+
+
+
 /* Responsive adjustments */
-
-@media (max-width: 1200px) {
-    .card {
-        flex: 1 1 100%;  /* 2 cards per row on medium screens */
-        max-width: 250px;
-    }
-}
-
-@media (max-width: 1024px) {
-    .modal { 
-        padding-left: 220px;
-    }
-}
-
-@media (max-width: 992px) {
-    .card {
-        flex: 1 1 100%; /* Still 2 cards per row on smaller screens */
-        max-width: 250px;
-    }
-}
-
-@media (min-width: 992px) {
-    .modal-content {
-        height: auto;
-        width: 90%; /* Adjust the width of the modal for tablets */
-        margin: 40px auto; /* Centers the modal with some margin on top and bottom */
-    }
-
-    /* Additional adjustments if necessary for tablet landscape */
-    @media (min-height: 768px) {
-        .modal-content {
-            margin-top: 50px;
-            margin-bottom: 50px;
-        }
-    }
-}
 
 @media (max-width: 768px) {
     .card {
@@ -495,6 +519,35 @@
     .form-container {
         padding: 40px 40px;
     }
+
+    .settings-grid {
+        grid-template-columns: 1fr; /* Stacked on smaller screens */
+    }
 }
 
+
+@media (max-width: 1024px) {
+    .modal { 
+        padding-left: 220px;
+    }
+}
+
+@media (max-width: 992px) {
+    .card {
+        flex: 1 1 100%; /* Still 2 cards per row on smaller screens */
+        max-width: 250px;
+    }
+}
+
+
+@media (max-width: 1200px) {
+    .card {
+        flex: 1 1 100%;  /* 2 cards per row on medium screens */
+        max-width: 250px;
+    }
+
+    .app_body {
+        overflow-y: auto;
+    }
+}
 

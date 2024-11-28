@@ -41,6 +41,13 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 </a>
             </li>
 
+            <li class="nav-item <?php if($currentPage == 'categories.php'){ echo 'active'; } ?>" style="padding: 0;">
+                <a class="nav-link container-fluid" href="categories.php">
+                    <img class="icon" src="assets/expense_tracker_category.svg" alt="Categories Icon">
+                    Categories
+                </a>
+            </li>
+
             <li class="nav-item <?php if($currentPage == 'reports.php'){ echo 'active'; } ?>" style="padding: 0;">
                 <a class="nav-link container-fluid" href="reports.php">
                     <img class="icon" src="assets/expense_tracker_reports.svg" alt="Reports Icon">
