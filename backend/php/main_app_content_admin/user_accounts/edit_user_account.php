@@ -16,22 +16,22 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 // Retrieve session data
-$user_id = $_SESSION['user_id'];
-$username = $_SESSION['username'];
-$previousProfilePic = $_SESSION['profile_pic'];
+$admin_user_id = $_SESSION['user_id'];
+$user_id = mysqli_real_escape_string($conn, $_POST['user_id'] ?? '');
 
 // Validate and sanitize input
 $fullname = mysqli_real_escape_string($conn, $_POST['fullname'] ?? '');
 $new_username = mysqli_real_escape_string($conn, $_POST['username'] ?? '');
 $email = mysqli_real_escape_string($conn, $_POST['email'] ?? '');
 $profile_pic = $_FILES['profilePic'] ?? null;
+$previousProfilePic = mysqli_real_escape_string($conn, $_POST['previousProfilePic'] ?? '');
 
 // Check if username or email already exists in the database
 $sqlCheck = "SELECT id FROM user_accounts WHERE (username = ? OR email = ?) AND id != ?";
 $stmtCheck = $conn->prepare($sqlCheck);
 
 if (!$stmtCheck) {
-    createLog($conn, $user_id, "SQL preparation failed for uniqueness check: " . $conn->error, 0);
+    createLog($conn, $admin_user_id, "SQL preparation failed for uniqueness check for updating user account User ID: $user_id, Admin ID: $admin_user_id:" . $conn->error, 0);
     echo json_encode(['success' => false, 'message' => 'Database error.']);
     exit();
 }
@@ -50,7 +50,7 @@ if ($resultCheck->num_rows > 0) {
 $stmtCheck->close();
 
 // Initialize default values
-$uploadDir = 'profile_pic/';
+$uploadDir = '../../../../profile_pic/';
 $defaultImage = 'profile_default.svg';
 $newProfilePicPath = $previousProfilePic;
 
@@ -66,7 +66,7 @@ if ($profile_pic && $profile_pic['error'] === UPLOAD_ERR_OK) {
         }
         $newProfilePicPath = "profile_pic/$newFileName"; // Update for database
     } else {
-        createLog($conn, $user_id, "Profile picture upload failed for user {$username}.", 0);
+        createLog($conn, $admin_user_id, "Profile picture upload failed for user {$username} User ID: $user_id. Admin ID: $admin_user_id.", 0);
         echo json_encode(['success' => false, 'message' => 'Failed to upload profile picture.']);
         exit();
     }
@@ -79,7 +79,7 @@ $sql = "UPDATE user_accounts
 $stmt = $conn->prepare($sql);
 
 if (!$stmt) {
-    createLog($conn, $user_id, "SQL preparation failed for updating profile of user {$username}: " . $conn->error, 0);
+    createLog($conn, $admin_user_id, "SQL preparation failed for updating profile of user {$username} User ID: $user_id,: Admin ID: $admin_user_id. " . $conn->error, 0);
     echo json_encode(['success' => false, 'message' => 'Database error.']);
     exit();
 }
@@ -88,20 +88,17 @@ $stmt->bind_param("ssssi", $fullname, $new_username, $email, $newProfilePicPath,
 
 if ($stmt->execute()) {
     // Update session data
-    $_SESSION['fullname'] = $fullname;
-    $_SESSION['email'] = $email;
-    $_SESSION['profile_pic'] = $newProfilePicPath;
 
     if ($new_username === $username) {
-        createLog($conn, $user_id, "Profile updated successfully for user {$username}.", 1);
+        createLog($conn, $admin_user_id, "Profile updated successfully to user {$username} User ID: $user_id by Admin ID: $admin_user_id.", 1);
     } else {
-        createLog($conn, $user_id, "Username updated from {$username} to {$new_username}. Profile updated successfully.", 1);
+        createLog($conn, $admin_user_id, "Username updated from {$username} to {$new_username} User ID: $user_id,. Profile updated successfully by Admin ID: $admin_user_id.", 1);
         $_SESSION['username'] = $new_username;
     }
 
     echo json_encode(['success' => true, 'message' => 'Profile updated successfully.']);
 } else {
-    createLog($conn, $user_id, "Failed to update profile for user {$username}: " . $stmt->error, 0);
+    createLog($conn, $admin_user_id, "Failed to update profile for user {$username} User ID: $user_id,: Admin ID: $admin_user_id." . $stmt->error, 0);
     echo json_encode(['success' => false, 'message' => 'Failed to update profile.']);
 }
 

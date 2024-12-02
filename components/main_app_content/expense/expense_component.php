@@ -110,7 +110,7 @@
         </div>
 
         <!-- Table Section -->
-        <div class="main_container" style="height: calc(100% - 140px); margin: 10px 0;">
+        <div class="main_container" style="height: 400px; margin: 10px 0;">
             <div class="table-wrapper">
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered">

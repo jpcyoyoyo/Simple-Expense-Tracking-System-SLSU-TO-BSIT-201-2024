@@ -73,5 +73,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 </a>
             </li>
         </ul>
+        <div class="space"></div>
+        <div class="space"></div>
     </div>
 </nav>

@@ -64,6 +64,7 @@ $profileImage = $_SESSION['profile_pic'];
                 </div>
             </div>
         </div>
+        <div id="error-message" class="alert alert-danger" style="display: none;"></div>
     </div>
 
 </div>

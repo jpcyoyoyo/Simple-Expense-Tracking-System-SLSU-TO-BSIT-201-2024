@@ -38,9 +38,10 @@
         </div>
     </div>
 
-    <?php include "components/main_app_content_admin/user_accounts/create_user_accounts_modal.php"?>
-    <?php include "components/main_app_content_admin/user_accounts/update_user_accounts_modal.php"?>
-    <?php include "components/main_app_content_admin/user_accounts/view_user_accounts_modal.php"?>
+    <?php include "components/main_app_content_admin/user_accounts/create_user_account_modal.php"?>
+    <?php include "components/main_app_content_admin/user_accounts/update_user_account_modal.php"?>
+    <?php include "components/main_app_content_admin/user_accounts/view_user_account_modal.php"?>
+    <script src="backend/javascript/main_app_content_admin/user_accounts.js"></script>
 
 </body>
 </html>

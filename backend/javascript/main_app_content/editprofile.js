@@ -34,6 +34,10 @@ function updateProfile(event) {
             window.location.href = 'dashboard.php'; // Redirect to the dashboard if successful
         } else {
             console.error('Profile update failed:', data.message);
+            // Display error in modal
+            const errorElement = document.getElementById('error-message');
+            errorElement.textContent = data.message;
+            errorElement.style.display = 'block';
         }
     })
     .catch(error => console.error('Error:', error));
