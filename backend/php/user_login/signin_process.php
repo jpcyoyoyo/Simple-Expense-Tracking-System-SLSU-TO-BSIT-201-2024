@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password']; // No need to sanitize as it's hashed
 
     // Prepare SQL statement to check user existence
-    $stmt = $conn->prepare("SELECT id, username, fullname, email, password, dashboard_id, profile_pic, is_admin, question_id FROM user_accounts WHERE username = ?");
+    $stmt = $conn->prepare("SELECT id, username, fullname, email, password, dashboard_id, settings_id, profile_pic, is_admin, question_id FROM user_accounts WHERE username = ?");
     if (!$stmt) {
         die("Database query preparation failed: " . $conn->error);
     }
@@ -49,6 +49,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['profile_pic'] = $user['profile_pic'];
             $_SESSION['is_admin'] = (bool)$user['is_admin'];
 
+            $stmt->close(); // Close user query statement
+
+            // Retrieve theme from settings table
+            $theme_stmt = $conn->prepare("SELECT theme FROM settings WHERE id = ?");
+            if ($theme_stmt) {
+                $theme_stmt->bind_param("i", $_SESSION['settings_id']);
+                $theme_stmt->execute();
+                $theme_result = $theme_stmt->get_result();
+
+                if ($theme_result->num_rows === 1) {
+                    $settings = $theme_result->fetch_assoc();
+                    $_SESSION['theme'] = $settings['theme']; // Save theme in session
+                    $log_description = "User {$_SESSION['username']}'s theme preference successfully retrieved.";
+                    createLog($conn, $user['id'], $log_description, 1); // Log success
+                } else {
+                    $_SESSION['theme'] = 'default'; // Default theme if not set
+                    $log_description = "User {$_SESSION['username']}'s theme preference not found. Default theme applied.";
+                    createLog($conn, $user['id'], $log_description, 0); // Log fallback
+                }
+                $theme_stmt->close();
+            } else {
+                error_log("Error preparing theme query: " . $conn->error);
+                $_SESSION['theme'] = 'default'; // Default to 'default' if query fails
+                $log_description = "User {$_SESSION['username']}'s theme preference query failed. Default theme applied.";
+                createLog($conn, $user['id'], $log_description, 0); // Log error
+            }
+
+
             // Update `is_login` to 1
             $update_login_sql = "UPDATE user_accounts SET is_login = 1 WHERE id = ?";
             $update_stmt = $conn->prepare($update_login_sql);
@@ -86,7 +114,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Close statement and connection
-    $stmt->close();
     $conn->close();
 }
-

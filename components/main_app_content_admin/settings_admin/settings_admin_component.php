@@ -1,7 +1,6 @@
-lign-items-center">
+<div class="app_header d-flex flex-row justify-content-between align-items-center">
     <h1>Settings</h1>
 </div>
-
 <div class="app_body container-fluid">
     <!-- Two-Column Settings Layout -->
     <div class="settings-grid">

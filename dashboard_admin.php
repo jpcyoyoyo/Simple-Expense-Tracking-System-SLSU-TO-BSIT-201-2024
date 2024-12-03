@@ -1,5 +1,6 @@
 <?php 
     include "backend/php/user_auth_admin.php";
+    include "backend/php/set_theme.php";
 ?>
 
 <!DOCTYPE html>

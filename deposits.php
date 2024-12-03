@@ -1,5 +1,6 @@
 <?php 
     include "backend/php/user_auth.php";
+    include "backend/php/set_theme.php";
     include "conn/conn.php";
 ?>
 

@@ -1,7 +1,7 @@
 <?php 
     include "backend/php/user_auth.php";
+    include "backend/php/set_theme.php";
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,6 +39,6 @@
     </div>
     
 
-    <script src="backend/javascript/main_app_content/editprofile.js"></script>
+    <script src="backend/javascript/editprofile.js"></script>
 </body>
 </html>

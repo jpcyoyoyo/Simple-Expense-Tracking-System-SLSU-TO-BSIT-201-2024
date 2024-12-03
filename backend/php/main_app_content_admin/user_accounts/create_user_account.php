@@ -162,7 +162,7 @@ function updateUserAccount($conn, $column, $value, $user_id, $username, $admin_u
  */
 function insertDefaultSettings($conn, $user_id, $username, $admin_user_id)
 {
-    $insert_sql = "INSERT INTO settings (user_id, theme, font_size) VALUES (?, 'default', 'medium')";
+    $insert_sql = "INSERT INTO settings (user_id, theme) VALUES (?, 'default')";
     $stmt = $conn->prepare($insert_sql);
 
     if (!$stmt) {

@@ -19,8 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn->begin_transaction();
 
     try {
-        // Fetch associated IDs
-        $stmt = $conn->prepare("SELECT dashboard_id, settings_id, question_id FROM user_accounts WHERE id = ?");
+        $stmt = $conn->prepare("SELECT dashboard_id, settings_id, question_id FROM user_accountS WHERE id = ?");
         $stmt->bind_param("i", $userId);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -30,68 +29,56 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $user = $result->fetch_assoc();
-        $dashboardId = $user['dashboard_id'];
-        $settingsId = $user['settings_id'];
-        $questionId = $user['question_id'];
+        $dashboard_id = $user['dashboard_id'];
+        $settings_id = $user['settings_id'];
+        $question_id = $user['question_id'];
         $stmt->close();
 
-        // Update user_accounts
-        $stmt = $conn->prepare("UPDATE user_accounts SET dashboard_id = NULL, settings_id = NULL, question_id = NULL WHERE id = ?");
-        $stmt->bind_param("i", $userId);
-        if (!$stmt->execute()) {
-            throw new Exception("Failed to update user accounts: " . $stmt->error);
-        }
-        $stmt->close();
-
-        // Delete related records
-        if ($dashboardId) {
+        if ($dashboard_id) {
             $stmt = $conn->prepare("DELETE FROM dashboard WHERE id = ?");
-            $stmt->bind_param("i", $dashboardId);
+            $stmt->bind_param("i", $dashboard_id);
             if (!$stmt->execute()) {
                 throw new Exception("Failed to delete from dashboard: " . $stmt->error);
             }
             $stmt->close();
         }
 
-        if ($settingsId) {
+        if ($settings_id) {
             $stmt = $conn->prepare("DELETE FROM settings WHERE id = ?");
-            $stmt->bind_param("i", $settingsId);
+            $stmt->bind_param("i", $settings_id);
             if (!$stmt->execute()) {
                 throw new Exception("Failed to delete from settings: " . $stmt->error);
             }
             $stmt->close();
         }
 
-        if ($questionId) {
+        if ($question_id) {
             $stmt = $conn->prepare("DELETE FROM security_q WHERE id = ?");
-            $stmt->bind_param("i", $questionId);
+            $stmt->bind_param("i", $question_id);
             if (!$stmt->execute()) {
                 throw new Exception("Failed to delete from security_q: " . $stmt->error);
             }
             $stmt->close();
         }
-
-        // Delete user account
+        
         $stmt = $conn->prepare("DELETE FROM user_accounts WHERE id = ?");
-        $stmt->bind_param("i", $userId);
+        $stmt->bind_param("i", $user_id);
         if (!$stmt->execute()) {
             throw new Exception("Failed to delete user account: " . $stmt->error);
         }
         $stmt->close();
 
-        // Commit transaction
         $conn->commit();
         $response['success'] = true;
-        $response['message'] = 'User account deleted successfully.';
+        $response['message'] = 'User account delected successfully.';
+
     } catch (Exception $e) {
         $conn->rollback();
         $response['message'] = $e->getMessage();
     } finally {
         $conn->close();
     }
-} else {
-    $response['message'] = 'Invalid request method.';
-}
+    
+} 
 
 echo json_encode($response);
-?>
