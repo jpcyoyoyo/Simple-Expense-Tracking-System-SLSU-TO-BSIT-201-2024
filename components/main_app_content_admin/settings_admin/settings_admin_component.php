@@ -1,4 +1,4 @@
-<div class="app_header d-flex flex-row justify-content-between align-items-center">
+lign-items-center">
     <h1>Settings</h1>
 </div>
 
@@ -12,7 +12,7 @@
             <div class="setting-item">
                 <div class="row align-items-center">
                     <div class="col-sm-4">
-                        <label for="theme-select" class="form-label">Theme</label>
+                        <label for="font-size" class="form-label">Theme</label>
                     </div>
                     <div class="col-sm-8 text-end">
                         <select id="theme-selector" class="form-select">
@@ -32,14 +32,6 @@
             <div class="setting-item">
                 <label for="change-password" class="form-label">Change Password</label>
                 <button class="btn btn-primary w-100" id="change-password-btn" onclick="changePassword()">Change Password</button>
-            </div>
-            <!-- Deactivate Account Section -->
-            <div class="setting-item">
-                <label for="Delete-account" class="form-label">Delete Account</label>
-                <p class="text-muted small">
-                    Deleting your account will remove all your data forever.
-                </p>
-                <button class="btn btn-danger w-100" id="Delete-account-btn" onclick="deleteAccount()">Delete Account</button>
             </div>
         </div>
     </div>

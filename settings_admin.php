@@ -1,5 +1,6 @@
 <?php 
     include "backend/php/user_auth_admin.php";
+    include "backend/php/set_theme.php";
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +35,8 @@
         </div>
     </div>
 
-    <?php include "components/main_app_content/settings/verifyuser_modal.php"?>
-    <?php include "components/main_app_content/settings/resetpassword_modal.php"?>
+    <?php include "components/settings/verifyuser_modal.php"?>
+    <?php include "components/settings/resetpassword_modal.php"?>
+    <script src="backend/javascript/settings.js"></script>
 </body>
 </html>
