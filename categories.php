@@ -1,5 +1,6 @@
 <?php 
     include "backend/php/user_auth.php";
+    include "backend/php/set_theme.php";
     include "conn/conn.php";
 ?>
 
@@ -25,7 +26,6 @@
 </head>
 
 <body>
-
     <div class="container-fluid" style="padding:0;">
         <div class="row" style="--bs-gutter-x: 0.75rem; margin: 0;">
             <!-- Include Sidebar from PHP -->

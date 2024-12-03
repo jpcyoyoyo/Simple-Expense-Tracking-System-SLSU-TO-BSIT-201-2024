@@ -1,3 +1,115 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+body.dark-theme {
+    --bg-color: #121212;
+    --text-color: #ffffff !important;
+    background-image: none;
+
+    .sidebar, .settings-column, .main_container, 
+    .card, .modal-content, .form-container {
+        background-color:#212121; 
+        color: #ffffff;
+    }
+
+    .main_container .main_container, 
+    .tab-content, .tab-pane, .tab-nav-item .tab-nav-link.active {
+        background-color:#2b2b2b; 
+        color: #fff;
+    }
+
+    .sidebar .nav-link, .tab-nav-item .tab-nav-link {
+        color: #9c9c9c;
+    }
+
+    .line {
+        border-color: rgb(12, 67, 94);
+    }
+
+    label, p, h1, h2, h6 {
+        color: #ffffff;
+    }
+
+    .btn, .btn_submit-primary, .nav-link:active,
+    .nav-item.active .nav-link, .card-header {
+        background: rgb(12, 67, 94);
+        color: #ffffff;
+    }
+
+    .table thead th {
+        background-color: #171A1F;
+        color: #fff;
+    }
+
+    .table tbody td {
+        background-color: #212121; 
+        color: #cecece;
+    }
+
+    .nav-link:hover {
+        color: #ffffff;
+        background-color: #999; /* Light background on hover */
+    }
+
+    .icon line,
+    .icon polygon {
+        stroke: #ffffff;
+        fill: #ffffff;
+    }
+
+    .app_header {
+        background-color:#323232; 
+    }
+
+    option, .form-control, .form-select, .dropdown-item, .dropdown-menu {
+        background-color: #121212;
+        color: #ffffff;
+    }
+}
+
+body.light-theme {
+    --bg-color: #eafbfc;
+    --text-color: #000000 !important;
+    background-image: none;
+
+    .sidebar {
+        background-color:#ddf8ff; 
+    }
+
+    .settings-column, .main_container, 
+    .card, .modal-content, .tab-pane  {
+        background-color:#ffffff; 
+        border-color: #000000;
+        border-width: 1px;
+        color: #ffffff;
+    }
+
+    .tab-nav-item .tab-nav-link {
+        color: #9c9c9c;
+    }
+
+    .tab-nav-item .tab-nav-link.active {
+        background-color:#ffffff; 
+        color: #000;
+        box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.2); /* Optional shadow */
+    }
+
+    label, p, h1, h2, h5, h6 {
+        color: #000000;
+    }
+
+    .btn, .btn_submit-primary, .nav-link:active,
+    .nav-item.active .nav-link, .card-header {
+        background: rgb(111, 198, 223);
+    }
+}
 
 body {
     background-image: url("../assets/bg1.jpg");

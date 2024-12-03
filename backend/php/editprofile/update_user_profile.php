@@ -1,6 +1,6 @@
 <?php
-include '../../../../conn/conn.php';
-include '../../../../backend/php/create_log.php'; // Include the log function
+include '../../../conn/conn.php';
+include '../../../backend/php/create_log.php'; // Include the log function
 
 header('Content-Type: application/json');
 ini_set('display_errors', 1);

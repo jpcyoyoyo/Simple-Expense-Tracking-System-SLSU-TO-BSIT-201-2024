@@ -77,3 +77,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     createLog($conn, $admin_user_id, "Invalid request method attempted for user logs retrival. User ID: $user_id, Admin User ID: $admin_user_id", 0);
     echo json_encode(['success' => false, 'message' => 'Invalid request method']);
 }
+
+//

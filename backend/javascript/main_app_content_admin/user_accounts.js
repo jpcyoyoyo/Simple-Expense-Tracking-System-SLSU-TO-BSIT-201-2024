@@ -125,8 +125,8 @@ function viewRow(button) {
     document.getElementById('view-user-is_login').className = `h1 status-indicator ${statusClass}`;
     document.getElementById('view-user-profile-pic').src = profile_pic;
 
-    openViewAccountModal();
     fetchAndUpdateUserDetails(userId);
+    openViewAccountModal();
 }
 
 function previewProfilePic(event) {
@@ -368,6 +368,57 @@ function monitorUserTable() {
     }, 2000); // Check every 2 seconds
 }
 
+function fetchAndUpdateUserDetails(userId) {
+    // Stop any existing interval if the modal is reopened
+    if (userDetailsUpdateInterval) {
+        clearInterval(userDetailsUpdateInterval);
+    }
+
+    userDetailsUpdateInterval = setInterval(() => {
+        fetch('backend/php/main_app_conent_admin/user_accounts/get_user_details.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ user_id: userId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const is_login = data.is_login;
+                const statusClass = is_login === "1" ? 'status-online' : 'status-offline'; // Assign class based on login status
+                const statusText = is_login === "1" ? 'Online' : 'Offline'; // Text for login status
+
+                // Populate modal fields
+                document.getElementById('view-user-fullname').innerText = data.fullname;
+                document.getElementById('view-user-username').innerText = data.username;
+                document.getElementById('view-user-email').innerText = data.email;
+                document.getElementById('view-user-created_at').innerText = data.created_at;
+                document.getElementById('view-user-updated_at').innerText = data.updated_at;
+                document.getElementById('view-user-is_login').innerText = statusText;
+                document.getElementById('view-user-is_login').className = `h1 status-indicator ${statusClass}`;
+                
+                const profilePicElement = document.getElementById('view-user-profile-pic');
+                if (profilePicElement.src !== data.profile_pic) {
+                    profilePicElement.src = data.profile_pic;
+                }
+            } else {
+                console.error('Failed to fetch user detail: ', data.message);
+            }
+        })
+        .catch(error =>{
+            console.error('Error fetching user details: ', error)
+        })
+    }, 2000);
+}
+
+function stopUpdatingUserDetails() {
+    if (userDetailsUpdateInterval) {
+        clearInterval(userDetailsUpdateInterval);
+        userDetailsUpdateInterval = null;
+    }
+}
+
 function fetchNewUserLogs(userId) {
     // Clear any existing interval to avoid multiple intervals running
     if (fetchLogsIntervalId) {
@@ -399,61 +450,6 @@ function fetchNewUserLogs(userId) {
         });
     }, 2000);
 }
-
-function fetchAndUpdateUserDetails(userId) {
-    // Stop any existing interval if the modal is reopened
-    if (userDetailsUpdateInterval) {
-        clearInterval(userDetailsUpdateInterval);
-    }
-
-    // Start a new interval to fetch and update details every 2 seconds (adjust interval as needed)
-    userDetailsUpdateInterval = setInterval(() => {
-        fetch('backend/php/main_app_content_admin/user_accounts/get_user_details.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ user_id: userId })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // Update modal fields
-                const is_login = data.data.is_login;
-                const statusClass = is_login === 1 ? 'status-online' : 'status-offline';
-                const statusText = is_login === 1 ? 'Online' : 'Offline';
-                
-                // Update modal fields with new data
-                document.getElementById('view-user-fullname').innerText = data.data.fullname || '';
-                document.getElementById('view-user-username').innerText = data.data.username || '';
-                document.getElementById('view-user-email').innerText = data.data.email || '';
-                document.getElementById('view-user-created_at').innerText = data.data.created_at || '';
-                document.getElementById('view-user-updated_at').innerText = data.data.updated_at || '';
-                document.getElementById('view-user-is_login').innerText = statusText;
-                document.getElementById('view-user-is_login').className = `h1 status-indicator ${statusClass}`;
-
-                // Update profile picture if it's different from the current one
-                const profilePicElement = document.getElementById('view-user-profile-pic');
-                if (profilePicElement.src !== data.data.profile_pic) {
-                    profilePicElement.src = data.data.profile_pic;
-                }
-            } else {
-                console.error('Failed to fetch user details:', data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching user details:', error);
-        });
-    }, 2000); // Adjust interval timing as needed
-}
-
-function stopUpdatingUserDetails() {
-    if (userDetailsUpdateInterval) {
-        clearInterval(userDetailsUpdateInterval);
-        userDetailsUpdateInterval = null;
-    }
-}
-
 
 function addNewUserLogsToTable(newLogs) {
     const tableBody = document.getElementById('user-logs-table-body');

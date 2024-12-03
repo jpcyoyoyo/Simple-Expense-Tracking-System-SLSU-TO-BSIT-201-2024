@@ -24,7 +24,7 @@ function updateProfile(event) {
         formData.append('profilePic', profilePicInput.files[0]);
     }
 
-    fetch('backend/php/main_app_content/editprofile/update_user_profile.php', {
+    fetch('backend/php/editprofile/update_user_profile.php', {
         method: 'POST',
         body: formData
     })

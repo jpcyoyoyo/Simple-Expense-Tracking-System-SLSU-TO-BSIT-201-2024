@@ -8,10 +8,10 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         <div class="nav-elements container flex-column">
             <img class="profile" src="<?php echo isset($_SESSION['profile_pic']) ? $_SESSION['profile_pic'] : 'assets/reserve_profile.svg'; ?>" alt="Profile Image">
             <div class="line container"></div>
-            <p class="h6 text-center" style="color:black;">
+            <p class="h6 text-center">
                 <?php echo isset($_SESSION['fullname']) ? $_SESSION['fullname'] . '(Admin)': 'User'; ?>
             </p>
-            <p class="display-h6 text-center" style="font-size: 15px; color:black;">
+            <p class="display-h6 text-center" style="font-size: 15px;">
                 <?php echo isset($_SESSION['email']) ? $_SESSION['email'] : 'user@example.com'; ?>
             </p>
             <a href="editprofile_admin.php" class="btn container-fluid">Edit Profile</a>

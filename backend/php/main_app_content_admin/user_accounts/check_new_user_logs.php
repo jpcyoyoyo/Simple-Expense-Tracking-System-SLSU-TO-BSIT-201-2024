@@ -29,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo json_encode(['success' => false, 'message' => 'User ID and Last Log Time are required.']);
         exit;
     }
+    
 
     // Validate datetime format for lastLogTime
     if (!strtotime($lastLogTime)) {

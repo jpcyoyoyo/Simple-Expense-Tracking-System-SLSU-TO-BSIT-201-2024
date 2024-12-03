@@ -104,7 +104,7 @@ function updateUserAccount($conn, $column, $value, $user_id, $username) {
  */
 function insertDefaultSettings($conn, $user_id, $username)
 {
-    $insert_sql = "INSERT INTO settings (user_id, theme, font_size) VALUES (?, 'default', 'medium')";
+    $insert_sql = "INSERT INTO settings (user_id, theme) VALUES (?, 'default')";
     $stmt = $conn->prepare($insert_sql);
 
     if (!$stmt) {
@@ -123,6 +123,7 @@ function insertDefaultSettings($conn, $user_id, $username)
     $settings_id = $conn->insert_id;
     $stmt->close();
 
+    $_SESSION['theme'] = 'default';
     createLog($conn, $user_id, "Default settings for {$username} inserted successfully. Setting ID: {$settings_id}", 1);
 
     return $settings_id;

@@ -59,7 +59,7 @@
                                     <label for="password" class="col-form-label">Password:</label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <input type="password" id="create-user-password" name="password" class="form-control" placeholder="Create password" required>
+                                    <input type="password" id="create-user-password" name="password" class="form-control" placeholder="Create password" required autocomplete="new-password">
                                 </div>
                             </div>
 
@@ -69,7 +69,7 @@
                                     <label for="confirm_password" class="col-form-label">Confirm Password:</label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <input type="password" id="create-user-confirm-password" name="confirm_password" class="form-control" placeholder="Confirm password" required>
+                                    <input type="password" id="create-user-confirm-password" name="confirm_password" class="form-control" placeholder="Confirm password" required autocomplete="new-password">
                                 </div>
                             </div>
                         

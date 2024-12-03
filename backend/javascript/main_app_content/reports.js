@@ -259,9 +259,8 @@ function applyFilter(filterType, reportType) {
     let visibleRowIndex = 1; // Counter for visible row numbering
 
     rows.forEach(row => {
-        // Skip the "No records found" row
         if (row.id === 'no-records-row') {
-            return; // Skip this row entirely
+            return;
         }
 
         const rowMonth = row.querySelector(`.${reportType}-month`)?.value;
@@ -302,7 +301,9 @@ function applyFilter(filterType, reportType) {
         // Show or hide the row based on filter criteria
         if (showRow) {
             row.style.display = ''; // Show the row
-            row.querySelector('td:first-child').textContent = visibleRowIndex++; // Update row number
+            if (!row.id === 'no-records-row') {
+                row.querySelector('td:first-child').textContent = visibleRowIndex++; // Update row number
+            }   
             totalAmount += amount; // Only add to total if the row is visible
             visibleRowCount++; // Increment visible row count
         } else {
@@ -343,15 +344,17 @@ async function generateReportDocument(type) {
 
     // Create a container for the PDF content with enforced black text
     const pdfContent = `
-        <div style="font-family: Archivo; margin: 20px; color: black;">
-            <h1 style="text-align: center; color: black;">${titleElement.textContent}</h1>
-            <p style="text-align: center; color: black; margin: 0;">${descriptionElement.textContent}</p>
-            <p style="text-align: center; color: black; margin: 0;">${fullnameText}</p>
-            <div style="color: #000;">${tableContainer.outerHTML}</div>
-            <div style="margin: 10px 30px; text-align: right; color: black;">
-                <p style="font-size: 1.5em;">Total: <span>${amountElement}</span></p>
+        <body>
+            <div style="font-family: Archivo; margin: 20px; color: black;">
+                <h1 style="text-align: center; color: black;">${titleElement.textContent}</h1>
+                <p style="text-align: center; color: black; margin: 0;">${descriptionElement.textContent}</p>
+                <p style="text-align: center; color: black; margin: 0;">${fullnameText}</p>
+                <div style="color: #000;">${tableContainer.outerHTML}</div>
+                <div style="margin: 10px 30px; text-align: right; color: black;">
+                    <p style="font-size: 1.5em;">Total: <span>${amountElement}</span></p>
+                </div>
             </div>
-        </div>
+        </body>
     `;
 
     // Temporary element to hold content for conversion

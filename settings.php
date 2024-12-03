@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="css/main_app_content.css">
 </head>
 
-<body>
+<body <?php ?> >
     <div class="container-fluid" style="padding:0;">
         <div class="row" style="--bs-gutter-x: 0.75rem; margin: 0;">
             <!-- Include Sidebar from PHP -->
