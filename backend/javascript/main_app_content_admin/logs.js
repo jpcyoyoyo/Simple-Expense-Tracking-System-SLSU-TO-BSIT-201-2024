@@ -295,3 +295,4 @@ function calculateTotal() {
 }
 
 setInterval(fetchNewLogs, 5000); // Poll for new logs every 5 seconds
+

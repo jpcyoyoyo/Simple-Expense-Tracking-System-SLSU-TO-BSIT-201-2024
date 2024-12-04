@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2024 at 08:16 AM
+-- Generation Time: Dec 04, 2024 at 03:36 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -81,7 +81,6 @@ INSERT INTO `dashboard` (`id`, `user_id`, `balance`, `expense_total`, `deposit_t
 (16, 19, 0.00, 0.00, 0.00, 0, 0),
 (17, 20, 0.00, 0.00, 0.00, 0, 0),
 (37, 26, 0.00, 0.00, 0.00, 0, 0),
-(38, 27, 0.00, 0.00, 0.00, 0, 0),
 (39, 28, 0.00, 0.00, 0.00, 0, 0);
 
 -- --------------------------------------------------------
@@ -3649,7 +3648,263 @@ INSERT INTO `logs` (`id`, `user_id`, `created_at`, `status`, `description`) VALU
 (3614, 2, '2024-12-03 07:16:07', 1, 'User JpcTheDecoder logged out'),
 (3615, NULL, '2024-12-03 07:16:12', 0, 'Failed login attempt for username: root. Incorrect password.'),
 (3616, 8, '2024-12-03 07:16:18', 1, 'User root logged in successfully.'),
-(3617, 8, '2024-12-03 07:16:18', 1, 'User root\'s theme preference successfully retrieved.');
+(3617, 8, '2024-12-03 07:16:18', 1, 'User root\'s theme preference successfully retrieved.'),
+(3618, NULL, '2024-12-03 07:28:06', 0, 'Failed login attempt for username: JpcTheDecoder. Incorrect password.'),
+(3619, 2, '2024-12-03 07:28:10', 1, 'User JpcTheDecoder logged in successfully.'),
+(3620, 2, '2024-12-03 07:28:10', 1, 'User JpcTheDecoder\'s theme preference successfully retrieved.'),
+(3621, 2, '2024-12-03 07:28:10', 1, 'Dashboard data fetched for JpcTheDecoder. Dashboard ID: 1'),
+(3622, 2, '2024-12-03 07:28:15', 1, 'User JpcTheDecoder successfully updated the theme to dark.'),
+(3623, 2, '2024-12-03 07:28:16', 1, 'Dashboard data fetched for JpcTheDecoder. Dashboard ID: 1'),
+(3624, 8, '2024-12-03 08:16:12', 1, 'Fetched user logs for user log table successfully. User ID: 2, Admin User ID: 8'),
+(3625, 8, '2024-12-03 08:16:12', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3626, 8, '2024-12-03 08:23:48', 1, 'Fetched user logs for user log table successfully. User ID: 2, Admin User ID: 8'),
+(3627, 8, '2024-12-03 08:23:49', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3628, 8, '2024-12-03 08:43:05', 1, 'Fetched user logs for user log table successfully. User ID: 2, Admin User ID: 8'),
+(3629, 8, '2024-12-03 08:43:05', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3630, 8, '2024-12-03 08:44:12', 1, 'Fetched user logs for user log table successfully. User ID: 2, Admin User ID: 8'),
+(3631, 8, '2024-12-03 08:44:12', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3632, 8, '2024-12-03 08:49:41', 1, 'Fetched user logs for user log table successfully. User ID: 2, Admin User ID: 8'),
+(3633, 8, '2024-12-03 08:49:41', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3634, 8, '2024-12-03 08:51:28', 1, 'Fetched user logs for user log table successfully. User ID: 2, Admin User ID: 8'),
+(3635, 8, '2024-12-03 08:51:28', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3636, 2, '2024-12-03 08:52:33', 1, 'User JpcTheDecoder logged out'),
+(3637, 8, '2024-12-03 09:15:55', 1, 'Fetched user logs for user log table successfully. User ID: 28, Admin User ID: 8'),
+(3638, 8, '2024-12-03 09:15:55', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3639, 8, '2024-12-03 09:15:59', 1, 'Fetched user logs for user log table successfully. User ID: 27, Admin User ID: 8'),
+(3640, 8, '2024-12-03 09:15:59', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3641, 8, '2024-12-03 09:16:01', 0, 'Invalid request. Missing parameters: User ID or Last Log Time.'),
+(3642, 8, '2024-12-03 09:16:03', 0, 'Invalid request. Missing parameters: User ID or Last Log Time.'),
+(3643, 8, '2024-12-03 09:33:47', 1, 'User root logged out'),
+(3644, 2, '2024-12-03 09:35:12', 1, 'User JpcTheDecoder logged in successfully.'),
+(3645, 2, '2024-12-03 09:35:12', 1, 'User JpcTheDecoder\'s theme preference successfully retrieved.'),
+(3646, 2, '2024-12-03 09:35:12', 1, 'Dashboard data fetched for JpcTheDecoder. Dashboard ID: 1'),
+(3647, 2, '2024-12-03 09:35:17', 1, 'User JpcTheDecoder successfully updated the theme to light.'),
+(3648, 2, '2024-12-03 09:35:19', 1, 'User JpcTheDecoder successfully updated the theme to default.'),
+(3649, 2, '2024-12-03 09:35:22', 1, 'Fetched deposits for report table successfully for JpcTheDecoder.'),
+(3650, 2, '2024-12-03 09:35:22', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3651, 2, '2024-12-03 09:35:22', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3652, 2, '2024-12-03 09:35:22', 1, 'Fetched expenses for report table successfully for JpcTheDecoder.'),
+(3653, 2, '2024-12-03 09:35:22', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3654, 2, '2024-12-03 09:35:22', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3655, 2, '2024-12-03 09:42:36', 1, 'Fetched deposits for report table successfully for JpcTheDecoder.'),
+(3656, 2, '2024-12-03 09:42:36', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3657, 2, '2024-12-03 09:42:36', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3658, 2, '2024-12-03 09:42:36', 1, 'Fetched expenses for report table successfully for JpcTheDecoder.'),
+(3659, 2, '2024-12-03 09:42:36', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3660, 2, '2024-12-03 09:42:36', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3661, 2, '2024-12-03 09:43:24', 1, 'Fetched expenses for report table successfully for JpcTheDecoder.'),
+(3662, 2, '2024-12-03 09:43:24', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3663, 2, '2024-12-03 09:43:24', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3664, 2, '2024-12-03 09:43:24', 1, 'Fetched deposits for report table successfully for JpcTheDecoder.'),
+(3665, 2, '2024-12-03 09:43:24', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3666, 2, '2024-12-03 09:43:24', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3667, 2, '2024-12-03 09:43:40', 1, 'Fetched expenses for report table successfully for JpcTheDecoder.'),
+(3668, 2, '2024-12-03 09:43:40', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3669, 2, '2024-12-03 09:43:40', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3670, 2, '2024-12-03 09:43:40', 1, 'Fetched deposits for report table successfully for JpcTheDecoder.'),
+(3671, 2, '2024-12-03 09:43:40', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3672, 2, '2024-12-03 09:43:40', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3673, 2, '2024-12-03 13:35:40', 1, 'Fetched distinct years for category filters successfully for JpcTheDecoder.'),
+(3674, 2, '2024-12-03 14:10:53', 1, 'Fetched distinct years for category filters successfully for JpcTheDecoder.'),
+(3675, 2, '2024-12-03 14:16:56', 1, 'Fetched distinct years for category filters successfully for JpcTheDecoder.'),
+(3676, 2, '2024-12-03 14:51:10', 1, 'User JpcTheDecoder successfully updated the theme to dark.'),
+(3677, 2, '2024-12-03 14:51:44', 1, 'User ID 2 successfully reset their password.'),
+(3678, 2, '2024-12-03 14:51:49', 1, 'Fetched expenses for report table successfully for JpcTheDecoder.'),
+(3679, 2, '2024-12-03 14:51:49', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3680, 2, '2024-12-03 14:51:49', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3681, 2, '2024-12-03 14:51:49', 1, 'Fetched deposits for report table successfully for JpcTheDecoder.'),
+(3682, 2, '2024-12-03 14:51:49', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3683, 2, '2024-12-03 14:51:49', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3684, 2, '2024-12-03 14:51:50', 1, 'Fetched distinct years for category filters successfully for JpcTheDecoder.'),
+(3685, 2, '2024-12-03 14:51:51', 1, 'Fetched expenses for expense table successfully for JpcTheDecoder.'),
+(3686, 2, '2024-12-03 14:51:51', 1, 'Fetched categories from category table for deposit filters and CRUD options successfully for JpcTheDecoder.'),
+(3687, 2, '2024-12-03 14:51:51', 1, 'Fetched distinct years for expense filters successfully for JpcTheDecoder.'),
+(3688, 2, '2024-12-03 14:51:53', 1, 'Fetched deposits for deposit table successfully for JpcTheDecoder.'),
+(3689, 2, '2024-12-03 14:51:53', 1, 'Fetched categories from category table for deposit filters and CRUD options successfully for JpcTheDecoder.'),
+(3690, 2, '2024-12-03 14:51:53', 1, 'Fetched distinct years for deposit filters successfully for JpcTheDecoder.'),
+(3691, 2, '2024-12-03 14:51:55', 1, 'Dashboard data fetched for JpcTheDecoder. Dashboard ID: 1'),
+(3692, 2, '2024-12-03 14:51:57', 1, 'User JpcTheDecoder logged out'),
+(3693, 8, '2024-12-03 14:52:02', 1, 'User root logged in successfully.'),
+(3694, 8, '2024-12-03 14:52:02', 1, 'User root\'s theme preference successfully retrieved.'),
+(3695, 8, '2024-12-03 14:52:09', 1, 'User root successfully updated the theme to light.'),
+(3696, 8, '2024-12-03 14:52:11', 1, 'User root successfully updated the theme to dark.'),
+(3697, 8, '2024-12-03 14:52:29', 1, 'User ID 8 successfully reset their password.'),
+(3698, 8, '2024-12-03 15:00:20', 1, 'Profile updated successfully for user root.'),
+(3699, 8, '2024-12-03 15:00:26', 1, 'Profile updated successfully for user root.'),
+(3700, 8, '2024-12-03 15:00:31', 1, 'Fetched user logs for user log table successfully. User ID: 2, Admin User ID: 8'),
+(3701, 8, '2024-12-03 15:00:31', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3702, 8, '2024-12-04 05:57:43', 1, 'User root logged out'),
+(3703, 2, '2024-12-04 05:58:32', 1, 'User JpcTheDecoder logged in successfully.'),
+(3704, 2, '2024-12-04 05:58:32', 1, 'User JpcTheDecoder\'s theme preference successfully retrieved.'),
+(3705, 2, '2024-12-04 05:58:32', 1, 'Dashboard data fetched for JpcTheDecoder. Dashboard ID: 1'),
+(3706, 2, '2024-12-04 05:58:37', 1, 'User JpcTheDecoder successfully updated the theme to default.'),
+(3707, 2, '2024-12-04 05:58:38', 1, 'Fetched distinct years for category filters successfully for JpcTheDecoder.'),
+(3708, 2, '2024-12-04 05:58:39', 1, 'Fetched expenses for expense table successfully for JpcTheDecoder.'),
+(3709, 2, '2024-12-04 05:58:39', 1, 'Fetched categories from category table for deposit filters and CRUD options successfully for JpcTheDecoder.'),
+(3710, 2, '2024-12-04 05:58:39', 1, 'Fetched distinct years for expense filters successfully for JpcTheDecoder.'),
+(3711, 2, '2024-12-04 05:58:41', 1, 'Fetched deposits for deposit table successfully for JpcTheDecoder.'),
+(3712, 2, '2024-12-04 05:58:41', 1, 'Fetched categories from category table for deposit filters and CRUD options successfully for JpcTheDecoder.'),
+(3713, 2, '2024-12-04 05:58:41', 1, 'Fetched distinct years for deposit filters successfully for JpcTheDecoder.'),
+(3714, 2, '2024-12-04 05:59:07', 1, 'Fetched deposits for report table successfully for JpcTheDecoder.'),
+(3715, 2, '2024-12-04 05:59:07', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3716, 2, '2024-12-04 05:59:07', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3717, 2, '2024-12-04 05:59:07', 1, 'Fetched expenses for report table successfully for JpcTheDecoder.'),
+(3718, 2, '2024-12-04 05:59:07', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3719, 2, '2024-12-04 05:59:07', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3720, 2, '2024-12-04 06:00:50', 1, 'Fetched deposits for report table successfully for JpcTheDecoder.'),
+(3721, 2, '2024-12-04 06:00:50', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3722, 2, '2024-12-04 06:00:50', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3723, 2, '2024-12-04 06:00:50', 1, 'Fetched expenses for report table successfully for JpcTheDecoder.'),
+(3724, 2, '2024-12-04 06:00:50', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3725, 2, '2024-12-04 06:00:50', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3726, 2, '2024-12-04 06:04:34', 1, 'Fetched deposits for report table successfully for JpcTheDecoder.'),
+(3727, 2, '2024-12-04 06:04:34', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3728, 2, '2024-12-04 06:04:34', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3729, 2, '2024-12-04 06:04:34', 1, 'Fetched expenses for report table successfully for JpcTheDecoder.'),
+(3730, 2, '2024-12-04 06:04:34', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3731, 2, '2024-12-04 06:04:34', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3732, 2, '2024-12-04 06:05:28', 1, 'Fetched deposits for report table successfully for JpcTheDecoder.'),
+(3733, 2, '2024-12-04 06:05:28', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3734, 2, '2024-12-04 06:05:28', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3735, 2, '2024-12-04 06:05:28', 1, 'Fetched expenses for report table successfully for JpcTheDecoder.'),
+(3736, 2, '2024-12-04 06:05:28', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3737, 2, '2024-12-04 06:05:28', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3738, 2, '2024-12-04 06:06:07', 1, 'Fetched deposits for report table successfully for JpcTheDecoder.'),
+(3739, 2, '2024-12-04 06:06:07', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3740, 2, '2024-12-04 06:06:08', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3741, 2, '2024-12-04 06:06:08', 1, 'Fetched expenses for report table successfully for JpcTheDecoder.'),
+(3742, 2, '2024-12-04 06:06:08', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3743, 2, '2024-12-04 06:06:08', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3744, 2, '2024-12-04 06:06:19', 1, 'Fetched deposits for report table successfully for JpcTheDecoder.'),
+(3745, 2, '2024-12-04 06:06:19', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3746, 2, '2024-12-04 06:06:19', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3747, 2, '2024-12-04 06:06:19', 1, 'Fetched expenses for report table successfully for JpcTheDecoder.'),
+(3748, 2, '2024-12-04 06:06:19', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3749, 2, '2024-12-04 06:06:19', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3750, 2, '2024-12-04 06:06:55', 1, 'Fetched expenses for report table successfully for JpcTheDecoder.'),
+(3751, 2, '2024-12-04 06:06:55', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3752, 2, '2024-12-04 06:06:55', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3753, 2, '2024-12-04 06:06:55', 1, 'Fetched deposits for report table successfully for JpcTheDecoder.'),
+(3754, 2, '2024-12-04 06:06:55', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3755, 2, '2024-12-04 06:06:55', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3756, 2, '2024-12-04 06:08:48', 1, 'Fetched deposits for report table successfully for JpcTheDecoder.'),
+(3757, 2, '2024-12-04 06:08:48', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3758, 2, '2024-12-04 06:08:48', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3759, 2, '2024-12-04 06:08:48', 1, 'Fetched expenses for report table successfully for JpcTheDecoder.'),
+(3760, 2, '2024-12-04 06:08:48', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3761, 2, '2024-12-04 06:08:48', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3762, 2, '2024-12-04 06:10:39', 1, 'Fetched expenses for report table successfully for JpcTheDecoder.'),
+(3763, 2, '2024-12-04 06:10:39', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3764, 2, '2024-12-04 06:10:39', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3765, 2, '2024-12-04 06:10:39', 1, 'Fetched deposits for report table successfully for JpcTheDecoder.'),
+(3766, 2, '2024-12-04 06:10:39', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3767, 2, '2024-12-04 06:10:39', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3768, 2, '2024-12-04 06:11:05', 1, 'Fetched deposits for report table successfully for JpcTheDecoder.'),
+(3769, 2, '2024-12-04 06:11:05', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3770, 2, '2024-12-04 06:11:05', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3771, 2, '2024-12-04 06:11:05', 1, 'Fetched expenses for report table successfully for JpcTheDecoder.'),
+(3772, 2, '2024-12-04 06:11:05', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3773, 2, '2024-12-04 06:11:05', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3774, 2, '2024-12-04 06:12:02', 1, 'Fetched expenses for report table successfully for JpcTheDecoder.'),
+(3775, 2, '2024-12-04 06:12:02', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3776, 2, '2024-12-04 06:12:02', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3777, 2, '2024-12-04 06:12:02', 1, 'Fetched deposits for report table successfully for JpcTheDecoder.'),
+(3778, 2, '2024-12-04 06:12:02', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3779, 2, '2024-12-04 06:12:02', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3780, 2, '2024-12-04 06:12:20', 1, 'User JpcTheDecoder logged out'),
+(3781, 8, '2024-12-04 06:12:35', 1, 'User root logged in successfully.'),
+(3782, 8, '2024-12-04 06:12:35', 1, 'User root\'s theme preference successfully retrieved.'),
+(3783, 8, '2024-12-04 06:12:49', 1, 'User root successfully updated the theme to default.'),
+(3784, 8, '2024-12-04 06:13:40', 1, 'User fumacehegi registered successfully.'),
+(3785, 8, '2024-12-04 06:13:40', 1, 'Security questions for user fumacehegi inserted successfully. Question ID: 43'),
+(3786, 8, '2024-12-04 06:13:40', 1, 'Successfully updated question_id with value 43 for user fumacehegi.'),
+(3787, 8, '2024-12-04 06:13:40', 1, 'Default settings for fumacehegi inserted successfully. Setting ID: 38'),
+(3788, 8, '2024-12-04 06:13:40', 1, 'Default dashboard for user fumacehegi inserted successfully. Dashboard ID: 42'),
+(3789, 8, '2024-12-04 06:13:41', 1, 'Successfully updated settings_id with value 38 for user fumacehegi.'),
+(3790, 8, '2024-12-04 06:13:41', 1, 'Successfully updated dashboard_id with value 42 for user fumacehegi.'),
+(3792, 8, '2024-12-04 06:14:11', 1, 'Fetched user logs for user log table successfully. User ID: 31, Admin User ID: 8'),
+(3793, 8, '2024-12-04 06:14:11', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3794, 8, '2024-12-04 06:14:26', 1, 'Fetched user logs for user log table successfully. User ID: 31, Admin User ID: 8'),
+(3795, 8, '2024-12-04 06:14:26', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3796, 8, '2024-12-04 06:14:36', 1, 'Fetched user logs for user log table successfully. User ID: 31, Admin User ID: 8'),
+(3797, 8, '2024-12-04 06:14:36', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3798, 8, '2024-12-04 06:15:08', 1, 'Fetched user logs for user log table successfully. User ID: 31, Admin User ID: 8'),
+(3799, 8, '2024-12-04 06:15:08', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3800, 8, '2024-12-04 06:15:40', 1, 'Username updated from root to fumaceh User ID: 31,. Profile updated successfully by Admin ID: 8.'),
+(3801, 8, '2024-12-04 06:15:45', 1, 'Fetched user logs for user log table successfully. User ID: 31, Admin User ID: 8'),
+(3802, 8, '2024-12-04 06:15:45', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3803, 8, '2024-12-04 06:17:34', 1, 'Fetched user logs for user log table successfully. User ID: 2, Admin User ID: 8'),
+(3804, 8, '2024-12-04 06:17:34', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3805, 8, '2024-12-04 06:18:58', 1, 'Fetched user logs for user log table successfully. User ID: 2, Admin User ID: 8'),
+(3806, 8, '2024-12-04 06:18:58', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3807, 8, '2024-12-04 06:19:55', 1, 'Fetched user logs for user log table successfully. User ID: 2, Admin User ID: 8'),
+(3808, 8, '2024-12-04 06:19:55', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3809, 8, '2024-12-04 06:20:13', 1, 'Fetched user logs for user log table successfully. User ID: 2, Admin User ID: 8'),
+(3810, 8, '2024-12-04 06:20:13', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3811, 8, '2024-12-04 06:21:12', 1, 'Fetched user logs for user log table successfully. User ID: 2, Admin User ID: 8'),
+(3812, 8, '2024-12-04 06:21:12', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3813, 8, '2024-12-04 06:22:48', 1, 'Fetched user logs for user log table successfully. User ID: 2, Admin User ID: 8'),
+(3814, 8, '2024-12-04 06:22:48', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3815, 8, '2024-12-04 06:23:36', 1, 'Fetched user logs for user log table successfully. User ID: 2, Admin User ID: 8'),
+(3816, 8, '2024-12-04 06:23:36', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3817, 8, '2024-12-04 06:23:52', 1, 'Fetched user logs for user log table successfully. User ID: 31, Admin User ID: 8'),
+(3818, 8, '2024-12-04 06:23:52', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3819, 8, '2024-12-04 06:26:01', 1, 'User fumaceh logged out'),
+(3820, 2, '2024-12-04 06:30:32', 1, 'User JpcTheDecoder logged in successfully.'),
+(3821, 2, '2024-12-04 06:30:32', 1, 'User JpcTheDecoder\'s theme preference successfully retrieved.'),
+(3822, 2, '2024-12-04 06:30:32', 1, 'Dashboard data fetched for JpcTheDecoder. Dashboard ID: 1'),
+(3823, 2, '2024-12-04 06:30:37', 1, 'Fetched deposits for report table successfully for JpcTheDecoder.'),
+(3824, 2, '2024-12-04 06:30:37', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3825, 2, '2024-12-04 06:30:37', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3826, 2, '2024-12-04 06:30:37', 1, 'Fetched expenses for report table successfully for JpcTheDecoder.'),
+(3827, 2, '2024-12-04 06:30:37', 1, 'Fetched distinct categories for report filters successfully for JpcTheDecoder.'),
+(3828, 2, '2024-12-04 06:30:37', 1, 'Fetched distinct years for report filters successfully for JpcTheDecoder.'),
+(3829, 2, '2024-12-04 07:02:19', 1, 'User JpcTheDecoder logged out'),
+(3830, 8, '2024-12-04 07:02:29', 1, 'User root logged in successfully.'),
+(3831, 8, '2024-12-04 07:02:29', 1, 'User root\'s theme preference successfully retrieved.'),
+(3832, 8, '2024-12-04 07:03:57', 1, 'Fetched user logs for user log table successfully. User ID: 2, Admin User ID: 8'),
+(3833, 8, '2024-12-04 07:03:57', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3834, 8, '2024-12-04 07:06:01', 1, 'Fetched user logs for user log table successfully. User ID: 28, Admin User ID: 8'),
+(3835, 8, '2024-12-04 07:06:01', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3836, 8, '2024-12-04 07:07:00', 1, 'Username updated from root to bohaxy User ID: 28,. Profile updated successfully by Admin ID: 8.'),
+(3837, 8, '2024-12-04 07:07:28', 1, 'User mukusisona registered successfully.'),
+(3838, 8, '2024-12-04 07:07:28', 1, 'Security questions for user mukusisona inserted successfully. Question ID: 44'),
+(3839, 8, '2024-12-04 07:07:28', 1, 'Successfully updated question_id with value 44 for user mukusisona.'),
+(3840, 8, '2024-12-04 07:07:28', 1, 'Default settings for mukusisona inserted successfully. Setting ID: 39'),
+(3841, 8, '2024-12-04 07:07:28', 1, 'Default dashboard for user mukusisona inserted successfully. Dashboard ID: 43'),
+(3842, 8, '2024-12-04 07:07:28', 1, 'Successfully updated settings_id with value 39 for user mukusisona.'),
+(3843, 8, '2024-12-04 07:07:28', 1, 'Successfully updated dashboard_id with value 43 for user mukusisona.'),
+(3845, 8, '2024-12-04 07:07:39', 1, 'Fetched user logs for user log table successfully. User ID: 28, Admin User ID: 8'),
+(3846, 8, '2024-12-04 07:07:39', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3847, 8, '2024-12-04 07:08:10', 1, 'Fetched user logs for user log table successfully. User ID: 32, Admin User ID: 8'),
+(3848, 8, '2024-12-04 07:08:10', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8');
+INSERT INTO `logs` (`id`, `user_id`, `created_at`, `status`, `description`) VALUES
+(3849, 2, '2024-12-04 07:09:28', 1, 'User JpcTheDecoder logged in successfully.'),
+(3850, 2, '2024-12-04 07:09:28', 1, 'User JpcTheDecoder\'s theme preference successfully retrieved.'),
+(3851, 2, '2024-12-04 07:09:28', 1, 'Dashboard data fetched for JpcTheDecoder. Dashboard ID: 1'),
+(3852, 2, '2024-12-04 07:10:02', 1, 'Username updated from JpcTheDecoder to JpcTheDecode. Profile updated successfully.'),
+(3853, 2, '2024-12-04 07:10:02', 1, 'Dashboard data fetched for JpcTheDecode. Dashboard ID: 1'),
+(3854, 2, '2024-12-04 07:10:13', 1, 'Username updated from JpcTheDecode to JpcTheDecoder. Profile updated successfully.'),
+(3855, 2, '2024-12-04 07:10:13', 1, 'Dashboard data fetched for JpcTheDecoder. Dashboard ID: 1'),
+(3856, 8, '2024-12-04 07:10:22', 1, 'Fetched user logs for user log table successfully. User ID: 2, Admin User ID: 8'),
+(3857, 8, '2024-12-04 07:10:22', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3858, 8, '2024-12-04 07:11:39', 1, 'Fetched user logs for user log table successfully. User ID: 2, Admin User ID: 8'),
+(3859, 8, '2024-12-04 07:11:39', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3860, 2, '2024-12-04 07:12:22', 1, 'Profile updated successfully for user JpcTheDecoder.'),
+(3861, 2, '2024-12-04 07:12:22', 1, 'Dashboard data fetched for JpcTheDecoder. Dashboard ID: 1'),
+(3862, 2, '2024-12-04 07:12:41', 1, 'Profile updated successfully for user JpcTheDecoder.'),
+(3863, 2, '2024-12-04 07:12:41', 1, 'Dashboard data fetched for JpcTheDecoder. Dashboard ID: 1'),
+(3864, 2, '2024-12-04 07:12:49', 1, 'User JpcTheDecoder logged out'),
+(3865, 2, '2024-12-04 07:23:14', 1, 'User JpcTheDecoder logged in successfully.'),
+(3866, 2, '2024-12-04 07:23:14', 1, 'User JpcTheDecoder\'s theme preference successfully retrieved.'),
+(3867, 2, '2024-12-04 07:23:14', 1, 'Dashboard data fetched for JpcTheDecoder. Dashboard ID: 1'),
+(3868, 2, '2024-12-04 07:23:31', 1, 'User JpcTheDecoder logged out'),
+(3869, 8, '2024-12-04 07:34:30', 1, 'Fetched user logs for user log table successfully. User ID: 2, Admin User ID: 8'),
+(3870, 8, '2024-12-04 07:34:30', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3871, 8, '2024-12-04 07:46:23', 1, 'Fetched user logs for user log table successfully. User ID: 2, Admin User ID: 8'),
+(3872, 8, '2024-12-04 07:46:23', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8'),
+(3873, 8, '2024-12-04 07:51:01', 1, 'Fetched user logs for user log table successfully. User ID: 2, Admin User ID: 8'),
+(3874, 8, '2024-12-04 07:51:01', 1, 'Fetched distinct years for user logs filters filters successfully. Admin User ID: 8');
 
 -- --------------------------------------------------------
 
@@ -3691,7 +3946,6 @@ INSERT INTO `security_q` (`id`, `user_id`, `q1`, `q1_answer`, `q2`, `q2_answer`,
 (17, 19, 'Fkfkfkf', 'Fkfkrkr', 'Fkfkddk', 'Dkrkfkf', 'Dkffkkf', 'Rkdkgkbk'),
 (18, 20, 'Roogohkb', 'Kvlfkgovoc', 'Oggovovkv', 'Ogovovkv', 'Oflvkvkv', 'Ogovov'),
 (38, 26, 'Quasi dolore accusam', 'Sequi voluptas digni', 'Cupidatat perspiciat', 'Similique officia ra', 'Animi velit dolor t', 'Numquam necessitatib'),
-(39, 27, 'Voluptate omnis ipsu', 'Qui provident omnis', 'Nulla omnis praesent', 'Qui exercitationem a', 'Magni odit quas corr', 'Accusamus deserunt o'),
 (40, 28, 'Quia suscipit minus', 'Recusandae Ullamco', 'Adipisci reprehender', 'Est omnis anim quas', 'Magnam ipsum repudia', 'Natus consequatur D');
 
 -- --------------------------------------------------------
@@ -3723,10 +3977,9 @@ INSERT INTO `settings` (`id`, `user_id`, `theme`) VALUES
 (10, 19, 'default'),
 (11, 20, 'default'),
 (31, 26, 'default'),
-(32, 27, 'default'),
 (33, 28, 'default'),
 (34, 8, 'default'),
-(35, 2, 'light');
+(35, 2, 'default');
 
 -- --------------------------------------------------------
 
@@ -3755,11 +4008,11 @@ CREATE TABLE `user_accounts` (
 --
 
 INSERT INTO `user_accounts` (`id`, `fullname`, `username`, `email`, `profile_pic`, `password`, `created_at`, `updated_at`, `question_id`, `settings_id`, `dashboard_id`, `is_admin`, `is_login`) VALUES
-(2, 'John Paul Bongcales Cadavez', 'JpcTheDecoder', 'jpcyoyoyo123@gmail.com', 'profile_pic/674cc1cdd58c4_Picture1.jpg', '$2y$10$5VNov1moK3dRPFQAHptV7OXWejGA/KcQ6negisiixIMznkFpG9BtK', '2024-10-23 01:16:17', '2024-12-03 07:16:07', 2, 35, 1, 0, 0),
+(2, 'John Paul Bongcales Cadavez', 'JpcTheDecoder', 'jpcyoyoyo123@gmail.com', 'profile_pic/674cc1cdd58c4_Picture1.jpg', '$2y$10$qc4XE2Hv9yV6iIHDUhcjQe8ZlSQGoHfc8hUA6FAE7Fcxk5xUjzRNq', '2024-10-23 01:16:17', '2024-12-04 07:23:31', 2, 35, 1, 0, 0),
 (4, 'John Paul Cadavez', 'minecraft123', 'jpcyoyoyo@gmail.com', 'profile_pic/profile_default.svg', '$2y$10$syJVbXgdbeoWZKUFxHC.oem/jVOX/ScaMj1nwStiXmJWTkML/57Lm', '2024-10-28 08:49:33', '2024-10-28 08:49:44', 3, NULL, 2, 0, 0),
 (5, 'Stefanie Relos', 'Steff', 'steffanierelos@gmail.com', 'profile_pic/profile_default.svg', '$2y$10$1MwoYUHEX9UUYu.EvqGe6uxx9SaJuH7uEHv7h4irtgPVaXDZ8e8iy', '2024-11-06 09:59:54', '2024-11-06 10:00:26', 4, NULL, 3, 0, 0),
 (7, 'Ariana Dixon', 'nicemici', 'woqyg@mailinator.com', 'profile_pic/profile_default.svg', '$2y$10$xFj2K3MjAKy2ycQdRhmlXu3DnGqpy7La7ZWClvvvV/7cVz0NtYH5a', '2024-11-24 13:08:51', '2024-11-24 13:11:50', 5, NULL, 4, 0, 0),
-(8, 'SuperAdmin', 'root', 'qyxogepufo@mailinator.com', 'profile_pic/profile_default.svg', '$2y$10$tmstkd0./28hdQwfWjLnJ..Ma1RK3uE4.2voBX//Dw4cx4MqYm/tC', '2024-11-24 13:11:22', '2024-12-03 07:16:18', 7, 34, 6, 1, 1),
+(8, 'SuperAdmin', 'root', 'qyxogepufo@mailinator.com', 'profile_pic/profile_default.svg', '$2y$10$iYp63l3YQJyZIvPwjRcGPuqSmclhrqYboRxcHBX4PkZf3PbB94FNm', '2024-11-24 13:11:22', '2024-12-04 07:02:29', 7, 34, 6, 1, 1),
 (9, 'Vivien Lloyd', 'vekyhunasu', 'vevew@mailinator.com', 'profile_pic/profile_default.svg', '$2y$10$81zatNMMSCc4AkKy1rmTP.9E3V84SWs4Qlqe9/RN9t297BL7ZECsO', '2024-11-24 13:41:21', '2024-11-24 13:41:21', NULL, NULL, NULL, 0, 0),
 (10, 'Bradley Wagner', 'sifaruhab', 'ruluhu@mailinator.com', 'profile_pic/profile_default.svg', '$2y$10$IESDDGyf.f1X/imqOOdBWOrZ20Nf44609L/gmWQPr/o/yN9cC2PtC', '2024-11-24 14:06:29', '2024-11-24 14:27:45', 8, 1, 7, 0, 0),
 (11, 'Fiona Allison', 'hasuwasow', 'vygygetas@mailinator.com', 'profile_pic/profile_default.svg', '$2y$10$f02CtXUw86xvL4AEv6TZseqhAbe87DExLDucxfh/SkdgdPrqB0SLG', '2024-11-24 14:17:15', '2024-11-24 14:27:49', 9, 2, 8, 0, 0),
@@ -3771,8 +4024,7 @@ INSERT INTO `user_accounts` (`id`, `fullname`, `username`, `email`, `profile_pic
 (19, 'Romel Miro', 'Mel', 'romel@gmail.com', 'profile_pic/profile_default.svg', '$2y$10$DdhGxm6Bn1i8MOr2MB/mnenAMI/m5JXU/PnqvGOoUY0mYzSv9p2H2', '2024-11-26 05:59:06', '2024-11-26 06:11:14', 17, 10, 16, 0, 0),
 (20, 'Kyle Hoag', 'Kyle', 'kyle@gmail.com', 'profile_pic/profile_default.svg', '$2y$10$BrD0GndP.tSQFy2ieJ4iaugIrtzx8dquOgVeDpEaILV4zZPU/THAG', '2024-11-26 06:03:44', '2024-11-26 06:11:17', 18, 11, 17, 0, 0),
 (26, 'Jamal Copeland', 'xeguwumy', 'pykicy@mailinator.com', 'profile_pic/profile_default.svg', '$2y$10$zfH2V2Oq1Q4Zp0XjYbzkDu6SfuJBw9QZge4vAokB1pdBm0e7m6aQ.', '2024-11-28 05:47:11', '2024-11-28 05:47:14', 38, 31, 37, 0, 0),
-(27, 'Astra Evans', 'fydot', 'pynel@mailinator.com', 'profile_pic/profile_default.svg', '$2y$10$W/RmwVYJe6g90nYc352zXewL72yvkMNfgB/JMNNtk7Wp6znRqCuFi', '2024-12-02 10:37:44', '2024-12-02 10:45:34', 39, 32, 38, 0, 0),
-(28, 'Neil Serrano', 'bohaxyl', 'bebyxugyv@mailinator.com', 'profile_pic/674d91c50cad0_Edited Photo.jpg', '$2y$10$oDFbEuCizIS2d550tp.XNO5Ofv.MNWkuHh7ex3h3kQyKO1uYXlnHi', '2024-12-02 10:53:57', '2024-12-02 10:53:57', 40, 33, 39, 0, 0);
+(28, 'Neil Serran', 'bohaxy', 'ebyxugyv@mailinator.com', 'profile_pic/674fff94785a4_Edited Photo.jpg', '$2y$10$oDFbEuCizIS2d550tp.XNO5Ofv.MNWkuHh7ex3h3kQyKO1uYXlnHi', '2024-12-02 10:53:57', '2024-12-04 07:07:00', 40, 33, 39, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -3852,7 +4104,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `dashboard`
 --
 ALTER TABLE `dashboard`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `deposit`
@@ -3870,25 +4122,25 @@ ALTER TABLE `expense`
 -- AUTO_INCREMENT for table `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3618;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3875;
 
 --
 -- AUTO_INCREMENT for table `security_q`
 --
 ALTER TABLE `security_q`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `user_accounts`
 --
 ALTER TABLE `user_accounts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Constraints for dumped tables

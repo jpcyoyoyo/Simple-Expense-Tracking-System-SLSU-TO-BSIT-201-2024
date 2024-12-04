@@ -130,7 +130,7 @@ function viewRow(button) {
 }
 
 function previewProfilePic(event) {
-    const profilePic = document.querySelector('.profile-pic-container img');
+    const profilePic = document.getElementById('edit-user-profile-pic');
     const file = event.target.files[0];
 
     if (file) {
@@ -375,7 +375,7 @@ function fetchAndUpdateUserDetails(userId) {
     }
 
     userDetailsUpdateInterval = setInterval(() => {
-        fetch('backend/php/main_app_conent_admin/user_accounts/get_user_details.php', {
+        fetch('backend/php/main_app_content_admin/user_accounts/get_user_details.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -385,22 +385,22 @@ function fetchAndUpdateUserDetails(userId) {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                const is_login = data.is_login;
-                const statusClass = is_login === "1" ? 'status-online' : 'status-offline'; // Assign class based on login status
-                const statusText = is_login === "1" ? 'Online' : 'Offline'; // Text for login status
+                const is_login = data.data.is_login;
+                const statusClass = is_login === 1 ? 'status-online' : 'status-offline'; // Assign class based on login status
+                const statusText = is_login === 1 ? 'Online' : 'Offline'; // Text for login status
 
                 // Populate modal fields
-                document.getElementById('view-user-fullname').innerText = data.fullname;
-                document.getElementById('view-user-username').innerText = data.username;
-                document.getElementById('view-user-email').innerText = data.email;
-                document.getElementById('view-user-created_at').innerText = data.created_at;
-                document.getElementById('view-user-updated_at').innerText = data.updated_at;
+                document.getElementById('view-user-fullname').innerText = data.data.fullname;
+                document.getElementById('view-user-username').innerText = data.data.username;
+                document.getElementById('view-user-email').innerText = data.data.email;
+                document.getElementById('view-user-created_at').innerText = data.data.created_at;
+                document.getElementById('view-user-updated_at').innerText = data.data.updated_at;
                 document.getElementById('view-user-is_login').innerText = statusText;
                 document.getElementById('view-user-is_login').className = `h1 status-indicator ${statusClass}`;
                 
                 const profilePicElement = document.getElementById('view-user-profile-pic');
-                if (profilePicElement.src !== data.profile_pic) {
-                    profilePicElement.src = data.profile_pic;
+                if (profilePicElement.src !== data.data.profile_pic) {
+                    profilePicElement.src = data.data.profile_pic;
                 }
             } else {
                 console.error('Failed to fetch user detail: ', data.message);

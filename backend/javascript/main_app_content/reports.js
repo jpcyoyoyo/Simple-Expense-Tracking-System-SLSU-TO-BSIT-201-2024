@@ -259,7 +259,7 @@ function applyFilter(filterType, reportType) {
     let visibleRowIndex = 1; // Counter for visible row numbering
 
     rows.forEach(row => {
-        if (row.id === 'no-records-row') {
+        if (row.id === `no-records-row-${reportType}`) {
             return;
         }
 
@@ -270,7 +270,7 @@ function applyFilter(filterType, reportType) {
 
         // Select the amount cell, which is the second to last cell in the row
         const amountCell = row.querySelector(`td:nth-last-child(5)`); // Assumes the amount is the second to last cell
-
+        
         let showRow = true;
 
         // Check if amountCell exists
@@ -301,9 +301,7 @@ function applyFilter(filterType, reportType) {
         // Show or hide the row based on filter criteria
         if (showRow) {
             row.style.display = ''; // Show the row
-            if (!row.id === 'no-records-row') {
-                row.querySelector('td:first-child').textContent = visibleRowIndex++; // Update row number
-            }   
+            row.querySelector('td:first-child').textContent = `${visibleRowIndex++}.`; // Update row number
             totalAmount += amount; // Only add to total if the row is visible
             visibleRowCount++; // Increment visible row count
         } else {

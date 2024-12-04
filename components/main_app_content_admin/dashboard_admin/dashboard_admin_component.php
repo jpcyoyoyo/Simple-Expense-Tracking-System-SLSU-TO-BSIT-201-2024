@@ -4,24 +4,44 @@
 
 
 <div class="app_body">
-    <div class="card-container row">
-        <div class="card col-lg-4 mb-3" style="margin-bottom: 0 !important;" onclick="window.location.href='#'">
-            <div class="card-header container-fluid">
-                <h3>All Accounts</h3>
+    <div class="dashboard-container">
+        <div class="card-container row">
+            <div class="card col-lg-4 mb-3" style="margin-bottom: 0 !important;" onclick="window.location.href='#'">
+                <div class="card-header container-fluid">
+                    <h3>All Accounts</h3>
+                </div>
+                <h1>0</h1>
             </div>
-            <h1>0</h1>
-        </div>
-        <div class="card col-lg-4 mb-3" style="margin-bottom: 0 !important;" onclick="window.location.href='#'">
-            <div class="card-header container-fluid">
-                <h3>Active Users</h3>
+            <div class="card col-lg-4 mb-3" style="margin-bottom: 0 !important;" onclick="window.location.href='#'">
+                <div class="card-header container-fluid">
+                    <h3>Active Users</h3>
+                </div>
+                <h1>0</h1>
             </div>
-            <h1>0</h1>
-        </div>
-        <div class="card col-lg-4 mb-3" style="margin-bottom: 0 !important;" onclick="window.location.href='#'">
-            <div class="card-header container-fluid">
-                <h3>Log Records</h3>
+            <div class="card col-lg-4 mb-3" style="margin-bottom: 0 !important;" onclick="window.location.href='#'">
+                <div class="card-header container-fluid">
+                    <h3>Log Records</h3>
+                </div>
+                <h1>0</h1>
             </div>
-            <h1>0</h1>
+            <div class="card col-lg-4 mb-3" style="margin-bottom: 0 !important;" onclick="window.location.href='#'">
+                <div class="card-header container-fluid">
+                    <h3>Deposit Records</h3>
+                </div>
+                <h1>0</h1>
+            </div>
+            <div class="card col-lg-4 mb-3" style="margin-bottom: 0 !important;" onclick="window.location.href='#'">
+                <div class="card-header container-fluid">
+                    <h3>Expense Records</h3>
+                </div>
+                <h1>0</h1>
+            </div>
+            <div class="card col-lg-4 mb-3" style="margin-bottom: 0 !important;" onclick="window.location.href='#'">
+                <div class="card-header container-fluid">
+                    <h3>Category Records</h3>
+                </div>
+                <h1>0</h1>
+            </div>
         </div>
     </div>
 </div>
