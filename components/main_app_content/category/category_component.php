@@ -25,9 +25,9 @@
                         Filters
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="filterDropdown">
-                        <li><a class="dropdown-item" href="#filter-all" onclick="toggleFilterOptions('all', 'category')">All</a></li>
-                        <li><a class="dropdown-item" href="#filter-month" onclick="toggleFilterOptions('month', 'category')">Month</a></li>
-                        <li><a class="dropdown-item" href="#filter-date-range" onclick="toggleFilterOptions('dateRange', 'category')">Date Range</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="toggleFilterOptions('all', 'category')">All</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="toggleFilterOptions('month', 'category')">Month</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="toggleFilterOptions('dateRange', 'category')">Date Range</a></li>
                     </ul>
                 </div>
 

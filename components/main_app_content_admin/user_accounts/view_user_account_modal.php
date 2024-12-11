@@ -111,9 +111,9 @@
                             Filters
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="filterDropdown">
-                            <li><a class="dropdown-item" href="#user-logs-filter-all" onclick="toggleFilterOptions('all', 'user-logs')">All</a></li>
-                            <li><a class="dropdown-item" href="#user-logs-filter-month" onclick="toggleFilterOptions('month', 'user-logs')">Month</a></li>
-                            <li><a class="dropdown-item" href="#user-logs-filter-date-range" onclick="toggleFilterOptions('dateRange', 'user-logs')">Date Range</a></li>
+                            <li><a class="dropdown-item" href="" onclick="toggleFilterOptions('all', 'user-logs')">All</a></li>
+                            <li><a class="dropdown-item" href="" onclick="toggleFilterOptions('month', 'user-logs')">Month</a></li>
+                            <li><a class="dropdown-item" href="" onclick="toggleFilterOptions('dateRange', 'user-logs')">Date Range</a></li>
                         </ul>
                     </div>
 

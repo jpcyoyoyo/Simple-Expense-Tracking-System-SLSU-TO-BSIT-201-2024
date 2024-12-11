@@ -9,10 +9,10 @@
                         Filters
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="filterDropdown">
-                        <li><a class="dropdown-item" href="#filter-all" onclick="toggleFilterOptions('all', 'deposit')">All</a></li>
-                        <li><a class="dropdown-item" href="#filter-month" onclick="toggleFilterOptions('month', 'deposit')">Month</a></li>
-                        <li><a class="dropdown-item" href="#filter-category" onclick="toggleFilterOptions('category', 'deposit')">Category</a></li>
-                        <li><a class="dropdown-item" href="#filter-date-range" onclick="toggleFilterOptions('dateRange', 'deposit')">Date Range</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="toggleFilterOptions('all', 'deposit')">All</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="toggleFilterOptions('month', 'deposit')">Month</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="toggleFilterOptions('category', 'deposit')">Category</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="toggleFilterOptions('dateRange', 'deposit')">Date Range</a></li>
                     </ul>
                 </div>
                 <div style="margin-right: 10px; width: 1px; height: 24px; border-width: 1px; border-color: #43B6D6FF; border-style: solid;"></div>

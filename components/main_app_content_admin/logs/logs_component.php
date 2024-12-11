@@ -22,9 +22,9 @@
                         Filters
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="filterDropdown">
-                        <li><a class="dropdown-item" href="#filter-all" onclick="toggleFilterOptions('all', 'logs')">All</a></li>
-                        <li><a class="dropdown-item" href="#filter-month" onclick="toggleFilterOptions('month', 'logs')">Month</a></li>
-                        <li><a class="dropdown-item" href="#filter-date-range" onclick="toggleFilterOptions('dateRange', 'logs')">Date Range</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="toggleFilterOptions('all', 'logs')">All</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="toggleFilterOptions('month', 'logs')">Month</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="toggleFilterOptions('dateRange', 'logs')">Date Range</a></li>
                     </ul>
                 </div>
 

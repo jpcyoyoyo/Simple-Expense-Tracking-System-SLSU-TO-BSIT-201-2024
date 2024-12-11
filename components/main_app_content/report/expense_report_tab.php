@@ -9,10 +9,10 @@
                         Filters
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="filterDropdown">
-                        <li><a class="dropdown-item" href="#filter-all" onclick="toggleFilterOptions('all', 'expense')">All</a></li>
-                        <li><a class="dropdown-item" href="#filter-month" onclick="toggleFilterOptions('month', 'expense')">Month</a></li>
-                        <li><a class="dropdown-item" href="#filter-category" onclick="toggleFilterOptions('category', 'expense')">Category</a></li>
-                        <li><a class="dropdown-item" href="#filter-date-range" onclick="toggleFilterOptions('dateRange', 'expense')">Date Range</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="toggleFilterOptions('all', 'expense')">All</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="toggleFilterOptions('month', 'expense')">Month</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="toggleFilterOptions('category', 'expense')">Category</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="toggleFilterOptions('dateRange', 'expense')">Date Range</a></li>
                     </ul>
                 </div>
                 <div style="margin-right: 10px; width: 1px; height: 24px; border-width: 1px; border-color: #43B6D6FF; border-style: solid;"></div>
