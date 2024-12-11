@@ -332,7 +332,7 @@
 }
 
 .tab-content {
-    height: calc(100% - 60px);
+    height: calc(100% - 150px);
     width: 100%;
 }
 

@@ -33,7 +33,7 @@
 
     $deposits = [];
     while ($row = $result->fetch_assoc()) {
-        $row['month'] = date('F', strtotime($row['date'])); // Full month name (e.g., January)
+        $row['month'] = date('F', strtotime(datetime: $row['date'])); // Full month name (e.g., January)
         $row['year'] = date('Y', strtotime($row['date']));  // Year (e.g., 2023)
         $deposits[] = $row;
     }

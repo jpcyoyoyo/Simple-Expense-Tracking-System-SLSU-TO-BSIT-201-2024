@@ -89,7 +89,7 @@ $stmt->bind_param("ssssi", $fullname, $new_username, $email, $newProfilePicPath,
 if ($stmt->execute()) {
     // Update session data
 
-    if ($new_username === $username) {
+    if ($new_username !== $username) {
         createLog($conn, $admin_user_id, "Profile updated successfully to user {$username} User ID: $user_id by Admin ID: $admin_user_id.", 1);
     } else {
         createLog($conn, $admin_user_id, "Username updated from {$username} to {$new_username} User ID: $user_id,. Profile updated successfully by Admin ID: $admin_user_id.", 1);

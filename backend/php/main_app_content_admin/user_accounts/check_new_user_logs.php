@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $stmt = $conn->prepare("SELECT id, created_at, description, status FROM logs WHERE created_at > ? AND user_id = ? ORDER BY created_at ASC");
+    $stmt = $conn->prepare("SELECT id, created_at, description, status FROM logs WHERE created_at > ? AND  user_id = ? ORDER BY created_at ASC");
 
     if ($stmt) {
         $stmt->bind_param("si", $lastLogTime, $user_id);

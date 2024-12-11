@@ -34,6 +34,7 @@
         </div>
 
         <div class="container login-section">
+            <h2>Simple Expense Tracking System</h2>
             <h2>LOG IN</h2>
             <form class="login-form" action="signin.php" method="post">
                 <input type="text" name="username" placeholder="Username" required>

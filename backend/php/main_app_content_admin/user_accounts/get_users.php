@@ -20,7 +20,7 @@ try {
 
     $users = [];
     while ($row = $result->fetch_assoc()) {
-        $row['month'] = date('F', strtotime($row["created_at"]));
+        $row['month'] = date('F', strtotime(datetime: $row["created_at"]));
         $row['year'] = date('Y', strtotime($row["created_at"]));
         $users[] = $row;
     }

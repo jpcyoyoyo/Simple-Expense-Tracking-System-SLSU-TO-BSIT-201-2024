@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user_id = $input['user_id'];
 
     // Prepare and execute the first query to fetch users
-    $stmt = $conn->prepare("SELECT id, created_at, status, description FROM logs WHERE user_id = ?");
+    $stmt = $conn->prepare(query: "SELECT id, created_at, status, description FROM logs WHERE user_id = ?");
     if (!$stmt) {
         createLog($conn, $admin_user_id, "Error preparing statement for user logs. User ID: $user_id, Admin User ID: $admin_user_id: " . $conn->error, 0);
         echo json_encode(['success' => false, 'message' => 'Failed to prepare statement: ' . $conn->error]);

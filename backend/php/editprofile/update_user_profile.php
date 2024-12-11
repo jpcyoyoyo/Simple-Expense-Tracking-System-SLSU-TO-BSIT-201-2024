@@ -50,7 +50,7 @@ if ($resultCheck->num_rows > 0) {
 $stmtCheck->close();
 
 // Initialize default values
-$uploadDir = 'profile_pic/';
+$uploadDir = '../../../profile_pic/';
 $defaultImage = 'profile_default.svg';
 $newProfilePicPath = $previousProfilePic;
 
@@ -60,10 +60,6 @@ if ($profile_pic && $profile_pic['error'] === UPLOAD_ERR_OK) {
     $fileDestination = $uploadDir . $newFileName;
 
     if (move_uploaded_file($profile_pic['tmp_name'], $fileDestination)) {
-        // Delete previous profile picture if not default
-        if ($previousProfilePic !== $defaultImage && file_exists($uploadDir . $previousProfilePic)) {
-            unlink($uploadDir . $previousProfilePic);
-        }
         $newProfilePicPath = "profile_pic/$newFileName"; // Update for database
     } else {
         createLog($conn, $user_id, "Profile picture upload failed for user {$username}.", 0);
@@ -99,8 +95,23 @@ if ($stmt->execute()) {
         $_SESSION['username'] = $new_username;
     }
 
+    // Delete the old profile picture if it is not the default and update is successful
+    if ($previousProfilePic !== $defaultImage && file_exists("../../../{$previousProfilePic}")) {
+        if (!unlink("../../../{$previousProfilePic}")) { // Include the upload directory in the path
+            createLog($conn, $user_id, "Failed to delete old profile picture: {$previousProfilePic}", 0);
+            echo json_encode(['success' => false, 'message' => 'Failed to delete old profile picture.']);
+            exit; // Exit if deletion fails to avoid proceeding with inconsistent state
+        }
+        createLog($conn, $user_id, "Old profile picture deleted successfully: {$previousProfilePic} for {$_SESSION['username']}", 1);
+    }
+
+
     echo json_encode(['success' => true, 'message' => 'Profile updated successfully.']);
 } else {
+    // Cleanup the newly uploaded photo if the update fails
+    if ($newProfilePicPath !== $previousProfilePic && file_exists($uploadDir . basename($newProfilePicPath))) {
+        unlink($uploadDir . basename($newProfilePicPath));
+    }
     createLog($conn, $user_id, "Failed to update profile for user {$username}: " . $stmt->error, 0);
     echo json_encode(['success' => false, 'message' => 'Failed to update profile.']);
 }

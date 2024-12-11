@@ -27,6 +27,7 @@
 <body>
     <div class="container-fluid" style="padding:0;">
         <div class="row" style="--bs-gutter-x: 0.75rem; margin: 0;">
+        <input type="hidden" class="fullname" value="<?php echo $_SESSION['fullname']; ?>">
             <!-- Include Sidebar from PHP -->
             <?php include "components/sidebar.php"?>
 
@@ -36,8 +37,6 @@
             </div>
         </div>
     </div>
-
-    <p type="hidden" class="fullname"><?php echo $_SESSION['fullname']; ?></p>
     
     <script src="backend/javascript/main_app_content/reports.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
